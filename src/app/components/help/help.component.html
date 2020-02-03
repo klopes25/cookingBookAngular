@@ -1,0 +1,6 @@
+<div class="helpContainer" [ngClass]="{'show': open }">
+  <i class="icon-cancel-circled2" (click)="closeHelp()"></i>
+  <div class="imgContainer">
+    <img width="100%" [src]="getHelperSrc()" alt="helper" />
+  </div>
+</div>

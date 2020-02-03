@@ -1,0 +1,276 @@
+{
+  "name": "cooking-book-icons",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "474656633f79ea2f1dad59ff63f6bf07",
+      "css": "star",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d17030afaecc1e1c22349b99f3c4992a",
+      "css": "star-empty",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "84cf1fcc3fec556e7eaeb19679ca2dc9",
+      "css": "star-half-alt",
+      "code": 61731,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "0f99ab40ab0b4d64a74f2d0deeb03e42",
+      "css": "video",
+      "code": 59394,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1400d5103edd2fa6d2d61688fee79a5a",
+      "css": "ok-squared",
+      "code": 61770,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "2e2dba0307a502a8507c1729084c7ab5",
+      "css": "cancel-circled2",
+      "code": 59396,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1a5cfa186647e8c929c2b17b9fc4dac1",
+      "css": "plus-squared",
+      "code": 61694,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "f755a58fb985eeb70bd47d9b31892a34",
+      "css": "minus-squared",
+      "code": 61766,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "3db5347bd219f3bce6025780f5d9ef45",
+      "css": "tag",
+      "code": 59398,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d35a1d35efeb784d1dc9ac18b9b6c2b6",
+      "css": "pencil",
+      "code": 59399,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "bbfb51903f40597f0b70fd75bc7b5cac",
+      "css": "trash",
+      "code": 61944,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "cddbeffea9d90c5db93d5d3e77b8893e",
+      "css": "cart-plus",
+      "code": 61975,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "ccddff8e8670dcd130e3cb55fdfc2fd0",
+      "css": "down-open",
+      "code": 59403,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "fe6697b391355dec12f3d86d6d490397",
+      "css": "up-open",
+      "code": 59404,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
+      "css": "search",
+      "code": 59405,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "12052b30d23a1a70d6b32962d5464cae",
+      "css": "to-start",
+      "code": 59406,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "c47efa0e3e74f6ba4c2562c1258fff1f",
+      "css": "to-end",
+      "code": 59407,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d870630ff8f81e6de3958ecaeac532f2",
+      "css": "left-open",
+      "code": 59408,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "399ef63b1e23ab1b761dfbb5591fa4da",
+      "css": "right-open",
+      "code": 59409,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "8b80d36d4ef43889db10bc1f0dc9a862",
+      "css": "user",
+      "code": 59410,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "28f308aa0a07a67433f54c089c400d82",
+      "css": "gift",
+      "code": 59412,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "30b79160618d99ce798e4bd11cafe3fe",
+      "css": "food",
+      "code": 61685,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1e7648f03fbdc28114a00b33b059b499",
+      "css": "extinguisher",
+      "code": 61748,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "4b900d04e8ab8c82f080c1cfbac5772c",
+      "css": "check-empty",
+      "code": 61590,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "a73c5deb486c8d66249811642e5d719a",
+      "css": "arrows-cw",
+      "code": 59411,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "818981e2ad316f18ae61cfa805d41309",
+      "css": "user-circle",
+      "code": 62141,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "28f124a10127a47b9d9472699193d75a",
+      "css": "print-1",
+      "code": 59414,
+      "src": "entypo"
+    },
+    {
+      "uid": "25fc99a30fecc4021fdcae5fff5ba9ac",
+      "css": "eye-1",
+      "code": 59400,
+      "src": "entypo"
+    },
+    {
+      "uid": "43fl9m553j1z5937vfjz0lgolrlspxwl",
+      "css": "check",
+      "code": 59397,
+      "src": "typicons"
+    },
+    {
+      "uid": "lu2wqmd7v9zp21knhy4eifo41wjp4cnx",
+      "css": "th-list",
+      "code": 59395,
+      "src": "typicons"
+    },
+    {
+      "uid": "4x5p6fnblkhqsj4ibuc724faotghuiaq",
+      "css": "lock-filled",
+      "code": 59415,
+      "src": "typicons"
+    },
+    {
+      "uid": "e0d15ef5945000f5f264acc35494002f",
+      "css": "basket",
+      "code": 59416,
+      "src": "typicons"
+    },
+    {
+      "uid": "qab5uvjyoc3uu4d2pvt8soshtgkuvpak",
+      "css": "slash",
+      "code": 59418,
+      "src": "typicons"
+    },
+    {
+      "uid": "e9ece45e43d41c7fd4b56dd49bb77443",
+      "css": "comment-medical",
+      "code": 59417,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M500 62.5C223.9 62.5 0 244.4 0 468.8 0 565.5 41.8 654.3 111.3 724.1 86.8 822.4 5.3 910.2 4.3 911.1A15.6 15.6 0 0 0 15.6 937.5C145 937.5 242.2 875.5 290.2 837.1A595 595 0 0 0 500 875C776.2 875 1000 693.1 1000 468.8S776.2 62.5 500 62.5ZM687.5 515.6A15.6 15.6 0 0 1 671.9 531.3H562.5V640.6A15.6 15.6 0 0 1 546.9 656.3H453.1A15.6 15.6 0 0 1 437.5 640.6V531.3H328.1A15.6 15.6 0 0 1 312.5 515.6V421.9A15.6 15.6 0 0 1 328.1 406.3H437.5V296.9A15.6 15.6 0 0 1 453.1 281.3H546.9A15.6 15.6 0 0 1 562.5 296.9V406.3H671.9A15.6 15.6 0 0 1 687.5 421.9Z",
+        "width": 1000
+      },
+      "search": [
+        "comment-medical"
+      ]
+    },
+    {
+      "uid": "58174fac40fe2a88f9c9a3694f06c329",
+      "css": "cookie-bite",
+      "code": 59419,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M997.1 499.6C860.4 498 750.1 387 750.1 249.9 613 249.9 502.1 139.6 500.4 2.9 447.1-5.1 392.7 3.5 344.7 28L209.6 96.8A258.2 258.2 0 0 0 96.8 209.7L28.2 344.2A259.1 259.1 0 0 0 3.2 502.3L26.8 651.3A258.8 258.8 0 0 0 99.4 793.8L206.3 900.7A257.9 257.9 0 0 0 348.3 973.1L498.2 996.9C551.9 1005.4 607 996.6 655.4 971.9L790.5 903.2A258.3 258.3 0 0 0 903.3 790.3L971.9 655.7C996.4 607.6 1005.1 553 997.1 499.6ZM343.8 718.8C309.2 718.8 281.3 690.8 281.3 656.3S309.2 593.8 343.8 593.8 406.3 621.7 406.3 656.3 378.3 718.8 343.8 718.8ZM406.3 406.3C371.7 406.3 343.8 378.3 343.8 343.8S371.7 281.3 406.3 281.3 468.8 309.2 468.8 343.8 440.8 406.3 406.3 406.3ZM718.8 656.3C684.2 656.3 656.3 628.3 656.3 593.8S684.2 531.3 718.8 531.3 781.3 559.2 781.3 593.8 753.3 656.3 718.8 656.3Z",
+        "width": 1000
+      },
+      "search": [
+        "cookie-bite"
+      ]
+    },
+    {
+      "uid": "bd80805ba5195f5e6bc325671669bf45",
+      "css": "dice",
+      "code": 59420,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M1156.3 375H924.3C949.1 432.8 938.2 502.3 891.1 549.5L625 815.6V906.3C625 958 667 1000 718.8 1000H1156.3C1208 1000 1250 958 1250 906.3V468.8C1250 417 1208 375 1156.3 375ZM937.5 734.4C911.6 734.4 890.6 713.4 890.6 687.5 890.6 661.6 911.6 640.6 937.5 640.6S984.4 661.6 984.4 687.5C984.4 713.4 963.4 734.4 937.5 734.4ZM846.9 369.7L505.3 28.1C467.9-9.4 407.2-9.4 369.7 28.1L28.1 369.7C-9.4 407.1-9.4 467.8 28.1 505.3L369.7 846.9C407.1 884.4 467.8 884.4 505.3 846.9L846.9 505.3C884.4 467.8 884.4 407.1 846.9 369.7ZM187.5 484.4C161.6 484.4 140.6 463.4 140.6 437.5 140.6 411.6 161.6 390.6 187.5 390.6S234.4 411.6 234.4 437.5C234.4 463.4 213.4 484.4 187.5 484.4ZM437.5 734.4C411.6 734.4 390.6 713.4 390.6 687.5 390.6 661.6 411.6 640.6 437.5 640.6S484.4 661.6 484.4 687.5C484.4 713.4 463.4 734.4 437.5 734.4ZM437.5 484.4C411.6 484.4 390.6 463.4 390.6 437.5 390.6 411.6 411.6 390.6 437.5 390.6S484.4 411.6 484.4 437.5C484.4 463.4 463.4 484.4 437.5 484.4ZM437.5 234.4C411.6 234.4 390.6 213.4 390.6 187.5 390.6 161.6 411.6 140.6 437.5 140.6S484.4 161.6 484.4 187.5C484.4 213.4 463.4 234.4 437.5 234.4ZM687.5 484.4C661.6 484.4 640.6 463.4 640.6 437.5 640.6 411.6 661.6 390.6 687.5 390.6S734.4 411.6 734.4 437.5C734.4 463.4 713.4 484.4 687.5 484.4Z",
+        "width": 1250
+      },
+      "search": [
+        "dice"
+      ]
+    },
+    {
+      "uid": "dce1dcc858223409cf0d67742add435f",
+      "css": "heart-broken",
+      "code": 59401,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M925.2 144.1L920.5 139.3C830.7 47.5 690 38.3 589.3 110.4L656.3 312.3 468.8 437.3 562.5 687.3 281.3 406.1 468.8 281.1 412.9 112.1C311.9 38.3 169.9 46.9 79.5 139.5L74.8 144.1C-20.3 241.4-24.4 396.3 60.5 500L474.8 927C488.7 941.2 511.1 941.2 525 927L939.5 499.8C1024.4 396.3 1020.3 241.4 925.2 144.1Z",
+        "width": 1000
+      },
+      "search": [
+        "heart-broken"
+      ]
+    },
+    {
+      "uid": "dd6c6b221a1088ff8a9b9cd32d0b3dd5",
+      "css": "check-1",
+      "code": 59402,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "97bd5542ed3e143d2ee9b60e14487615",
+      "css": "list-add",
+      "code": 59413,
+      "src": "entypo"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+<top-recipe
+  [titlerecipe]="currentRecipe.title"
+  [isvalidated]="isRecipeValidated()"
+  [role]="getRole()"
+  [edition]="editionMode"
+  [query]="query"
+  (editionModeActivated)="toggleEditionMode()"
+  (titleToBeUpdated)="editTitle($event)"
+></top-recipe>
+
+<stars
+  [mark]="currentRecipe.mark"
+  [nbMark]="currentRecipe.nbMark"
+  [user]="user"
+  [canVote]="canVote()"
+  (recipeMarked)="addMark($event)"
+></stars>
+
+<div class="headerRecipe">
+  <div class="meatAndSpice">
+    <meat-selector
+      [meat]="currentRecipe.meatClass"
+      [edition]="editionMode"
+      (meatChanged)="updateMeat($event)"
+    ></meat-selector>
+
+    <spice
+      [spicy]="currentRecipe.spicy"
+      [edition]="editionMode"
+      (spiceUpdated)="updateSpice($event)"
+    ></spice>
+  </div>
+
+  <photo-with-duration
+    [preparationTime]="currentRecipe.prepPeriod"
+    [cookingTime]="currentRecipe.cookPeriod"
+    [restPeriod]="currentRecipe.restPeriod"
+    [nbPerson]="currentRecipe.nbPeople"
+    [nbPersonUnit]="currentRecipe.nbPeopleUnit"
+    [edition]="editionMode"
+    [id]="currentRecipe.recipeID"
+    [recipeTitle]="currentRecipe.title"
+    [deltaPerson]="deltaPerson"
+    (preparationTimeUpdated)="updatePreparationTime($event)"
+    (cookingTimeUpdated)="updateCookingTime($event)"
+    (restPeriodUpdated)="updateRestPeriod($event)"
+    (nbPersonUpdated)="updateNbPerson($event)"
+    (unitChanged)="updateUnit($event)"
+    (deltaUpdated)="updateDelta($event)"
+  ></photo-with-duration>
+
+  <category
+    [edition]="editionMode"
+    [category]="currentRecipe.category"
+    (categoryUpdated)="updateCategory($event)"
+  ></category>
+</div>
+
+<div *ngIf="editionMode" class="video">
+  <i *ngIf="currentRecipe.video" class="icon-ok-squared" (click)="toggleVideo()"></i>
+  <i *ngIf="!currentRecipe.video" class="icon-check-empty" (click)="toggleVideo()"></i>
+  <span> Video ? </span>
+</div>
+
+<div class="ingredientsAndSteps">
+  <ingredients
+    [items]="currentRecipe.ingredients"
+    [edition]="editionMode"
+    [query]="query"
+    [user]="user"
+    [deltaPerson]="deltaPerson"
+    [nbPerson]="currentRecipe.nbPeople"
+    (ingredientUpdated)="updateIngredients($event)"
+  ></ingredients>
+
+  <steps
+    [items]="currentRecipe.steps"
+    [edition]="editionMode"
+    [query]="query"
+    [recipeID]="currentRecipe.recipeID"
+    [video]="currentRecipe.video"
+    (stepsUpdated)="updateSteps($event)"
+  ></steps>
+</div>
+
+<chief-tip
+  [tip]="currentRecipe.chiefTrick"
+  [edition]="editionMode"
+  [query]="query"
+  (chiefTipUpdated)="updateChiefTip($event)"
+></chief-tip>
+<tags
+  [items]="currentRecipe.tags"
+  [edition]="editionMode"
+  [query]="query"
+  (tagsUpdated)="updateTags($event)"
+></tags>
+
+<comments
+  [items]="currentRecipe.comments"
+  [user]="user"
+  (commentToBeDeleted)="deleteComment($event)"
+  (commentToBeUpdated)="updateComment($event)"
+  (commentCreated)="createComment($event)"
+></comments>
+

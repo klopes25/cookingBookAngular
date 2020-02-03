@@ -1,0 +1,42 @@
+<div class="filters" [ngClass]="{'disable': !isUserConnected() }">
+  <div *ngIf="!isRecipeSelected(); else recipeselected" class="filtersContainer">
+    <i class="icon-ok-squared" [ngClass]="{'activated': filters.onlyValidated }" (click)="toggleOnlyValidated()" title="Toutes les recettes validées"></i>
+    <i class="icon-gift" [ngClass]="{'activated': filters.onlyNew }" (click)="toggleOnlyNew()" title="Surprise ! Toutes les recettes non réalisées"></i>
+    <i class="icon-heart-broken" [ngClass]="{'activated': filters.onlyDislike }" (click)="toggleOnlyDislike()" title="Toutes les recettes de votre poubelle"></i>
+    <i class="icon-extinguisher overable" [ngClass]="{'activated': filters.hot }" (click)="toggleHot()" title="Filtrez si c'est trop piquant !">
+      <div class="overPart" (click)="dontBubble($event)">
+        <div class="line">
+          <span>Min : </span>
+          <input type="number" placeholder="0" min="0" max="3" value="0" #hotMinElement class="min" />
+        </div>
+        <div class="line">
+          <span>Max : </span>
+          <input type="number" placeholder="3" min="0" max="3" value="3" #hotMaxElement class="max" />
+        </div>
+        <button (click)="updateMinMaxHot()"> Valider </button>
+      </div>
+    </i>
+    <i class="icon-star overable " [ngClass]="{'activated': filters.star }" (click)="toggleStar()" title="Filtrez par qualité ;)">
+      <div class="overPart" (click)="dontBubble($event)">
+        <div class="line">
+          <span>Min : </span>
+          <input type="number" placeholder="0" min="0" max="5" value="0" #starMinElement class="min" />
+        </div>
+        <div class="line">
+          <span>Max : </span>
+          <input type="number" placeholder="5" min="0" max="5" value="5" #starMaxElement class="max" />
+        </div>
+        <button (click)="updateMinMaxStar()"> Valider </button>
+      </div>
+    </i>
+
+  </div>
+
+  <ng-template #recipeselected>
+      <i class="icon-check" [ngClass]="{'activated': currentRecipe.validated }" (click)="validate()" title="Valider/invalider la recette"></i>
+      <i class="icon-print-1"(click)="print()" title="Imprimer la recette"></i>
+      <i class="icon-cart-plus" (click)="addToCart()" title="Ajouter les ingrédients à la liste de course"></i>
+  </ng-template>
+
+</div>
+

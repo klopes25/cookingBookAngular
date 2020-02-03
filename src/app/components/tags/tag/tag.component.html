@@ -1,0 +1,5 @@
+<div class="tag" [ngClass]="{'edition': edition}">
+  <span [innerHTML]="textTransformed | sanitizeHtml"></span>
+  <input class="tagInput" type="text" data-not-empty [value]="text" (keydown.enter)="updateTag($event.target.value)" />
+  <i class="icon-trash" (click)="deleteTag()"></i>
+</div>

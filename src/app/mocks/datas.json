@@ -1,0 +1,20 @@
+{
+  "user1":  {
+    "_id": "1",
+    "login": "Funnybobby",
+    "password": "****",
+    "role": "admin",
+    "email": "a@free.fr",
+    "logo": "burger",
+    "votedFor": []
+  },
+  "user2": {
+    "_id": "2",
+    "login": "Toto",
+    "password": "enSlip",
+    "role": "user",
+    "email": "toto@free.fr",
+    "logo": "egg",
+    "votedFor": [1, 2]
+  }
+}

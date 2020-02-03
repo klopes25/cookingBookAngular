@@ -1,0 +1,12 @@
+<div class="meats">
+  <img alt="meat" width="100px" height="100px" [src]="meatSrc" />
+  <img alt="empty" src='assets/img/stamp.svg' [className]="'firstMeat ' + getMeatClass(1)" (click)="changeMeat(1)" />
+  <img alt="beef" src='assets/img/stamp-boeuf.svg' [className]="'secondMeat ' + getMeatClass(2)" (click)="changeMeat(2)" />
+  <img alt="duck" src='assets/img/stamp-canard.svg' [className]="'thirdMeat ' + getMeatClass(3)" (click)="changeMeat(3)" />
+  <img alt="shellfish" src='assets/img/stamp-crustace.svg' [className]="'fourthMeat ' + getMeatClass(4)" (click)="changeMeat(4)" />
+  <img alt="sheep" src='assets/img/stamp-mouton.svg' [className]="'fifthMeat ' + getMeatClass(5)" (click)="changeMeat(5)" />
+  <img alt="chicken" src='assets/img/stamp-poulet.svg' [className]="'sixthMeat ' + getMeatClass(6)" (click)="changeMeat(6)" />
+  <img alt="pork" src='assets/img/stamp-porc.svg' [className]="'seventhMeat ' + getMeatClass(7)" (click)="changeMeat(7)" />
+  <img alt="fish" src='assets/img/stamp-poisson.svg'[className]="'eightMeat ' + getMeatClass(8)" (click)="changeMeat(8)" />
+  <img alt="vegetable" src='assets/img/stamp-vegetable.svg' [className]="'nineMeat ' + getMeatClass(9)" (click)="changeMeat(9)" />
+</div>

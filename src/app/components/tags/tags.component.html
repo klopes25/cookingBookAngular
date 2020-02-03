@@ -1,0 +1,19 @@
+<div class="tags">
+  <div class="tagsTitle">Tags</div>
+  <div class="tagsDisplay">
+    <tag
+      *ngFor="let item of items; let i = index"
+      [text]="item"
+      [index]="i"
+      [edition]="edition"
+      [query]="query"
+      (tagToBeDeleted)="deleteTag($event)"
+      (tagUpdated)="updateTag($event)"
+    >
+    </tag>
+    <div class="tagAdd" [ngClass]="{'edition': edition}">
+      <input class="tagInput" #newTag type="text" data-not-empty placeholder="Tagguez ici" (keydown.enter)="addTag()"/>
+      <i class="icon-plus-squared"></i>
+    </div>
+  </div>
+</div>

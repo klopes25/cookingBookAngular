@@ -1,0 +1,100 @@
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+body {
+	box-sizing: border-box;
+	background: #303030 url(./assets/img/background.png) repeat;
+  height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+  flex: 1;
+  padding: 8px;
+  margin: 0;
+}
+
+mark{
+	border-radius: 3px;
+	background-color: #ffa200;
+	font-weight: bold;
+	padding: 0 2px;
+}
+
+i.group0, i.group1, i.group2, i.group3, i.group4, i.group5, i.group6 {
+	font-size: 16px;
+	padding-bottom: 3px;
+	padding-right: 5px;
+}
+i.group0 { color: #ed5564; }
+i.group1 { color: #47cec0; }
+i.group2 { color: #d870ad; }
+i.group3 { color: #fab153; }
+i.group4 { color: #4a8bdb; }
+i.group5 { color: #b377d9; }
+i.group6 { color: #c2d468; }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #808080;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #009EE0;
+}
+
+button.svelte-emoji-picker__trigger {
+	border: none;
+	background: transparent;
+	width: 32px;
+	height: 32px;
+	color: transparent;
+	position: absolute;
+}
+
+@font-face {
+	font-family: "AmaticSC";
+	src: url('./assets/fonts/Amatic_SC/AmaticSC-Regular.ttf');
+}
+
+@font-face {
+	font-family: "Englebert";
+	src: url('./assets/fonts/Englebert/Englebert-Regular.ttf');
+}
+
+@font-face {
+	font-family: "IndieFlower";
+	src: url('./assets/fonts/Indie_Flower/IndieFlower-Regular.ttf');
+}
+
+@font-face {
+	font-family: "Kavivanar";
+	src: url('./assets/fonts/Kavivanar/Kavivanar-Regular.ttf');
+}
+
+@font-face {
+	font-family: "Pacifico";
+	src: url('./assets/fonts/Pacifico/Pacifico-Regular.ttf');
+}
+
+@font-face {
+	font-family: "Lobster";
+	src: url('./assets/fonts/Lobster/Lobster-Regular.ttf');
+}
+
+@font-face {
+	font-family: "LuckiestGuy";
+	src: url('./assets/fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf');
+}

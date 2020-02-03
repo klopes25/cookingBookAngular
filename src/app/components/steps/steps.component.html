@@ -1,0 +1,43 @@
+<div class="steps" [ngClass]="{'edition': edition}">
+  <div class="stepsTitle">Étapes</div>
+  <div class="stepList">
+    <step
+      *ngFor="let item of itemsTransformed; let i=index"
+      [text]="item.text"
+      [index]="i"
+      [edition]="edition"
+      (stepToBeDeleted)="deleteStep($event)"
+      (stepToBeMoved)="moveStep($event)"
+    ></step>
+
+    <!-- Step Add -->
+    <div class="stepAdd">
+      <input
+        class="stepInput"
+        type="text"
+        data-not-empty
+        placeholder="Tapez ici votre étape"
+        #newStep
+        (keydown.enter)="createNewStep()"
+      />
+      <i class="icon-list-add" (click)="addStep()"></i>
+    </div>
+    <div class="validation">
+      <span (click)="updateSteps()">Validation</span>
+    </div>
+
+    <!-- tabs -->
+    <div class="stepTabs">
+      <div class="stepsVideo" [ngClass]="{'disable': !video}">
+        <i class="icon-video stepsVideoIcon" (click)="openVideo()"></i>
+      </div>
+      <div class="player" [ngClass]="{'open': isVideoOpen}">
+        <i class="icon-cancel-circled2" (click)="closeVideo()"></i>
+        <video *ngIf="video" controls width="250" #videoPlayer>
+            <source [src]="srcVideo" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+      </div>
+    </div>
+  </div>
+</div>

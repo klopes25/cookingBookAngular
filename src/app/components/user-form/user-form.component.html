@@ -1,0 +1,29 @@
+<div class="formContainer" [ngClass]="{'show': open}">
+    <div class="userForm">
+      <div class="formTitle">{{getTitle()}}</div>
+      <div class="inputs">
+
+        <input type="text" name="login" class="userInput" placeholder="Login" #loginElement [(ngModel)]="newLogin" (keydown.enter)="passwordElement.focus()" />
+        <input type="text" name="password" class="userInput" placeholder="Password" #passwordElement [(ngModel)]="newPassword" (keydown.enter)="emailElement.focus()" />
+        <input type="text" name="email" class="userInput" placeholder="e-mail" [(ngModel)]="newEmail" #emailElement />
+
+        <div class="avatars">
+          <div class="title">Avatars</div>
+            <img
+              *ngFor="let avatar of avatars"
+              alt="avatar"
+              width="40px"
+              height="40px"
+              [src]="'assets/img/user/user_'+avatar+'.svg'"
+              [ngClass]="{'selected': isSelectedAvatar(avatar)}"
+              (click)="changeAvatar(avatar)"
+            />
+        </div>
+
+      </div>
+      <div class="buttons">
+        <button class="validUser" (click)="valideUser()">Valider</button>
+        <button class="closeUser" (click)="closeForm()">Annuler</button>
+      </div>
+    </div>
+  </div>

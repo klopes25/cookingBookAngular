@@ -1,0 +1,8 @@
+<div class="editionCategory">
+  <img alt="category" [src]="getCategorySrc()" />
+  <span [ngClass]="{'edition': edition}">
+    <i class="icon-left-open" (click)="before()"></i>
+    <div>{{ category }}</div>
+    <i class="icon-right-open" (click)="after()"></i>
+  </span>
+</div>

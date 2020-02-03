@@ -1,0 +1,58 @@
+:host{
+  display: contents;
+}
+
+.chiefTip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.chiefTip .chiefTipTitle {
+  font-weight: bolder;
+  color: whitesmoke;
+  padding: 10px;
+  font-size: 28px;
+  font-family: 'AmaticSC';
+}
+
+.chiefTip .chiefTipTitle:before, .chiefTip .chiefTipTitle:after {
+  content: " - ";
+  width: 100px;
+  height: 10px;
+}
+
+.chiefTip .chiefTipContent {
+  color: whitesmoke;
+  font-family: 'IndieFlower';
+  align-self: flex-start;
+  margin-left: 20px;
+  width: calc(100% - 40px);
+}
+
+.chiefTip .chiefTipContent input {
+  display: none;
+}
+
+.chiefTip .chiefTipContent.isEdited div {
+  display: none;
+}
+
+.chiefTip .chiefTipContent.isEdited input {
+  display: block;
+  background: #424242;
+  border: 1px solid #545454;
+  color: #d2d0d0;
+  width: 100%;
+  line-height: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+
+@media print {
+  .chiefTip .chiefTipTitle, .chiefTip .chiefTipContent {
+    color: #191919;
+  }
+}

@@ -1,0 +1,29 @@
+<div *ngIf="isUserConnected(); else formConnection" class="connected">
+  <img [src]="getUserAvatarSrc()" height="70" alt="User icon" />
+  <div class="userDetails">
+    <span>{{user.login}}</span>
+    <div class="actions">
+      <span (click)="showHelper()">Aide</span>
+      <span (click)="showUserParameter()">Paramétrage</span>
+      <span (click)="unconnect()">Déconnexion</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #formConnection>
+  <div class="unconnected">
+    <div class="login">
+      <i class="icon-user-circle"></i>
+      <input #login type="text" placeholder="login" autoComplete="off" (keydown.enter)="password.focus()" />
+    </div>
+    <div class="password">
+      <i class="icon-lock-filled"></i>
+      <input #password type="password" placeholder="Mot de passe" autoComplete="off" (keyup.enter)="connection()"/>
+    </div>
+
+    <div class="notMember">
+      <span>Pas membres ?</span>
+      <span class="link" (click)="openCreateUser()"> Créer un compte </span>
+    </div>
+  </div>
+</ng-template>

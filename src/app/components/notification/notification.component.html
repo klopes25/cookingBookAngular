@@ -1,0 +1,5 @@
+<div [className]="'notif ' + getNotifsState()">
+  <ul>
+    <li *ngFor="let notif of notifs">{{notif.text}}</li>
+  </ul>
+</div>

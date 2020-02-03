@@ -1,0 +1,34 @@
+<div class="comments">
+  <div class="commentsTitle">Commentaires</div>
+  <div class="commentList">
+    <comment
+      *ngFor="let item of items; let i = index"
+      [text]="item.text"
+      [date]="getDate(item)"
+      [index]="i"
+      [author]="item.author"
+      [user]="user"
+      (commentToBeDeleted)="deleteComment($event)"
+      (commentToBeUpdated)="updateComment($event)"
+    >
+    </comment>
+  </div>
+
+  <div *ngIf="user !== null" class="commentForm">
+    <div class="textPart">
+      <textarea [(ngModel)]="textContent" placeholder="Tapez votre commentaire" rows="3"></textarea>
+      <button (click)="createNewComment()">
+        <i class="icon-comment-medical"></i>
+      </button>
+    </div>
+    <div class="emojiPart" [ngClass]="{'close': !emojiOpen}">
+      <img alt="emoji" width="32px" height="32px" src='../../assets/img/happy.png' (click)="toggleEmojiPicker()" />
+      <emoji-mart
+        (emojiClick)="addEmoji($event)"
+        exclude="['activity', 'places', 'symbols', 'objects', 'flags', 'custom']"
+        title='Cooking Book'
+        emojiTooltip=true
+      ></emoji-mart>
+    </div>
+  </div>
+</div>

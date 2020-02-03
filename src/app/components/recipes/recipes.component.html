@@ -1,0 +1,9 @@
+<div class="recipes">
+  <recipe-item
+    *ngFor="let item of items"
+    [item]="item"
+    [user]="user"
+    (recipeToBeDeleted)="deleteRecipe($event)"
+    (recipeToBeShowed)="showRecipe($event)"
+  ></recipe-item>
+</div>

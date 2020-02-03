@@ -1,0 +1,36 @@
+<div class="foodImage" [ngClass]="{'edition': edition}">
+  <img width="150" height="150" [src]="srcFood" [alt]="recipeTitle" />
+
+  <div class="times">
+    <div class="line" title="Temps de préparation">
+      <div class="icon">⌛</div>
+      <div class="value">{{ preparationTime }}</div>
+      <input class="dureeInput" [(ngModel)]="newPreparationTime" autoComplete="off" type="text" (keydown.enter)="editPrepTime()" />
+    </div>
+
+    <div class="line" title="Temps de cuisson">
+      <div class="icon">🔥</div>
+      <div class="value">{{ cookingTime }}</div>
+      <input class="dureeInput" [(ngModel)]="newCookingTime" autoComplete="off" type="text" (keydown.enter)="editCookTime()" />
+    </div>
+
+    <div class="line" title="Temps de repos">
+      <div class="icon">🌖</div>
+      <div class="value">{{ restPeriod }}</div>
+      <input class="dureeInput" [(ngModel)]="newRestPeriod" autoComplete="off" type="text" (keydown.enter)="editRestPeriod()" />
+    </div>
+
+    <div class="line">
+      <i class="icon-food" title="Nombre de personnes / pièces"></i>
+      <div class="value">{{ getNbPerson() }}</div>
+      <input class="dureeInput" [(ngModel)]="newNbPerson" autoComplete="off" type="text" (keydown.enter)="editNbPerson()" />
+
+      <i [className]="getUnitClass()" (click)="changeUnit()"></i>
+
+      <div class="moreOrLess">
+        <i class="icon-plus-squared" (click)="moreGuestsTonight()" title="Ajouter un couvert !"></i>
+        <i class="icon-minus-squared" (click)="lessGuestsTonight()" title="On est un de moins !"></i>
+      </div>
+    </div>
+  </div>
+</div>

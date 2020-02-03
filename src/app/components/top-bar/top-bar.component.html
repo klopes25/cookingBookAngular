@@ -1,0 +1,16 @@
+<div class="topBar">
+  <span class="topBarItems">
+    <span *ngFor="let item of items"
+      class="topBarItem"
+      [ngClass]="{'selected': category === item.actionKey }"
+      (click)="select(item)"
+    >
+    {{ item.title }}
+    </span>
+  </span>
+  
+  <search-bar
+    [query]="query"
+    (searched)="search($event)"
+  ></search-bar>
+</div>

@@ -1,0 +1,36 @@
+<div id="searchBox">
+  <input class="search-input" [ngClass]="{'filtred': showDetails }" placeholder=" Chercher..." type="text" autoComplete="off"
+    #queryElement (keyup)="searchRecipes()"
+  />
+
+  <span class="icon-toggle" (click)="toggle()" >
+    <i [ngClass]="{'icon-up-open': showDetails, 'icon-down-open': !showDetails }"></i>
+  </span>
+
+  <span class="searchIcon">
+    <i class="icon-search"></i>
+  </span>
+
+  <div class="search-form" [ngClass]="{'open': showDetails }">
+    <div class="search-ingredients-in">
+      <span>Avec les ingrédients ... </span>
+      <input type="text" autoComplete="off" placeholder="Séparés par un point-virgule" #ingredientsInElement />
+    </div>
+    <div class="search-ingredients-out">
+      <span>Sans les ingrédients ...</span>
+      <input type="text" autoComplete="off" placeholder="Séparés par un point-virgule" #ingredientsOutElement />
+    </div>
+    <div class="search-calories">
+      <span>Calories max ...</span>
+      <input type="text" autoComplete="off" placeholder="Entier positif" #caloryMaxElement />
+    </div>
+    <div class="search-max-time">
+      <span>Durée max ... </span>
+      <input type="text" placeholder="Durée max en minutes" autoComplete="off" #dureeMaxElement />
+    </div>
+    <div class="search-validation">
+      <button class="raz" (click)="raz()">Remise à zéro</button>
+      <button class="validSearch" (click)="searchRecipes()">Rechercher</button>
+    </div>
+  </div>
+</div>

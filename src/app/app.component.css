@@ -1,0 +1,55 @@
+:host{
+  display: contents; /* to hide the host node in the dom */
+}
+
+.menus{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top{ justify-content: flex-start; }
+
+.center{ justify-content: center; }
+
+.content{
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.content .recipesZone, .content .recipe {
+  background: #202020;
+  flex: 1;
+  margin: 8px 0 8px 0;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 72px);
+}
+
+.content .recipe {
+  overflow-y: auto;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.foot{
+  text-align: center;
+  color: whitesmoke;
+  background: #202020;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 4px;
+  font-weight: bolder;
+  font-family: 'IndieFlower',cursive;
+}
+
+@media print {
+  .foot{
+    display: none;
+  }
+}

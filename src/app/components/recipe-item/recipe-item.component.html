@@ -1,0 +1,24 @@
+<div class="thumbnail animation-thumbnail" [ngClass]="{'checked': isValidated()}">
+  <div [class]="tape"></div>
+  <div class="nomPhoto" [title]="item.title">{{ item.title }}</div>
+  <i class="icon-food"></i>
+  <img
+    alt="recipe"
+    loading="lazy"
+    defaultImage="../../assets/img/plats/default.jpg"
+    [lazyLoad]="getRealImageSrc()"
+    height="150"
+    width="150"
+    [title]="item.recipeID"
+  />
+
+  <div class="deleter-recipe" title="Delete" (click)="deleteRecipe()">
+    <i class="icon-trash"></i>
+    <div class="corner"></div>
+  </div>
+
+  <div class="showRecipe" (click)="showRecipe()">
+    <i class="icon-eye-1"></i>
+    <span>Voir la recette</span>
+  </div>
+</div>

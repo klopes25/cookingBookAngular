@@ -1,0 +1,20 @@
+<div class="topRecipe">
+  <span></span>
+  <!-- title -->
+  <input *ngIf="edition" (keydown.enter)="editTitle()" #title autoComplete="off" class="titleInput" [value]="titleSelected" type="text"/>
+  <!-- edition button -->
+  <div *ngIf="edition" class="recipeEditor isEdited">
+    <img alt="edition" src='assets/img/pencil-tool.png' class="editButton" (click)="toggleEditMode()" />
+  </div>
+
+  <!-- title -->
+  <div *ngIf="!edition" class="recipeTitle" [innerHTML]="titleTransformed | sanitizeHtml"></div>
+  <!-- edition button -->
+  <div *ngIf="!edition &&  (role === 'admin')" class="recipeEditor">
+    <img alt="edition" src='assets/img/pencil-tool.png' class="editButton" (click)="toggleEditMode()" />
+  </div>
+  <span *ngIf="!edition &&  (role != 'admin')"></span>
+
+  <div *ngIf="isvalidated" class="ribbon"> <span>Validée !</span> </div>
+  <div *ngIf="!isvalidated" class="notValidated"></div>
+</div>

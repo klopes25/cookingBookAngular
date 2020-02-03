@@ -1,0 +1,14 @@
+<div id="pagination" [ngClass]="{'showInput': edition, 'hideInput': !edition}">
+  <i class="icon-to-start" (click)="goFirstPage()"></i>
+  <i class="icon-left-open" (click)="previousPage()"></i>
+
+  <div class="pagination">
+    <div class="currentPage" (click)="toggleGoto()"> {{currentPage}} </div>
+    <input type="number" min="1" autoComplete="off" #firstPageElement [ngClass]="{'hideInput': !edition}" [(ngModel)]="newCurrentPage" (keydown.enter)="goTo()" />
+    <i class="icon-slash slash"></i>
+    <div class="totalPages"> {{totalPages}} </div>
+  </div>
+
+  <i class="icon-right-open" (click)="nextPage()"></i>
+  <i class="icon-to-end" (click)="goLastPage()"></i>
+</div>

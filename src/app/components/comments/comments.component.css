@@ -1,0 +1,81 @@
+:host{
+  display: contents;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.comments .commentsTitle {
+  font-weight: bolder;
+  color: whitesmoke;
+  padding: 10px;
+  font-size: 28px;
+  font-family: 'AmaticSC';
+}
+.comments .commentsTitle:before, .comments .commentsTitle:after {
+  content: " - ";
+  width: 100px;
+  height: 10px;
+}
+.comments .commentList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.comments .commentForm {
+  padding: 0px 30px 30px 30px;
+  display: flex;
+  flex-direction: column;
+}
+.comments .commentForm .textPart {
+  display: flex;
+  flex-direction: row;
+}
+.comments .commentForm .textPart textarea {
+  width: 600px;
+  border: none;
+  padding: 10px 20px;
+  font: 15px Arial;
+  margin-bottom: 10px;
+  border-radius: 5px 0 0 5px;
+  resize: none;
+  height: 51px;
+}
+.comments .commentForm .textPart button {
+  float: right;
+  color: #303030;
+  border: none;
+  cursor: pointer;
+  background: #eaeaea;
+  padding: 5px 5px 2px;
+  border-radius: 0 5px 5px 0;
+  height: 71px;
+}
+.comments .commentForm .textPart button i {
+  font-size: 30px;
+}
+.comments .commentForm .textPart button:hover {
+  background: #009ee0;
+  color: #fff;
+}
+.comments .commentForm .emojiPart {
+  display: flex;
+  flex-direction: row;
+}
+.comments .commentForm .emojiPart img {
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.comments .commentForm .emojiPart.close emoji-mart{
+  display: none;
+}
+
+@media print {
+  .comments {
+    display: none;
+  }
+}

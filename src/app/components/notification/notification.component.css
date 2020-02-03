@@ -1,0 +1,46 @@
+:host{
+  display: contents; /* to hide the host node in the dom */
+}
+
+.notif {
+  position: absolute;
+  height: 0px;
+  overflow: hidden;
+  width: calc(100% - 15px);
+  background: transparent;
+  bottom: 0;
+  z-index: 3;
+  color: #fff;
+  transition: all 1s ease;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: bolder;
+  font-family: IndieFlower;
+}
+.notif.showNotif {
+  height: var(--size)px;
+}
+.notif.info {
+  background: #47a8f5;
+}
+.notif.success {
+  background: #6bbd6e;
+}
+.notif.warning {
+  background: #ffaa2c;
+}
+.notif.error {
+  background: #f66359;
+}
+.notif ul li{
+  list-style-type: none;
+}
+
+@media print {
+  .notif{
+    display: none;
+  }
+}

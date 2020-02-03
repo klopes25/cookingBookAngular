@@ -1,0 +1,81 @@
+:host{
+  display: contents;
+}
+.spices {
+  width: 120px;
+  height: 20px;
+  display: block;
+  border-radius: 0 17px 17px 0;
+  position: relative;
+  box-shadow: inset 0 0 0 2px #fff;
+  margin-left: 38px;
+  margin-top: -16px;
+  z-index: 1;
+}
+.spices:after, .spices:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  transition: all 0.5s;
+}
+.spices:before {
+  width: 44px;
+  height: 44px;
+  top: -12px;
+  left: -39px;
+  z-index: -1;
+  border-radius: 44px;
+  box-shadow: inset 0 0 0 4px #fff;
+}
+.spices:after {
+  width: 11px;
+  height: 16px;
+  top: 2px;
+  left: -6px;
+}
+.spices.edition .minus, .spices.edition .plus { display: block; }
+.spices.level0 { opacity: 0; }
+.spices.level0.edition { opacity: 1; }
+.spices.level0.edition:before {
+  background: #fff;
+  color: black;
+}
+.spices.level1:before { background: #ffcd00; }
+.spices.level1:after {
+  width: 43px;
+  background: #ffcd00;
+}
+.spices.level2:before { background: #f58220; }
+.spices.level2:after {
+  width: 89px;
+  background: #f58220;
+}
+.spices.level3:before { background: #de3f3e; }
+.spices.level3:after {
+  width: 124px;
+  background: #de3f3e;
+  border-radius: 0 7px 7px 0;
+}
+.spices .spiceIcon {
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+  position: absolute;
+  top: -15px;
+  left: -41px;
+  background: transparent url(../../../assets/img/spicy.png) no-repeat center center;
+}
+.spices .minus, .spices .plus {
+  display: none;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  top: -2px;
+}
+.spices .minus:hover, .spices .plus:hover {
+  color: #009ee0;
+  cursor: pointer;
+}
+.spices .minus { left: -64px; }
+.spices .plus { right: -24px; }

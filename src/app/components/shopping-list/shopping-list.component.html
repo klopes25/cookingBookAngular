@@ -1,0 +1,26 @@
+<div class="shoppingList" [ngClass]="{'show' : open}">
+  <div class="cart-list">
+    <div class="titleBar">
+      <h2>Shopping list</h2>
+      <span class="tools">
+        <i class="icon-arrows-cw"  (click)="cleanCart()" title="Effacer les ingrédients déjà acheté"></i>
+        <i class="icon-trash" (click)="clearCart()" title="Effacer tout"></i>
+        <i class="icon-cancel-circled2" (click)="closeShoppingList()" title="Fermer la liste"></i>
+      </span>
+    </div>
+
+    <div class="progressbar">
+      <div class="progresser" [ngStyle]="{width: getWidth()}"></div>
+    </div>
+
+    <div class="cartElements">
+      <div *ngFor="let item of items" class="cartItem" [ngClass]="{'checked': item.checked}">
+        <span class="article">
+          <i [ngClass]="{'icon-ok-squared' : item.checked, 'icon-check-empty': !item.checked}" (click)="check(item.ingredient)"></i>
+          <span class="articleText">{{item.ingredient}} {{item.quantity}} {{item.unit}}</span>
+        </span>
+      </div>
+      <img alt="code barre" src="assets/img/barCode.png" />
+    </div>
+  </div>
+</div>

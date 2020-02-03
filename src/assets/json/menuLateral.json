@@ -1,0 +1,78 @@
+{
+	"menus": [{
+		"title": "Apéro au hasard",
+		"actionKey": "aperitif",
+		"restricted": "all"
+	}, {
+		"title": "Entrée au hasard",
+		"actionKey": "entree",
+		"restricted": "all"
+	}, {
+		"title": "Plat au hasard",
+		"actionKey": "plat",
+		"restricted": "all"
+	}, {
+		"title": "Dessert au hasard",
+		"actionKey": "dessert",
+		"restricted": "all"
+	}, {
+		"title": "Boisson au hasard",
+		"actionKey": "boisson",
+		"restricted": "all"
+	}, {
+		"title": "Liste des courses",
+		"actionKey": "courseListe",
+		"restricted": "connected"
+	}],
+	"filters":[{
+		"classe": "validate",
+		"title": "Toutes les recettes validées",
+		"type": "check_box",
+		"restricted": "recipesList",
+		"overview": false
+	},{
+		"classe": "new",
+		"title": "Toutes les nouvelles recettes",
+		"type": "fiber_new",
+		"restricted": "recipesList",
+		"overview": false
+	},{
+		"classe": "dislike",
+		"title": "Toutes les recettes jetées à la poubelle",
+		"type": "block",
+		"restricted": "recipesList",
+		"overview": false
+	},{
+		"classe": "hot",
+		"title": "Filtrez si c'est trop piquant !",
+		"type": "whatshot",
+		"restricted": "recipesList",
+		"overview": true,
+		"max":3
+	},{
+		"classe": "starFilter",
+		"title": "Filtrez par étoile !",
+		"type": "star_rate",
+		"restricted": "recipesList",
+		"overview": true,
+		"max":5
+	},{
+		"classe": "print",
+		"title": "Imprimer la recette",
+		"type": "print",
+		"restricted": "oneRecipe",
+		"overview": false
+	},{
+		"classe": "validator",
+		"title": "Valider/invalider la recette",
+		"type": "done",
+		"restricted": "oneRecipe",
+		"overview": false
+	},{
+		"classe": "cart",
+		"title": "Ajouter à la liste des courses",
+		"type": "add_shopping_cart",
+		"restricted": "oneRecipe",
+		"overview": false
+	}]
+}

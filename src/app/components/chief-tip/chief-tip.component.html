@@ -1,0 +1,7 @@
+<div class="chiefTip">
+  <div class="chiefTipTitle">L'astuce du chef</div>
+  <div class="chiefTipContent" [ngClass]="{'isEdited': edition}">
+    <div [innerHTML]="tipDisplayed | sanitizeHtml"></div>
+    <input type="text" autoComplete="off" #chiefTipInput (keydown.enter)="updateTip()" />
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="prepaStep" [ngClass]="{'edition': edition}">
+  <div class="indexStep" [ngClass]="{'checked': checked}" (click)="toggleCheck()">{{ index + 1 }}</div>
+  <span class="elementText" [innerHTML]="text | sanitizeHtml"></span>
+  <input class="stepInput" type="text" autoComplete="off" [value]="text" />
+  <i class="icon-trash deleteStep" (click)="deleteStep()"></i>
+
+  <span class="upDown">
+    <i class="icon-up-open" (click)="up()"></i>
+    <i class="icon-down-open" (click)="down()"></i>
+  </span>
+</div>

@@ -1,0 +1,36 @@
+:host{
+  display: contents; /* to hide the host node in the dom */
+}
+
+.topBar {
+  color: whitesmoke;
+  background: #202020;
+  height: 34px;
+  line-height: 34px;
+  border-radius: 4px;
+  padding: 0 15px;
+  font-family: Englebert, sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topBarItem {
+  padding: 3px 10px;
+}
+.topBarItem:hover {
+  cursor: pointer;
+  background: #009ee0;
+  border-radius: 4px;
+}
+.topBarItem.selected {
+  cursor: pointer;
+  background: #bee000;
+  border-radius: 4px;
+  color: #202020;
+}
+
+@media print {
+  .topBar {
+    display: none;
+  }
+}

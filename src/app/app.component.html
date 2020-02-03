@@ -1,0 +1,116 @@
+<div class="menus top">
+  <img src="./assets/img/Cooking_logo.svg" height="250" alt="MENU food &amp; drinks" />
+  <connect-zone
+    [user]="user"
+    (createUserOpened)="openCreateUser()"
+    (helperOpened)="openHelper()"
+    (unconnected)="unconnect()"
+    (connected)="connection($event)"
+  ></connect-zone>
+
+  <menu-global
+    [inShopping]="inShopping"
+    [user]="user"
+    (createRecipeOpened)="openCreateRecipe()"
+    (randomRecipeOpened)="randomRecipe($event)"
+    (shoppingListOpened)="openTheShoppingList()"
+  ></menu-global>
+</div>
+
+<div class="menus center">
+  <filters
+    [user]="user"
+    [currentRecipe]="currentRecipe"
+    (addedToCart)="addToCart()"
+    (filterChanged)="updateFilters($event)"
+    (recipeValidated)="updateValidatedBy()"
+  ></filters>
+</div>
+
+<div class="content">
+  <top-bar
+    [category]="currentCategory"
+    [query]="query"
+    (categorySelected)="changeCurrentCategory($event)"
+    (searched)="search($event)"
+  ></top-bar>
+
+  <div *ngIf="currentRecipe === null; else recipeOne" class="recipesZone">
+    <recipes
+      [items]="recipesDisplayed | slice : start : end"
+      [user]="user"
+      (recipeToBeDeleted)="deleteRecipe($event)"
+      (recipeToBeShowed)="showRecipe($event)"
+    ></recipes>
+    <pagination
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (goToPage)="goTo($event)"
+    ></pagination>
+  </div>
+
+  <ng-template #recipeOne>
+    <div class="recipe">
+      <recipe
+        [currentRecipe]="currentRecipe"
+        [query]="query"
+        [user]="user"
+        [editionMode]="editionMode"
+        [deltaPerson]="deltaPerson"
+        (editionModeActivated)="toggleEditionMode()"
+        (titleToBeUpdated)="updateTitle($event)"
+        (recipeMarked)="updateMark($event)"
+        (meatUpdated)="updateMeat($event)"
+        (spiceUpdated)="updateSpice($event)"
+        (ingredientsUpdated)="updateIngredients($event)"
+        (preparationTimeUpdated)="updatePreparationTime($event)"
+        (cookingTimeUpdated)="updateCookingTime($event)"
+        (restPeriodUpdated)="updateRestPeriod($event)"
+        (nbPersonUpdated)="updateNbPerson($event)"
+        (unitUpdated)="updateUnit($event)"
+        (deltaUpdated)="updateDelta($event)"
+        (categoryUpdated)="updateCategory($event)"
+        (stepsUpdated)="updateSteps($event)"
+        (chiefTipUpdated)="updateChiefTip($event)"
+        (tagsUpdated)="updateTags($event)"
+        (commentCreated)="addComment($event)"
+        (commentDeleted)="removeComment($event)"
+        (commentUpdated)="updateComment($event)"
+        (videoUpdated)="updateVideo()"
+      ></recipe>
+    </div>
+  </ng-template>
+
+	<div class="foot"><span>&copy; The Funnybobby company 2019</span></div>
+</div>
+
+<notification
+  [notifs]="notifs"
+  (notifRemoved)="removeNotif()"
+></notification>
+<help
+  [open]="openHelp"
+  (helperClosed)="closeHelper()"
+></help>
+<user-form
+  [open]="openUserForm"
+  [user]="user"
+  (userFormClosed)="closeUserForm()"
+  (userUpdated)="updateOrCreateUser($event)"
+></user-form>
+
+<recipe-form
+  [open]="openRecipeForm"
+  [nextID]="nextID"
+  (recipeFormClosed)="closeRecipeForm()"
+  (recipeAdded)="addRecipe($event)"
+></recipe-form>
+<!-- TODO shopping-list actions-->
+<shopping-list
+  [open]="openShoppingList"
+  [items]="shoppingItems"
+  (shoppingListClosed)="closeShoppingList()"
+  (shoppingListToBeCleaned)="cleanShoppingList()"
+  (shoppingListToBeCleared)="clearShoppingList()"
+  (shoppingItemChecked)="checkShoppingItem($event)"
+></shopping-list>

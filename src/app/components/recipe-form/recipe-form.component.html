@@ -1,0 +1,108 @@
+<div class="formContainer" [ngClass]="{'show': open}">
+  <div class="recipeForm">
+    <div class="formTitle">Création de votre recette</div>
+
+    <div class="inputs">
+      <input type="text" name="title" class="recipeInput" placeholder="Titre" autoComplete="off" #titleSelected />
+
+      <select #categorySelected class="recipeSelect">
+        <option value="" disabled selected>Sélectionnez une catégorie...</option>
+        <option *ngFor="let category of categories" [value]="category.value"> {{category.label}} </option>
+      </select>
+
+      <select #meatSelected class="recipeSelect">
+        <option value="" disabled selected>Sélectionnez un type de viande...</option>
+        <option *ngFor="let meat of meats" [value]="meat.value"> {{meat.label}} </option>
+      </select>
+
+      <select #spiceSelected class="recipeSelect">
+        <option value="" disabled selected>Sélectionnez le niveau des épices...</option>
+        <option *ngFor="let spice of spices" [value]="spice.value"> {{spice.label}} </option>
+      </select>
+
+      <div class="photoAndDuration">
+        <div class="photoRecipe"></div>
+        <div class="photoInputs">
+
+          <div class="inputAndTime">
+            <input type="text" class="recipeInput" placeholder="Durée préparation" autoComplete="off" #preparationTime />
+            <select #preparationUnit class="timeSelect">
+              <option value="" disabled selected>Sélectionnez l'unité...</option>
+              <option *ngFor="let time of times" [value]="time.value"> {{time.label}} </option>
+            </select>
+          </div>
+
+          <div class="inputAndTime">
+            <input type="text" class="recipeInput" placeholder="Durée cuisson" autoComplete="off" #cookingTime />
+            <select #cookingUnit class="timeSelect">
+              <option value="" disabled selected>Sélectionnez l'unité...</option>
+              <option *ngFor="let time of times" [value]="time.value"> {{time.label}} </option>
+            </select>
+          </div>
+
+          <div class="inputAndTime">
+            <input type="text" name="sleep" class="recipeInput" placeholder="Durée de repos" autoComplete="off" #sleepTime/>
+            <select #sleepUnit class="timeSelect">
+              <option value="" disabled selected>Sélectionnez l'unité...</option>
+              <option *ngFor="let time of times" [value]="time.value"> {{time.label}} </option>
+            </select>
+          </div>
+
+          <div class="inputAndTime">
+            <input type="text" name="part" class="recipeInput" placeholder="Nombre de part" autoComplete="off"  #nbPerson />
+            <select #nbPersonUnit class="timeSelect">
+              <option value="" disabled selected>Sélectionnez l'unité...</option>
+              <option *ngFor="let part of parts" [value]="part.value"> {{part.label}} </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <input type="text" class="recipeInput" placeholder="Astuce" autoComplete="off" #astuce  />
+
+      <div class="video">
+        <i *ngIf="hasVideo; else noVideo" class="icon-check-1" (click)="toggleVideo()"></i>
+        <ng-template #noVideo>
+          <i class="icon-check-empty" (click)="toggleVideo()"></i>
+        </ng-template>
+        <span> Video ? </span>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="ingredientsCreator">
+        <div class="ingredientsCreatorTitle">Ingredients <i class="icon-plus-squared" (click)="addIngredientInput()"></i></div>
+        <div *ngFor="let ingredient of ingredients" class="ingrInputs" #ingredientInputs>
+          <input type="text" autoComplete="off" [(ngModel)]="ingredient.group" placeholder="Groupe" />
+          <input type="text" autoComplete="off" [(ngModel)]="ingredient.ingredient" placeholder="Nom" />
+          <input type="text" autoComplete="off" [(ngModel)]="ingredient.quantity" placeholder="Quantité" />
+          <input type="text" autoComplete="off" [(ngModel)]="ingredient.unity" placeholder="Unité" />
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="stepsCreator">
+        <div class="stepsCreatorTitle">Etapes <i class="icon-plus-squared" (click)="addStepInput()"></i></div>
+        <div class="stepsInputs">
+          <input *ngFor="let step of steps" type="text" autoComplete="off" [(ngModel)]="step.text" placeholder="Etape" />
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="tagsCreator">
+        <div class="tagsCreatorTitle">Tags <i class="icon-plus-squared" (click)="addTagInput()"></i></div>
+        <div *ngFor="let tag of tags" class="tagsInputs">
+          <input type="text" autoComplete="off"  [(ngModel)]="tag.text" placeholder="Tag" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="buttons">
+      <button class="validRecipe" (click)="valideRecipe()">Valider</button>
+      <button class="closeRecipe" (click)="closeForm()">Annuler</button>
+    </div>
+  </div>
+</div>

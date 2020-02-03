@@ -1,0 +1,71 @@
+:host{
+  display: contents;
+}
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding-bottom: 20px;
+}
+.tags .tagsTitle {
+  font-weight: bolder;
+  color: whitesmoke;
+  padding: 10px;
+  font-size: 28px;
+  font-family: 'AmaticSC';
+}
+.tags .tagsTitle:before, .tags .tagsTitle:after {
+  content: " - ";
+  width: 100px;
+  height: 10px;
+}
+.tags .tagsDisplay {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: 30px;
+  width: calc(100% - 30px);
+}
+
+.tagAdd {
+  background: #eaeaea;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 4px;
+  color: #303030;
+  font-size: 12px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  padding: 1px 10px;
+  margin-right: 8px;
+  display: none;
+  cursor: default;
+  font-weight: bold;
+  transition: width 1s ease-in-out;
+  overflow: hidden;
+}
+
+.tagAdd.edition {
+  display: flex;
+}
+.tagAdd.edition input.show {
+  display: block;
+  width: 80px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 0 5px;
+  color: #202020;
+  font-style: italic;
+}
+.tagAdd i{
+  font-size: 23px;
+}
+
+@media print {
+  .tags {
+    display: none;
+  }
+}

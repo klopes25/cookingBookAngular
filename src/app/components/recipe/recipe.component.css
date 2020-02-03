@@ -1,0 +1,51 @@
+:host{
+  display: contents;
+}
+
+.headerRecipe{
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meatAndSpice{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+}
+
+.ingredientsAndSteps {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.video{
+  color: #FFFFFF;
+  font-family: 'Englebert', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 20px 0 20px;
+}
+.video i{
+  margin-right: 10px;
+  margin-left: 3px;
+}
+.video .fa-check-square{ color: #bee000; }
+.video i:hover {
+  cursor: pointer;
+  color: #009EE0;
+}
+
+@media screen and (min-width: 1300px) {
+  .ingredientsAndSteps {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,54 @@
+<div class="ingredients" [ngClass]="{'edition': edition}">
+  <div class="ingredientsTitle">Ingrédients</div>
+
+  <ul class="ingredientList">
+    <!-- not edition mode -->
+    <ng-container *ngIf="!edition">
+      <li *ngFor="let item of itemsTransformed">
+        <span *ngIf="groups.length < 2">-&nbsp;</span>
+        <span *ngIf="groups.length >= 2">
+          <i class="icon-tag" [ngClass]="'group'+ groups.indexOf(item.group)"></i>
+        </span>
+        <span [innerHTML]="item.ingredient | sanitizeHtml"></span>
+        {{ getQuantity(item) }}
+      </li>
+    </ng-container>
+
+    <!-- edition mode -->
+    <ng-container *ngIf="edition">
+      <li *ngFor="let item of itemsTransformed; let i = index" class="edition">
+        <input class="ingredientInput group" type="text" placeholder="Groupe" [value]="item.group"/>
+        <input class="ingredientInput name" type="text" placeholder="Nom" data-not-empty [value]="item.ingredient"/> :&nbsp;
+        <input class="ingredientInput qte" type="text" placeholder="Quantité" [value]="item.quantity"/>
+        <input class="ingredientInput unit" type="text" placeholder="Unité" [value]="item.unit"/>
+        <i class="icon-trash deleteIngredient" (click)="deleteIngredient(i)"></i>
+        <span class="upDown">
+          <i class="icon-up-open" (click)="up(i)"></i>
+          <i class="icon-down-open" (click)="down(i)"></i>
+        </span>
+      </li>
+
+      <li class="addIngredient edition">
+        <input class="groupInput" type="text" placeholder="Groupe" value="" #newItemGroup (keydown.enter)="newItemName.focus()"/>
+        <input class="ingredientInput" type="text" placeholder="Ingrédient" value="" #newItemName (keydown.enter)="newItemQuantity.focus()"/> :&nbsp;
+        <input class="quantityInput" type="text" placeholder="Quantité" value="" #newItemQuantity (keydown.enter)="newItemUnit.focus()"/>
+        <input class="unitInput" type="text" placeholder="Unité" value="" #newItemUnit (keydown.enter)="createNewIngredient()"/>
+        <i class="icon-list-add" (click)="addIngredient()"></i>
+      </li>
+      <li class="validation edition"><span (click)="updateIngredients()">Validation</span></li>
+    </ng-container>
+
+    <!-- tabs -->
+    <div class="ingredientTabs">
+      <div [ngClass]="getIngredientsLegendClass()">
+        <i class="icon-th-list ingredientIcon" title="Catégories d'ingrédient" (click)="toggleLegend()"></i>
+        <div class="legend">
+          <div *ngFor="let g of groups; let i = index" class="legendItem">
+            <i class="icon-tag" [ngClass]="'group'+ i" title={g}></i>{{ g }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ul>
+</div>
