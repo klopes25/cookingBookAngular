@@ -64,7 +64,7 @@ export class RecipeComponent {
 
   isRecipeValidated(){
     if(this.user === null) return false;
-    return this.currentRecipe.validatedBy.find((v) => v.login === this.user.login) !== undefined;
+    return this.currentRecipe.validatedBy.find((userID) => userID === this.user._id) !== undefined;
   }
 
   toggleEditionMode = () => { this.editionModeActivated.emit() }

@@ -36,7 +36,7 @@ export class RecipeItemComponent implements OnChanges {
 
   isValidated(){
     if(this.user === null) return false;
-    return this.item.validatedBy.find((v) => v.login === this.user.login) !== undefined;
+    return this.item.validatedBy.find((userID) => userID === this.user._id) !== undefined;
   }
 
   showRecipe(){

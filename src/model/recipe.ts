@@ -1,7 +1,6 @@
 import { Comment } from './comment';
 import { Ingredient } from './ingredient';
 import { Step } from './step';
-import { User } from './User';
 
 export class Recipe {
   recipeID: number;
@@ -23,7 +22,6 @@ export class Recipe {
   steps: Array<Step>;
   tags: Array<string>;
   video: boolean;
-  help: string;
-  validatedBy: Array<User>;
-  deletedBy: Array<User>;
+  validatedBy: Array<string>;
+  deletedBy: Array<string>;
 }

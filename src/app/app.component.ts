@@ -175,13 +175,13 @@ export class AppComponent implements OnInit {
 
     const recipeToDelete = recipes.find((r) => r.recipeID === id);
 
-    const needToAdd = !recipeToDelete.deletedBy.map((u) => u.login).includes(this.user.login);
-    if(needToAdd) recipeToDelete.deletedBy.push(this.user);
+    const needToAdd = !recipeToDelete.deletedBy.includes(this.user._id);
+    if(needToAdd) recipeToDelete.deletedBy.push(this.user._id);
     else {
-      const position = recipeToDelete.deletedBy.findIndex((v) => v.login === this.user.login);
+      const position = recipeToDelete.deletedBy.findIndex((userID) => userID === this.user._id);
       if(position > -1) recipeToDelete.deletedBy.splice(position, 1);
     }
-    this.updateRecipeField(["deletedBy"], [this.user], needToAdd ? "add" : "remove", id);
+    this.updateRecipeField(["deletedBy"], [this.user._id], needToAdd ? "add" : "remove", id);
   };
 
   // UPDATE
@@ -232,13 +232,13 @@ export class AppComponent implements OnInit {
   removeComment = (dateComment) => { this.updateRecipeField(["comments"], [dateComment], "remove") };
   updateComment = (comment) => { this.updateRecipeField(["comments"], [comment]) };
   updateValidatedBy = () => {
-    const needToAdd = !this.currentRecipe.validatedBy.map((u) => u.login).includes(this.user.login);
-    if(needToAdd) this.currentRecipe.validatedBy.push(this.user);
+    const needToAdd = !this.currentRecipe.validatedBy.includes(this.user._id);
+    if(needToAdd) this.currentRecipe.validatedBy.push(this.user._id);
     else {
-      const position = this.currentRecipe.validatedBy.findIndex((v) => v.login === this.user.login);
+      const position = this.currentRecipe.validatedBy.findIndex((userID) => userID === this.user._id);
       if(position > -1) this.currentRecipe.validatedBy.splice(position, 1);
     }
-    this.updateRecipeField(["validatedBy"], [this.user], needToAdd ? "add" : "remove");
+    this.updateRecipeField(["validatedBy"], [this.user._id], needToAdd ? "add" : "remove");
   }
 
   /*****************************/
@@ -366,15 +366,15 @@ export class AppComponent implements OnInit {
     this.recipesDisplayed = (this.currentCategory === "all") ? recipes : recipes.filter( (r) => r.category === this.currentCategory);
     // Filter by filters
     if(this.filters.onlyValidated){
-      this.recipesDisplayed = this.recipesDisplayed.filter((r) => r.validatedBy.map((u) => u.login).includes(this.user.login));
+      this.recipesDisplayed = this.recipesDisplayed.filter((r) => r.validatedBy.includes(this.user._id));
     }
     if(this.filters.onlyNew){
-      this.recipesDisplayed = this.recipesDisplayed.filter((r) => !(r.validatedBy.map((u) => u.login).includes(this.user.login)));
+      this.recipesDisplayed = this.recipesDisplayed.filter((r) => !(r.validatedBy.includes(this.user._id)));
     }
     if(this.filters.onlyDislike) {
-      this.recipesDisplayed = this.recipesDisplayed.filter((r) => r.deletedBy.map((u) => u.login).includes(this.user.login));
+      this.recipesDisplayed = this.recipesDisplayed.filter((r) => r.deletedBy.includes(this.user._id));
     } else if(this.user !== null){
-        this.recipesDisplayed = this.recipesDisplayed.filter((r) => !r.deletedBy.map((d) => d.login).includes(this.user.login));
+        this.recipesDisplayed = this.recipesDisplayed.filter((r) => !r.deletedBy.includes(this.user._id));
     }
     if(this.filters.hot){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => ((r.spicy >= this.filters.hotMin) && (r.spicy <= this.filters.hotMax)));

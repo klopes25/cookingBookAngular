@@ -8,8 +8,6 @@ let Recipe = require('../models/recipe');
 // Get all recipes
 recipeRoute.route('/').get((req, res, next) => {
   Recipe.find() // To get all recipes
-  .populate('validatedBy') // To populate users in ref
-  .populate('deletedBy') // To populate users in ref
   .exec()
   .then((recipes) => {
     res.json(recipes); // return recipes in JSON format
@@ -20,8 +18,6 @@ recipeRoute.route('/').get((req, res, next) => {
 // Get a recipe
 recipeRoute.route('/:id').get((req, res, next) => {
   Recipe.findOne({ recipeID: Number(req.params.id) }) // Pour récupérer la recipe avec cet id
-  .populate('validatedBy') // pour peupler les users en ref
-  .populate('deletedBy') // pour peupler les users en ref
   .exec()
   .then(data => res.json(data)) // return recipe in JSON format
   .catch(err => next(err));
@@ -33,27 +29,11 @@ recipeRoute.route('/:id').put(async (req, res, next) => {
 
   // get the recipe
   let recipe = await Recipe.findOne({ recipeID: req.params.id })
-  .populate('validatedBy') // pour peupler les users en ref
-  .populate('deletedBy') // pour peupler les users en ref
   .exec();
 
   if(action === "add"){
     for(let i=0; i < fields.length; i++){
-      let f = fields[i];
-      switch (f) {
-        case 'comments':
-          recipe[f].push(values[i]);
-          break;
-
-        case 'deletedBy':
-        case 'validatedBy':
-          const user = await User.findOne({ login: values[i].login }).exec();
-          recipe[f].push(user);
-          break;
-
-        default:
-          console.log(`Sorry, we are out of ${expr} to add it`);
-      }
+      recipe[fields[i]].push(values[i]);
     }
   } else if (action === "remove"){
       for(let i=0; i < fields.length; i++){
@@ -74,8 +54,7 @@ recipeRoute.route('/:id').put(async (req, res, next) => {
 
           case 'deletedBy':
           case 'validatedBy':
-            const user2 = await User.findOne({ login: values[i].login }).exec();
-            recipe[f].remove(user2);
+            recipe[f].remove(values[i]);
             break;
 
           default:

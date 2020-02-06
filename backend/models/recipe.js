@@ -95,8 +95,8 @@ let Recipe = new Schema({
     type: Boolean,
     default: false
   },
-  validatedBy: [{ type: mongoose.Schema.Types.ObjectId, default: [], ref: 'User' }],
-  deletedBy: [{ type: mongoose.Schema.Types.ObjectId, default: [], ref: 'User' }]
+  validatedBy: [ { type: String }],
+  deletedBy: [ { type: String } ]
 }, {
    collection: 'recipes'
 })

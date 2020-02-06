@@ -44,8 +44,8 @@ describe('FiltersComponent', () => {
       tags: ["toto", "tata"],
       video: false,
       help: "",
-      validatedBy: [], // users
-      deletedBy: [] // users
+      validatedBy: [], // users id
+      deletedBy: [] // users id
     }
     component.filters = {
       'onlyValidated': false,
