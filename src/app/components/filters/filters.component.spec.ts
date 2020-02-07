@@ -43,7 +43,6 @@ describe('FiltersComponent', () => {
       steps: [], // {text: string, index: number}
       tags: ["toto", "tata"],
       video: false,
-      help: "",
       validatedBy: [], // users id
       deletedBy: [] // users id
     }

@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
     'starMax': 5
   };
   nextID: number = 0;
+  showSpinnerRecipesZone = true;
 
   constructor(private recipesService: RecipesService, private usersService: UsersService){
     this.recipesService.getAllRecipes().subscribe((data) => {
@@ -70,6 +71,7 @@ export class AppComponent implements OnInit {
       this.nextID = recipes[recipes.length - 1].recipeID + 1;
       this.recipesDisplayed = recipes;
       this.updateTotalPages();
+      this.showSpinnerRecipesZone = false;
     });
   }
 

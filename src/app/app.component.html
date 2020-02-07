@@ -36,6 +36,7 @@
   ></top-bar>
 
   <div *ngIf="currentRecipe === null; else recipeOne" class="recipesZone">
+    <spinner *ngIf="showSpinnerRecipesZone"></spinner>
     <recipes
       [items]="recipesDisplayed | slice : start : end"
       [user]="user"

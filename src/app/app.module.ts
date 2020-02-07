@@ -40,6 +40,7 @@ import { TopRecipeComponent } from './components/top-recipe/top-recipe.component
 import { UserFormComponent } from './components/user-form/user-form.component';
 // PIPES
 import { SanitizeHtmlPipe } from './pipes/safe.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { SanitizeHtmlPipe } from './pipes/safe.pipe';
     SanitizeHtmlPipe,
     StepComponent,
     TagComponent,
-    CommentComponent
+    CommentComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
