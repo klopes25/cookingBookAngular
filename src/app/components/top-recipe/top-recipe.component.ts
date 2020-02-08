@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChange
 @Component({
   selector: 'top-recipe',
   templateUrl: './top-recipe.component.html',
-  styleUrls: ['./top-recipe.component.css']
+  styleUrls: ['./top-recipe.component.scss']
 })
 export class TopRecipeComponent implements OnChanges {
   @Input() titlerecipe: string;

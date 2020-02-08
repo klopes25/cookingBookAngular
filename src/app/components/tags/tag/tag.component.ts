@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, S
 @Component({
   selector: 'tag',
   templateUrl: './tag.component.html',
-  styleUrls: ['./tag.component.css']
+  styleUrls: ['./tag.component.scss']
 })
 export class TagComponent implements OnChanges {
   @Input() text: string;

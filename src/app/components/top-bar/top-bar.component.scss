@@ -12,21 +12,23 @@
   font-family: Englebert, sans-serif;
   display: flex;
   justify-content: space-between;
-}
 
-.topBarItem {
-  padding: 3px 10px;
-}
-.topBarItem:hover {
-  cursor: pointer;
-  background: #009ee0;
-  border-radius: 4px;
-}
-.topBarItem.selected {
-  cursor: pointer;
-  background: #bee000;
-  border-radius: 4px;
-  color: #202020;
+  .topBarItem {
+    padding: 3px 10px;
+
+    &:hover {
+      cursor: pointer;
+      background: #009ee0;
+      border-radius: 4px;
+    }
+
+    &.selected {
+      cursor: pointer;
+      background: #bee000;
+      border-radius: 4px;
+      color: #202020;
+    }
+  }
 }
 
 @media print {

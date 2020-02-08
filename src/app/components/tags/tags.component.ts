@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChange
 @Component({
   selector: 'tags',
   templateUrl: './tags.component.html',
-  styleUrls: ['./tags.component.css']
+  styleUrls: ['./tags.component.scss']
 })
 export class TagsComponent implements OnChanges {
   @Input() items: Array<any>;

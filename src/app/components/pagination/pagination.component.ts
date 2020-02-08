@@ -3,7 +3,7 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleCh
 @Component({
   selector: 'pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.css']
+  styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnChanges{
   @Input() currentPage: number;

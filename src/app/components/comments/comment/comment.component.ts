@@ -4,7 +4,7 @@ import { User } from 'src/model/user';
 @Component({
   selector: 'comment',
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.css']
+  styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnChanges {
   @Input() text: string;

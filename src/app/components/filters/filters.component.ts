@@ -5,7 +5,7 @@ import { User } from 'src/model/user';
 @Component({
   selector: 'filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.css']
+  styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent {
   @Input() user: User | null = null;

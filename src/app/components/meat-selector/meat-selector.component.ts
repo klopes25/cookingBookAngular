@@ -3,7 +3,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnCha
 @Component({
   selector: 'meat-selector',
   templateUrl: './meat-selector.component.html',
-  styleUrls: ['./meat-selector.component.css']
+  styleUrls: ['./meat-selector.component.scss']
 })
 export class MeatSelectorComponent implements AfterViewInit, OnChanges {
   @Input() meat: string;

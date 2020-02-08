@@ -4,7 +4,7 @@ import { User } from 'src/model/user';
 @Component({
   selector: 'connect-zone',
   templateUrl: './connect-zone.component.html',
-  styleUrls: ['./connect-zone.component.css']
+  styleUrls: ['./connect-zone.component.scss']
 })
 export class ConnectZoneComponent {
   @Input() user: User | null;

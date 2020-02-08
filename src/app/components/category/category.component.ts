@@ -5,7 +5,7 @@ const categories = ['aperitif', 'entree', 'plat', 'dessert', 'boisson', 'autre']
 @Component({
   selector: 'category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent {
   @Input() category: string = "plat";

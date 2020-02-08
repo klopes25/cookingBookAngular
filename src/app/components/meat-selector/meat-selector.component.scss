@@ -1,0 +1,76 @@
+:host{
+  display: contents;
+}
+
+.meats {
+  position: relative;
+  top: -25px;
+  left: 0px;
+  height: 140px;
+  width: 100px;
+
+  img {
+    position: absolute;
+    z-index: 2;
+    background: #202020;
+    clip-path: circle(50px at center);
+
+    &.firstMeat, &.secondMeat, &.thirdMeat, &.fourthMeat, &.fifthMeat, &.sixthMeat, &.seventhMeat, &.eightMeat, &.nineMeat {
+      z-index: 1;
+      top: 40px;
+      left: 40px;
+      width: 40px;
+      height: 40px;
+      opacity: 0;
+      transition: all 0.4s;
+      clip-path: circle(20px at center);
+
+      &:hover{ cursor: pointer; }
+
+      &.disable{
+        opacity: 0.3 !important;
+        cursor: default;
+      }
+
+      &.visibleImg{ opacity: 1; }
+    }
+
+    &.firstMeat.visibleImg {
+      top: -26px;
+      left: 75px;
+    }
+    &.secondMeat.visibleImg {
+      top: 9px;
+      left: 97px;
+    }
+    &.thirdMeat.visibleImg {
+      top: 50px;
+      left: 98px;
+    }
+    &.fourthMeat.visibleImg {
+      top: 85px;
+      left: 75px;
+    }
+    &.fifthMeat.visibleImg {
+      top: 101px;
+      left: 36px;
+    }
+    &.sixthMeat.visibleImg {
+      top: 92px;
+      left: -5px;
+    }
+    &.seventhMeat.visibleImg {
+      top: 60px;
+      left: -33px;
+    }
+    &.eightMeat.visibleImg {
+      top: 18px;
+      left: -42px;
+    }
+    &.nineMeat.visibleImg {
+      top: -21px;
+      left: -23px;
+    }
+  }
+
+}

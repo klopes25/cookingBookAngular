@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChange
 @Component({
   selector: 'steps',
   templateUrl: './steps.component.html',
-  styleUrls: ['./steps.component.css']
+  styleUrls: ['./steps.component.scss']
 })
 export class StepsComponent implements OnChanges {
   @Input() items: Array<any>;

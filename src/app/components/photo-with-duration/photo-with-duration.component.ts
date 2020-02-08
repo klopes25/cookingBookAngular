@@ -4,7 +4,7 @@ import { isNil } from 'lodash-es';
 @Component({
   selector: 'photo-with-duration',
   templateUrl: './photo-with-duration.component.html',
-  styleUrls: ['./photo-with-duration.component.css']
+  styleUrls: ['./photo-with-duration.component.scss']
 })
 export class PhotoWithDurationComponent implements OnChanges {
   @Input() preparationTime: string;

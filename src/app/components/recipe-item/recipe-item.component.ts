@@ -4,7 +4,7 @@ import { User } from 'src/model/user';
 @Component({
   selector: 'recipe-item',
   templateUrl: './recipe-item.component.html',
-  styleUrls: ['./recipe-item.component.css']
+  styleUrls: ['./recipe-item.component.scss']
 })
 export class RecipeItemComponent implements OnChanges {
   @Input() item: any;

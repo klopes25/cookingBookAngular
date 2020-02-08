@@ -1,0 +1,74 @@
+:host{
+  display: contents;
+}
+
+#pagination {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+
+  i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: grey;
+    font-size: 28px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    &:hover{ color: #009ee0; }
+  }
+
+  .slash {
+    transform: rotate(-45deg);
+    font-size: 16px;
+    cursor: default;
+
+    &:hover{ color: grey; }
+  }
+
+  .pagination {
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 28px;
+
+    div{
+      font-size: 20px;
+      width: 20px;
+    }
+
+    .currentPage, .totalPages, input {
+      min-width: 40px;
+      max-width: 40px;
+      border: 1px solid transparent;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 3px;
+    }
+
+    input{
+      line-height: 22px;
+      font-size: 20px;
+    }
+
+    .currentPage, .totalPages {
+      font-family: cursive;
+    }
+
+    .currentPage:hover {
+      cursor: pointer;
+      border: 1px dashed #fff;
+    }
+  }
+
+  &.showInput .pagination .currentPage, &.hideInput .pagination input {
+    display: none;
+  }
+}

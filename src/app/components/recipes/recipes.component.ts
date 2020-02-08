@@ -5,7 +5,7 @@ import { User } from 'src/model/user';
 @Component({
   selector: 'recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css']
+  styleUrls: ['./recipes.component.scss']
 })
 export class RecipesComponent {
   @Input() items: Array<Recipe>;

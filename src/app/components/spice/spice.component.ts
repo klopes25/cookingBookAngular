@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'spice',
   templateUrl: './spice.component.html',
-  styleUrls: ['./spice.component.css']
+  styleUrls: ['./spice.component.scss']
 })
 export class SpiceComponent {
   @Input() spicy: number;

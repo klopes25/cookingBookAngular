@@ -4,7 +4,7 @@ import { User } from 'src/model/user';
 @Component({
   selector: 'stars',
   templateUrl: './stars.component.html',
-  styleUrls: ['./stars.component.css']
+  styleUrls: ['./stars.component.scss']
 })
 export class StarsComponent implements OnChanges {
   @Input() mark: number;

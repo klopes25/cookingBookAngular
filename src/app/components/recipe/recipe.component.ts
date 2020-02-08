@@ -6,7 +6,7 @@ import { RecipesService } from '../../service/recipes.service';
 @Component({
   selector: 'recipe',
   templateUrl: './recipe.component.html',
-  styleUrls: ['./recipe.component.css']
+  styleUrls: ['./recipe.component.scss']
 })
 export class RecipeComponent {
   @Input() currentRecipe: Recipe;

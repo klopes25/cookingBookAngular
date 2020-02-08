@@ -4,7 +4,7 @@ import { User } from 'src/model/user';
 @Component({
   selector: 'comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.css']
+  styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent {
   @Input() items: Array<any>

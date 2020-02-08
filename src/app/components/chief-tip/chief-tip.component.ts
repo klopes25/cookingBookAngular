@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChange
 @Component({
   selector: 'chief-tip',
   templateUrl: './chief-tip.component.html',
-  styleUrls: ['./chief-tip.component.css']
+  styleUrls: ['./chief-tip.component.scss']
 })
 export class ChiefTipComponent implements OnChanges, OnInit {
   @Input() edition: boolean = false;

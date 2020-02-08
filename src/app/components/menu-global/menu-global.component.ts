@@ -4,7 +4,7 @@ import { User } from '../../../model/user';
 @Component({
   selector: 'menu-global',
   templateUrl: './menu-global.component.html',
-  styleUrls: ['./menu-global.component.css']
+  styleUrls: ['./menu-global.component.scss']
 })
 export class MenuGlobalComponent {
   @Input() user: User | null;
