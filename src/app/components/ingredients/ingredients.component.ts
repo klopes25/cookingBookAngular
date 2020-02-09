@@ -53,6 +53,10 @@ export class IngredientsComponent implements OnChanges {
     }
   }
 
+  maj = (e, index, type) => {
+    this.itemsToSave[index][type] = e.target.value;
+  }
+
   updateIngredients(){
     this.ingredientUpdated.emit(this.itemsToSave);
   }
@@ -76,7 +80,9 @@ export class IngredientsComponent implements OnChanges {
   }
 
   getQuantity(item){
-    return (item.quantity === "") ? "" : `:  ${(item.quantity * (Number(this.nbPerson) + Number(this.deltaPerson)) / Number(this.nbPerson))} ${((item.unit === undefined) ? "" : item.unit)}`.trim();
+    // TODO: limiter à deux les chiffre après la virgule
+    // TODO: fair eun système de transformation pour que si on a plus de 1000 gr on mette Kg (idem pour litre, cl et ml)
+    return (item.quantity === "") ? "" : `:  ${(item.quantity * (Number(this.nbPerson) + this.deltaPerson) / Number(this.nbPerson))} ${((item.unit === undefined) ? "" : item.unit)}`.trim();
   }
 
   toggleLegend(){

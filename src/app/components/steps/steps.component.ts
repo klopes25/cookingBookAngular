@@ -7,8 +7,8 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChange
 })
 export class StepsComponent implements OnChanges {
   @Input() items: Array<any>;
-  @Input() edition: boolean;
-  @Input() query: string;
+  @Input() edition: boolean = false;
+  @Input() query: string = "";
   @Input() recipeID: number;
   @Input() video: boolean;
   isVideoOpen: boolean = false;

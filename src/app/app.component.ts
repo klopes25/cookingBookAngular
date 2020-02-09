@@ -80,6 +80,8 @@ export class AppComponent implements OnInit {
     recipesHeightDispo = window.innerHeight - 128;
   }
 
+  // TODO: mettre en place un historique des pages
+
   /*********** CART ***********/
 
   addToCart(){
@@ -428,18 +430,18 @@ export class AppComponent implements OnInit {
         for(let i = 0; i <= searchItems.query.length; i++ ){
           let q = searchItems.query[i];
           // tags
-          if(r.tags.filter(t => t.includes(q)).length > 0){ tagMatch = true; break; }
+          if(r.tags.filter(t => t.toLowerCase().includes(q)).length > 0){ tagMatch = true; break; }
           // title
-          if(r.title.includes(q)){ titleMatch = true; break; }
+          if(r.title.toLowerCase().includes(q)){ titleMatch = true; break; }
           // chiefTrick
-          if(r.chiefTrick.includes(q)){ chiefTrickMatch = true; break; }
+          if(r.chiefTrick.toLowerCase().includes(q)){ chiefTrickMatch = true; break; }
           // ingredients
-          if(r.ingredients.map((i) => i.ingredient).filter((i) => i.includes(q)).length > 0){
+          if(r.ingredients.map((i) => i.ingredient).filter((i) => i.toLowerCase().includes(q)).length > 0){
             ingredientsMatch = true;
             break;
           }
           // steps
-          if(r.steps.map((s) => s.text).filter((s) => s.includes(q)).length > 0){
+          if(r.steps.map((s) => s.text).filter((s) => s.toLowerCase().includes(q)).length > 0){
             stepsMatch = true;
             break;
           }
@@ -462,8 +464,7 @@ export class AppComponent implements OnInit {
     nbMaxRecipesByPage = nbRecipeByWidth * nbRecipeByHeight;
     this.totalPages = Math.ceil(this.recipesDisplayed.length / nbMaxRecipesByPage);
     // update filter slice for recipes
-    this.start = 0;
-    this.end = nbMaxRecipesByPage;
+    this.goTo(1);
   }
 
   unconnect(){
