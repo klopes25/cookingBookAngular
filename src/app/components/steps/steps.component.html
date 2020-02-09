@@ -2,12 +2,14 @@
   <div class="stepsTitle">Étapes</div>
   <div class="stepList">
     <step
-      *ngFor="let item of itemsTransformed; let i=index"
+      *ngFor="let item of itemsToSave; let i=index"
       [text]="item.text"
       [index]="i"
       [edition]="edition"
+      [query]="query"
       (stepToBeDeleted)="deleteStep($event)"
       (stepToBeMoved)="moveStep($event)"
+      (stepToBeUpdated)="majStep($event)"
     ></step>
 
     <!-- Step Add -->

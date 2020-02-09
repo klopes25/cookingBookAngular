@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'step',
@@ -9,15 +9,26 @@ export class StepComponent {
   @Input() text: string = "";
   @Input() index: number;
   @Input() edition: boolean = false;
+  @Input() query: string = "";
   @Output() stepToBeDeleted = new EventEmitter<any>();
   @Output() stepToBeMoved = new EventEmitter<any>();
-  checked:boolean = false;
+  @Output() stepToBeUpdated = new EventEmitter<any>();
+  checked: boolean = false;
+  textTransformed: string = "";
 
-  constructor() { }
+  constructor(private cdRef:ChangeDetectorRef) { }
+
+  ngOnChanges(changes: SimpleChanges){
+    this.query = (changes && changes['query']) ? changes['query'].currentValue : this.query;
+    this.textTransformed = (this.query.length > 2) ? this.text.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>') : this.text;
+    this.cdRef.detectChanges();
+  }
 
   deleteStep = () => { this.stepToBeDeleted.emit(this.index) };
 
   down = () => { this.stepToBeMoved.emit({ index: this.index, value: 1}) };
+
+  maj = (e) => { this.stepToBeUpdated.emit({index: this.index, text: e.target.value}) };
 
   toggleCheck = () => { this.checked = !this.checked };
 

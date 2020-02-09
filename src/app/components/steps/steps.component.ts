@@ -12,7 +12,6 @@ export class StepsComponent implements OnChanges {
   @Input() recipeID: number;
   @Input() video: boolean;
   isVideoOpen: boolean = false;
-  itemsTransformed: Array<any> = [];
   itemsToSave: Array<any> = [];
   srcVideo = `../assets/video/${this.recipeID}.mp4`;
   @Output() stepsUpdated = new EventEmitter<any>();
@@ -25,7 +24,6 @@ export class StepsComponent implements OnChanges {
     if(changes && changes['recipeID']) this.srcVideo = `../assets/video/${changes['recipeID'].currentValue}.mp4`;
     this.itemsToSave = (changes && changes['items']) ? this.items.map((i) => i) : this.itemsToSave;
     this.query = (changes && changes['query']) ? changes['query'].currentValue : this.query;
-    this.transformItems();
 
     this.cdRef.detectChanges();
   }
@@ -37,7 +35,6 @@ export class StepsComponent implements OnChanges {
         index: this.items.length
       }
       this.itemsToSave.push(newStep);
-      this.transformItems();
       // clear input
       this.newStep.nativeElement.value = "";
     }
@@ -50,7 +47,10 @@ export class StepsComponent implements OnChanges {
 
   deleteStep(id: number){
     this.itemsToSave.splice(id, 1); // remove the ith element of items
-    this.transformItems();
+  }
+
+  majStep(data){
+    this.itemsToSave[data.index] = {text: data.text, index: Number(data.index + 1)};
   }
 
   moveStep(data){ // { index: this.index, value: 1 or -1}
@@ -67,24 +67,12 @@ export class StepsComponent implements OnChanges {
       this.itemsToSave[data.index] = switch2;
       this.itemsToSave[data.index + 1] = switch1;
     }
-    this.transformItems();
   }
 
   openVideo = () => {
     this.isVideoOpen = true;
     this.videoPlayer.nativeElement.play();
   };
-
-  transformItems(){
-    this.itemsTransformed = this.itemsToSave.map((i) => {
-      if(this.query.length > 2) {
-        let stepTransformed = {...i};
-        stepTransformed.text = i.text.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>');
-        return stepTransformed;
-      }
-      return i;
-    });
-  }
 
   updateSteps = () => { this.stepsUpdated.emit(this.itemsToSave) };
 }
