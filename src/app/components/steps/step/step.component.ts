@@ -20,6 +20,7 @@ export class StepComponent {
 
   ngOnChanges(changes: SimpleChanges){
     this.query = (changes && changes['query']) ? changes['query'].currentValue : this.query;
+    // TODO: bug mark with multi words
     this.textTransformed = (this.query.length > 2) ? this.text.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>') : this.text;
     this.cdRef.detectChanges();
   }
