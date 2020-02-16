@@ -3,7 +3,13 @@
     <i class="icon-ok-squared" [ngClass]="{'activated': filters.onlyValidated }" (click)="toggleOnlyValidated()" title="Toutes les recettes validées"></i>
     <i class="icon-gift" [ngClass]="{'activated': filters.onlyNew }" (click)="toggleOnlyNew()" title="Surprise ! Toutes les recettes non réalisées"></i>
     <i class="icon-heart-broken" [ngClass]="{'activated': filters.onlyDislike }" (click)="toggleOnlyDislike()" title="Toutes les recettes de votre poubelle"></i>
-    <i class="icon-extinguisher overable" [ngClass]="{'activated': filters.hot }" (click)="toggleHot()" title="Filtrez si c'est trop piquant !">
+    <i class="icon-extinguisher overable"
+      [ngClass]="{'activated': filters.hot, 'hover': hotHover }"
+      (mouseover)="addHoverHot()"
+      (mouseout)="removeHoverHot()"
+      (click)="toggleHot()"
+      title="Filtrez si c'est trop piquant !"
+    >
       <div class="overPart" (click)="dontBubble($event)">
         <div class="line">
           <span>Min : </span>
@@ -16,7 +22,13 @@
         <button (click)="updateMinMaxHot()"> Valider </button>
       </div>
     </i>
-    <i class="icon-star overable " [ngClass]="{'activated': filters.star }" (click)="toggleStar()" title="Filtrez par qualité ;)">
+    <i class="icon-star overable "
+      [ngClass]="{'activated': filters.star, 'hover': rankHover  }"
+      (mouseover)="addHoverRank()"
+      (mouseout)="removeHoverRank()"
+      (click)="toggleStar()"
+      title="Filtrez par qualité ;)"
+    >
       <div class="overPart" (click)="dontBubble($event)">
         <div class="line">
           <span>Min : </span>

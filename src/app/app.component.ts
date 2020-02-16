@@ -343,6 +343,21 @@ export class AppComponent implements OnInit {
       logo: data.avatar
     };
 
+    if(newUser.login.length == 0){
+      this.addNotif("Il te faut peut-être un login, tu crois pas ?!", "error");
+      return;
+    }
+
+    if(newUser.password.length == 0){
+      this.addNotif("Il te faut peut-être un password, tu crois pas ?!", "error");
+      return;
+    }
+
+    if(newUser.login.email == 0){
+      this.addNotif("T'as pas un email mec ?!", "error");
+      return;
+    }
+
     // creation
     if(this.user === null){
       this.usersService.createUser(newUser).subscribe(

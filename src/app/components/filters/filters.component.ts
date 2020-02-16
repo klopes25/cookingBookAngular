@@ -17,6 +17,8 @@ export class FiltersComponent {
   @ViewChild('hotMaxElement', {static: false}) private hotMaxElement: ElementRef<HTMLInputElement>;
   @ViewChild('starMinElement', {static: false}) private starMinElement: ElementRef<HTMLInputElement>;
   @ViewChild('starMaxElement', {static: false}) private starMaxElement: ElementRef<HTMLInputElement>;
+  hotHover = false;
+  rankHover = false;
 
   filters: any = {
     'onlyValidated': false,
@@ -38,6 +40,22 @@ export class FiltersComponent {
 
   dontBubble(event){
     event.stopPropagation();
+  }
+
+  addHoverHot(){
+    this.hotHover = true;
+  }
+
+  removeHoverHot(){
+    this.hotHover = false;
+  }
+
+  addHoverRank(){
+    this.rankHover = true;
+  }
+
+  removeHoverRank(){
+    this.rankHover = false;
   }
 
   isRecipeSelected(){

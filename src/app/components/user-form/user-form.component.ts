@@ -37,6 +37,18 @@ export class UserFormComponent implements OnChanges {
   }
 
   closeForm(){
+    if(this.user === null){
+      this.newLogin = "";
+      this.newPassword = "";
+      this.newEmail = "";
+      this.newAvatar = "burger";
+    } else {
+      this.newLogin = this.user.login;
+      this.newPassword = this.user.password;
+      this.newEmail = this.user.email;
+      this.newAvatar = this.user.logo;
+    }
+    
     this.userFormClosed.emit();
   }
 

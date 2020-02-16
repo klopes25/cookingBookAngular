@@ -41,7 +41,7 @@
       }
     }
 
-    &:hover{
+    &.hover{
       cursor: pointer;
       color: #009ee0;
 
@@ -51,7 +51,7 @@
       }
     }
 
-    &.overable:hover{
+    &.overable.hover{
       cursor: pointer;
       background: whitesmoke;
       border-radius: 5px 0 0 5px;

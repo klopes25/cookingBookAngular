@@ -1,0 +1,17 @@
+use menus
+db.users.remove({_id:"@test"});
+db.users.remove({_id:"@testvalidated"});
+db.users.remove({_id:"@testdeleted"});
+db.users.remove({_id:"@testcart"});
+db.recipes.remove({recipeID:10000});
+db.recipes.remove({recipeID:10001});
+db.recipes.remove({recipeID:10002});
+db.recipes.remove({recipeID:10003});
+db.recipes.remove({recipeID:10004});
+db.recipes.remove({recipeID:10005});
+db.recipes.remove({recipeID:10006});
+db.recipes.remove({recipeID:10007});
+db.recipes.remove({recipeID:10008});
+db.recipes.remove({recipeID:10009});
+db.recipes.remove({recipeID:10010});
+db.recipes.remove({recipeID:10011});
