@@ -9,6 +9,13 @@ Cypress.Commands.add('checkNoRecipesDisplayed', () => {
     .should('not.exist');
 })
 
+Cypress.Commands.add('clickOnRecipeItem', (index) => {
+  cy.get('recipes .recipes recipe-item')
+    .eq(index)
+    .click()
+})
+
+
 Cypress.Commands.add('countRecipesDisplayed', (counter) => {
   cy.get('recipes .recipes recipe-item')
   .its(length).should('be', counter);
