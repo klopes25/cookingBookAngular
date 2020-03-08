@@ -72,11 +72,17 @@
 
       <div class="ingredientsCreator">
         <div class="ingredientsCreatorTitle">Ingredients <i class="icon-plus-squared" (click)="addIngredientInput()"></i></div>
-        <div *ngFor="let ingredient of ingredients" class="ingrInputs" #ingredientInputs>
+        <div *ngFor="let ingredient of ingredients; let i = index" class="ingrInputs" #ingredientInputs>
           <input type="text" autoComplete="off" [(ngModel)]="ingredient.group" placeholder="Groupe" />
           <input type="text" autoComplete="off" [(ngModel)]="ingredient.ingredient" placeholder="Nom" />
           <input type="text" autoComplete="off" [(ngModel)]="ingredient.quantity" placeholder="Quantité" />
           <input type="text" autoComplete="off" [(ngModel)]="ingredient.unity" placeholder="Unité" />
+          <!-- TODO input autocomplete des unités
+            <select class="unitSelect" [(ngModel)]="ingredient.unity" (ngModelChange)="onChange($event)" >
+            <option value="" disabled selected>Sélectionnez l'unité...</option>
+            <option *ngFor="let unit of units" [value]="unit"> {{unit}} </option>
+          </select>
+        -->
         </div>
       </div>
 

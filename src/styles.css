@@ -25,7 +25,7 @@ mark{
 	padding: 0 2px;
 }
 
-i.group0, i.group1, i.group2, i.group3, i.group4, i.group5, i.group6 {
+i.group0, i.group1, i.group2, i.group3, i.group4, i.group5, i.group6, i.group7, i.group8 {
 	font-size: 16px;
 	padding-bottom: 3px;
 	padding-right: 5px;
@@ -37,6 +37,8 @@ i.group3 { color: #fab153; }
 i.group4 { color: #4a8bdb; }
 i.group5 { color: #b377d9; }
 i.group6 { color: #c2d468; }
+i.group7 { color: #81038d; }
+i.group8 { color: #687c02; }
 
 ::-webkit-scrollbar {
   width: 8px;

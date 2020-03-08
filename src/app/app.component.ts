@@ -3,6 +3,7 @@ import { Recipe } from '../model/recipe';
 import { User } from '../model/user';
 import { RecipesService } from './service/recipes.service';
 import { UsersService } from './service/users.service';
+import uniq from 'lodash-es/uniq';
 
 const RECIPE_ITEM_WIDTH: number = 176;
 const RECIPE_ITEM_HEIGHT:number = 203;
@@ -64,10 +65,12 @@ export class AppComponent implements OnInit {
   };
   nextID: number = 0;
   showSpinnerRecipesZone = true;
+  units: Array<string> = [];
 
   constructor(private recipesService: RecipesService, private usersService: UsersService){
     this.recipesService.getAllRecipes().subscribe((data) => {
       recipes = data;
+      this.setUnits(recipes);
       this.nextID = recipes[recipes.length - 1].recipeID + 1;
       this.recipesDisplayed = recipes;
       this.updateTotalPages();
@@ -166,6 +169,7 @@ export class AppComponent implements OnInit {
         recipes.push(res);
         // update the displayed recipes
         this.updateRecipesDisplayed();
+        this.nextID += 1;
       },
       (error) => { this.addNotif("Problem during the recipe creation", "error")});
   }
@@ -324,6 +328,10 @@ export class AppComponent implements OnInit {
     searchItems.dureeMax = (data.dureeMax.length > 0) ? Number(data.dureeMax) : 0;
 
     this.updateRecipesDisplayed();
+  }
+
+  setUnits(recipes){
+    this.units = uniq(recipes.map((r) => r.ingredients).flat().map((i) => i.unit )).sort();
   }
 
   toggleEditionMode(){

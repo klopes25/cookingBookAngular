@@ -103,10 +103,11 @@
 <recipe-form
   [open]="openRecipeForm"
   [nextID]="nextID"
+  [units]="units"
   (recipeFormClosed)="closeRecipeForm()"
   (recipeAdded)="addRecipe($event)"
 ></recipe-form>
-<!-- TODO shopping-list actions-->
+
 <shopping-list
   [open]="openShoppingList"
   [items]="shoppingItems"

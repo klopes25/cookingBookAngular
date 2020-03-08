@@ -49,7 +49,11 @@
 }
 
 @media print {
-  .foot{
+  .foo, .menus{
     display: none;
+  }
+
+  .content{
+    height: auto;
   }
 }

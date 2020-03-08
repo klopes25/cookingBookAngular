@@ -1,13 +1,14 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'recipe-form',
   templateUrl: './recipe-form.component.html',
   styleUrls: ['./recipe-form.component.scss']
 })
-export class RecipeFormComponent {
+export class RecipeFormComponent implements OnChanges {
   @Input() open: boolean;
   @Input() nextID: number;
+  @Input() units: Array<string>;
   @Output() recipeFormClosed = new EventEmitter<any>();
   @Output() recipeAdded = new EventEmitter<any>();
   hasVideo: boolean = false;
@@ -27,8 +28,6 @@ export class RecipeFormComponent {
   @ViewChild('nbPerson', {static: false}) private nbPerson: ElementRef<HTMLInputElement>;
   @ViewChild('nbPersonUnit', {static: false}) private nbPersonUnit: ElementRef<HTMLSelectElement>;
   @ViewChild('astuce', {static: false}) private astuce: ElementRef<HTMLInputElement>;
-
-  //this.titleSelected.nativeElement.value
 
   categories = [
     { value: 'aperitif', label: '🥨 Apéritif' },
@@ -76,6 +75,30 @@ export class RecipeFormComponent {
   ];
 
   constructor() { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes && changes.open && changes.open.currentValue){
+      //clear the fields
+      this.categorySelected.nativeElement.value = "";
+      this.titleSelected.nativeElement.value = "";
+      this.preparationTime.nativeElement.value = "";
+      this.preparationUnit.nativeElement.value = "";
+      this.cookingTime.nativeElement.value = "";
+      this.cookingUnit.nativeElement.value = "";
+      this.sleepTime.nativeElement.value = "";
+      this.sleepUnit.nativeElement.value = "";
+      this.nbPerson.nativeElement.value = "";
+      this.nbPersonUnit.nativeElement.value = "";
+      // calories: number; // default 0
+      this.spiceSelected.nativeElement.value = "";
+      this.meatSelected.nativeElement.value = "";
+      this.astuce.nativeElement.value = "Aucune astuce !";
+      this.ingredients = [];
+      this.steps = [];
+      this.tags = [];
+      this.hasVideo = false;
+    }
+  }
 
   addIngredientInput(){
     this.ingredients.push({
