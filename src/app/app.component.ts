@@ -75,6 +75,13 @@ export class AppComponent implements OnInit {
       this.recipesDisplayed = recipes;
       this.updateTotalPages();
       this.showSpinnerRecipesZone = false;
+
+      window.onpopstate = (event) => {
+        if(event.state && event.state.page) this.goTo(~~event.state.page, false);
+
+        else if(event.state && event.state.recipe) this.showRecipe(~~event.state.recipe, false);
+      };
+
     });
   }
 
@@ -82,8 +89,6 @@ export class AppComponent implements OnInit {
     recipesWidthDispo = window.innerWidth - (266 + ((this.user === null) ? 0 : 40));
     recipesHeightDispo = window.innerHeight - 128;
   }
-
-  // TODO: mettre en place un historique des pages
 
   /*********** CART ***********/
 
@@ -251,9 +256,11 @@ export class AppComponent implements OnInit {
 
   /*****************************/
 
-  showRecipe(id){
+  showRecipe(id, needToHistorize = true){
     this.recipesService.getRecipe(id).subscribe((data) => {
       this.currentRecipe = data;
+      if(needToHistorize)
+        window.history.pushState({"recipe": id}, null, `#recipe=${id}`);
     });
   }
 
@@ -284,10 +291,15 @@ export class AppComponent implements OnInit {
     });
   }
 
-  goTo(page){
+  goTo(page, needToHistorize = true){
     this.start = nbMaxRecipesByPage * (page - 1);
     this.end = nbMaxRecipesByPage * page;
     this.currentPage = page;
+    this.currentRecipe = null;
+
+    if(needToHistorize){
+      window.history.pushState({"page": page}, null, `#page=${page}`);
+    }
   }
 
   openCreateUser = () => {

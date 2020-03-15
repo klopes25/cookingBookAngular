@@ -80,9 +80,27 @@ export class IngredientsComponent implements OnChanges {
   }
 
   getQuantity(item){
-    // TODO: limiter à deux les chiffres après la virgule
-    // TODO: faire un système de transformation pour que si on a plus de 1000 gr on mette Kg (idem pour litre, cl et ml)
-    return (item.quantity === "") ? "" : `:  ${(item.quantity * (Number(this.nbPerson) + this.deltaPerson) / Number(this.nbPerson))} ${((item.unit === undefined) ? "" : item.unit)}`.trim();
+    let quantityToDisplay = (item.quantity === "") ? "" : `:  ${this.getQuantityToDisplay(item.quantity * (Number(this.nbPerson) + this.deltaPerson) / Number(this.nbPerson), (item.unit === undefined) ? "" : item.unit)}`.trim();
+    return quantityToDisplay;
+  }
+
+  getQuantityToDisplay(quantity: number, unit: string = ""){
+    let q;
+    if((unit === "gr") && (quantity >= 1000)){
+      unit = "kg";
+      q = (quantity / 1000).toFixed(2); // limit to 2 number after the comma
+    } else if((unit === "cl") && (quantity >= 100)){
+      unit = "L";
+      q = (quantity / 100).toFixed(2);
+    } else {
+      q = quantity.toFixed(2);
+    }
+
+    const regexX0 = RegExp('[0-9]+.[0-9]0$');
+    const regex00 = RegExp('[0-9]+.00$');
+
+    let value = (regex00.test(q)) ? `${q}`.slice(0, -3) : (regexX0.test(q) ? `${q}`.slice(0, -1) : q);
+    return `${value} ${unit}`;
   }
 
   toggleLegend(){
