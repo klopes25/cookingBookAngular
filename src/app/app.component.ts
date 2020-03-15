@@ -69,12 +69,16 @@ export class AppComponent implements OnInit {
 
   constructor(private recipesService: RecipesService, private usersService: UsersService){
     this.recipesService.getAllRecipes().subscribe((data) => {
+      const userLogin = localStorage.getItem( 'cbl');
+      const userPassword = localStorage.getItem( 'cbp');
       recipes = data;
       this.setUnits(recipes);
       this.nextID = recipes[recipes.length - 1].recipeID + 1;
       this.recipesDisplayed = recipes;
       this.updateTotalPages();
       this.showSpinnerRecipesZone = false;
+
+      if(userLogin && userPassword) this.connection({login: atob(userLogin), password: atob(userPassword)});
 
       window.onpopstate = (event) => {
         if(event.state && event.state.page) this.goTo(~~event.state.page, false);
@@ -281,6 +285,8 @@ export class AppComponent implements OnInit {
       if(this.user === null){ // not connected
         this.addNotif("Wrong login and/or password ! Try again ;)", "error");
       } else { // Great! welcome back
+        localStorage.setItem( 'cbl', btoa(this.user.login));
+        localStorage.setItem( 'cbp', btoa(this.user.password));
         this.addNotif(`Welcome ${info.login} !`, "success");
         recipesWidthDispo = window.innerWidth - 306;
         recipesHeightDispo = window.innerHeight - 128;
@@ -295,7 +301,7 @@ export class AppComponent implements OnInit {
     this.start = nbMaxRecipesByPage * (page - 1);
     this.end = nbMaxRecipesByPage * page;
     this.currentPage = page;
-    this.currentRecipe = null;
+    this.currentRecipe = null; // clean curentRecipe for the history
 
     if(needToHistorize){
       window.history.pushState({"page": page}, null, `#page=${page}`);
@@ -504,6 +510,8 @@ export class AppComponent implements OnInit {
 
   unconnect(){
     this.user = null;
+    localStorage.removeItem('cbl');
+    localStorage.removeItem('cbp');
     this.shoppingItems = [];
     // unconnected so filters disappears and the width is biggest to display the recipes
     recipesWidthDispo = window.innerWidth - 266;
