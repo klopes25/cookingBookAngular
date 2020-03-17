@@ -1,6 +1,13 @@
 <div class="formContainer" [ngClass]="{'show': open}">
   <div class="recipeForm">
     <div class="formTitle">Création de votre recette</div>
+    <div class="errors" *ngIf="errors.length > 0">
+      <ul>
+        <li *ngFor="let error of errors">
+          {{error}}
+        </li>
+      </ul>
+    </div>
 
     <div class="inputs">
       <input type="text" name="title" class="recipeInput" placeholder="Titre" autoComplete="off" #titleSelected />

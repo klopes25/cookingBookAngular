@@ -15,6 +15,7 @@ export class RecipeFormComponent implements OnChanges {
   ingredients: Array<any> = [];
   steps: Array<any> = [];
   tags: Array<any> = [];
+  errors: Array<String> = [];
   @ViewChild('titleSelected', {static: false}) private titleSelected: ElementRef<HTMLInputElement>;
   @ViewChild('categorySelected', {static: false}) private categorySelected: ElementRef<HTMLSelectElement>;
   @ViewChild('meatSelected', {static: false}) private meatSelected: ElementRef<HTMLSelectElement>;
@@ -130,7 +131,33 @@ export class RecipeFormComponent implements OnChanges {
   }
 
   valideRecipe(){
-    // TODO check the content
+    // Check the content
+    this.errors = [];
+    if(this.titleSelected.nativeElement.value === "")
+      this.errors.push("You need to type a title for the recipe !");
+    if(this.categorySelected.nativeElement.value === "")
+      this.errors.push("You need to select a category for the recipe !");
+    if((this.preparationTime.nativeElement.value === "") || (this.preparationUnit.nativeElement.value === ""))
+      this.errors.push("You need to type a preparation time and its unit !");
+    if((this.cookingTime.nativeElement.value === "") || (this.cookingUnit.nativeElement.value === ""))
+      this.errors.push("You need to type a cooking time and its unit !");
+    if((this.sleepTime.nativeElement.value === "") || (this.sleepTime.nativeElement.value === ""))
+      this.errors.push("You need to type a sleep time and its unit !");
+    if((this.nbPerson.nativeElement.value === "") || (this.nbPersonUnit.nativeElement.value === ""))
+      this.errors.push("You need to indicate how many people this fabulous recipe is for...");
+    if(this.spiceSelected.nativeElement.value === "")
+      this.errors.push("You need to indicate the spice level (please)");
+    if(this.spiceSelected.nativeElement.value === "")
+      this.errors.push("You need to indicate the spice level (please)");
+    if(this.ingredients.length === 0)
+      this.errors.push("You need at least one ingredient to make a recipe man!");
+    if(this.steps.length === 0)
+      this.errors.push("You need at least one step to make a recipe man!");
+    if(this.tags.length === 0)
+      this.errors.push("Come on! At least one tag!");
+
+    if(this.errors.length > 0) return;
+
     // create a recipe
     let newRecipe = {
       recipeID: this.nextID,
@@ -150,6 +177,8 @@ export class RecipeFormComponent implements OnChanges {
       tags: this.tags.map( tag => tag.text),
       video: this.hasVideo
     };
+    // clear the errors;
+    this.errors = [];
 
     this.recipeAdded.emit(newRecipe);
   }

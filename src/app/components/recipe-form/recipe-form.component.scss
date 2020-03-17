@@ -38,6 +38,18 @@
       text-decoration: underline;
     }
 
+    .errors{
+      margin-bottom: 15px;
+      margin-top: 15px;
+      background: #c74632;
+      border: 3px solid #7d2626;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      font-family: "Englebert", sans-serif;
+    }
+
     .inputs{
       display: flex;
       flex-direction: column;
