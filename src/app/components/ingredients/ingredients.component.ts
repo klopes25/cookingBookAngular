@@ -109,10 +109,20 @@ export class IngredientsComponent implements OnChanges {
 
   transformItems(){
     this.itemsTransformed = this.itemsToSave.map((i) => {
-      if(this.query.length > 2) {
-        let ingredientTransformed = {...i};
-        ingredientTransformed.ingredient = i.ingredient.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>');
+      let queries = this.query.split(' ');
+      let isMultiWords = queries.length > 1;
+      let ingredientTransformed = {...i};
+      if(isMultiWords){
+        ingredientTransformed.ingredient = i.ingredient;
+        queries.forEach(q => {
+          ingredientTransformed.ingredient = (q.length > 2) ? ingredientTransformed.ingredient.replace(new RegExp(`(${q})`, 'gi'), '<mark>$1</mark>') : ingredientTransformed.ingredient;
+        });
         return ingredientTransformed;
+      } else {
+        if(this.query.length > 2) {
+          ingredientTransformed.ingredient = i.ingredient.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>');
+          return ingredientTransformed;
+        }
       }
       return i;
     });

@@ -20,8 +20,16 @@ export class StepComponent {
 
   ngOnChanges(changes: SimpleChanges){
     this.query = (changes && changes['query']) ? changes['query'].currentValue : this.query;
-    // TODO: bug mark with multi words
-    this.textTransformed = (this.query.length > 2) ? this.text.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>') : this.text;
+    let queries = this.query.split(' ');
+    let isMultiWords = queries.length > 1;
+    if(isMultiWords){
+      this.textTransformed = this.text;
+      queries.forEach(q => {
+        this.textTransformed = (q.length > 2) ? this.textTransformed.replace(new RegExp(`(${q})`, 'gi'), '<mark>$1</mark>') : this.textTransformed;
+      });
+    } else {
+      this.textTransformed = (this.query.length > 2) ? this.text.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>') : this.text;
+    }
     this.cdRef.detectChanges();
   }
 
