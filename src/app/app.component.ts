@@ -462,32 +462,9 @@ export class AppComponent implements OnInit {
     // Filter by query
     if(searchItems.query.length > 0){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => {
-        let tagMatch = false;
-        let titleMatch = false;
-        let chiefTrickMatch = false;
-        let ingredientsMatch = false;
-        let stepsMatch = false;
-
-        for(let i = 0; i <= searchItems.query.length; i++ ){
-          let q = searchItems.query[i];
-          // tags
-          if(r.tags.filter(t => t.toLowerCase().includes(q)).length > 0){ tagMatch = true; break; }
-          // title
-          if(r.title.toLowerCase().includes(q)){ titleMatch = true; break; }
-          // chiefTrick
-          if(r.chiefTrick.toLowerCase().includes(q)){ chiefTrickMatch = true; break; }
-          // ingredients
-          if(r.ingredients.map((i) => i.ingredient).filter((i) => i.toLowerCase().includes(q)).length > 0){
-            ingredientsMatch = true;
-            break;
-          }
-          // steps
-          if(r.steps.map((s) => s.text).filter((s) => s.toLowerCase().includes(q)).length > 0){
-            stepsMatch = true;
-            break;
-          }
-        }
-        return chiefTrickMatch || ingredientsMatch || stepsMatch || tagMatch || titleMatch;
+        return this.testQueriesOnItems(r.tags, searchItems.query) || this.testQueriesOnItems([r.title], searchItems.query) ||
+          this.testQueriesOnItems([r.chiefTrick], searchItems.query) || this.testQueriesOnItems(r.ingredients.map((ing) => ing.ingredient), searchItems.query) ||
+          this.testQueriesOnItems(r.steps.map((step) => step.text), searchItems.query)
       });
     }
 
@@ -496,6 +473,15 @@ export class AppComponent implements OnInit {
     this.end = nbMaxRecipesByPage;
     this.currentPage = 1;
     this.totalPages = Math.ceil(this.recipesDisplayed.length / nbMaxRecipesByPage);
+  }
+
+  testQueriesOnItems(items, queryElements){
+    let nbToCheck = queryElements.length;
+    for(let j=0; j <= queryElements.length; j++){
+      if(items.filter(i => i.toLowerCase().includes(queryElements[j])).length > 0)
+        nbToCheck--;
+    }
+    return (nbToCheck === 0);
   }
 
   updateTotalPages(){
