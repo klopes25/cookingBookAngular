@@ -430,10 +430,10 @@ export class AppComponent implements OnInit {
         return ((mark >= this.filters.starMin) && (mark <= this.filters.starMax));
       });
     }
-    // Filter by duree max
+    // Filter by duree max (in minutes)
     if(searchItems.dureeMax > 0){
-      this.recipesDisplayed = this.recipesDisplayed.filter((r) => { // TODO ici bug potentiel si tout les temps sont pas en minutes
-        let dureeTotalRecipe = Number(r.prepPeriod.split(" ")[0]) + Number(r.cookPeriod.split(" ")[0]) + Number(r.restPeriod.split(" ")[0]);
+      this.recipesDisplayed = this.recipesDisplayed.filter((r) => {
+        let dureeTotalRecipe = this.getTimeInMinutes(r.prepPeriod) + this.getTimeInMinutes(r.cookPeriod) + this.getTimeInMinutes(r.restPeriod);
         return (dureeTotalRecipe <= searchItems.dureeMax);
       });
     }
@@ -473,6 +473,17 @@ export class AppComponent implements OnInit {
     this.end = nbMaxRecipesByPage;
     this.currentPage = 1;
     this.totalPages = Math.ceil(this.recipesDisplayed.length / nbMaxRecipesByPage);
+  }
+
+  getTimeInMinutes(time : string){
+    if(time.includes("min")){
+      return Number(time.split("min")[0].trim());
+    } else if(time.includes("h")){
+      let timeArray = time.split("h");
+      return ((Number(timeArray[0].trim()) * 60) + Number(timeArray[1].trim()));
+    } else {
+      return Number(time.split("j")[0].trim()) * 24 * 60;
+    }
   }
 
   testQueriesOnItems(items, queryElements){
