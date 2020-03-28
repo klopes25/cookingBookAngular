@@ -11,6 +11,7 @@
 <stars
   [mark]="currentRecipe.mark"
   [nbMark]="currentRecipe.nbMark"
+  [id]="currentRecipe.recipeID"
   [user]="user"
   [canVote]="canVote()"
   (recipeMarked)="addMark($event)"

@@ -5,5 +5,5 @@
   <i [class.icon-star-empty]="(starRank < 3.5)" [class.icon-star-half-alt]="(starRank >= 3.5) && (starRank < 4)"  [class.icon-star]="starRank >= 4"></i>
   <i [class.icon-star-empty]="(starRank < 4.5)" [class.icon-star-half-alt]="(starRank >= 4.5) && (starRank < 5)"  [class.icon-star]="starRank >= 5"></i>
   <span class="average"> ({{nbMark}} votes)</span>
-  <span *ngIf="canVote" class="vote"> Je note ! <input type="number" min="0" max="5" [value]="markSelected" (keydown.enter)="addMark($event)" /></span>
+  <span class="vote"> Je {{canVote ? "" : "re-"}}note ! <input type="number" min="0" max="5" [value]="markSelected" (keydown.enter)="addMark($event)" /></span>
 </div>

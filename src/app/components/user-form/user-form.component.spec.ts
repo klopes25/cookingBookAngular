@@ -24,7 +24,8 @@ describe('UserFormComponent', () => {
       logo: "burger",
       password: "***",
       role: "admin",
-      votedFor: []
+      votedFor: [],
+      cart: []
     };
     fixture.detectChanges();
   });

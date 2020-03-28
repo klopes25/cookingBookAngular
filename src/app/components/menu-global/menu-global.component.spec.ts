@@ -23,7 +23,8 @@ describe('MenuGlobalComponent', () => {
       logo: "burger",
       password: "***",
       role: "admin",
-      votedFor: []
+      votedFor: [],
+      cart: []
     };
     component.inShopping = false;
     fixture.detectChanges();

@@ -224,14 +224,24 @@ export class AppComponent implements OnInit {
   updateChiefTip = (tip) => { this.updateRecipeField(["chiefTrick"], [tip]) };
   updateCookingTime = (cookTime) => { this.updateRecipeField(["cookPeriod"], [cookTime]) };
   updateDelta = (delta) => { this.deltaPerson = delta };
-  updateMark = (mark) => {
+
+  updateMark = (markObject) => {
     // update recipe
-    this.updateRecipeField(["mark", "nbMark"], [this.currentRecipe.mark + mark, this.currentRecipe.nbMark + 1]);
+    this.currentRecipe.mark = this.currentRecipe.mark + markObject.mark - (markObject.isUpdate ? markObject.old : 0);
+    this.currentRecipe.nbMark = this.currentRecipe.nbMark + (markObject.isUpdate ? 0 : 1);
+    this.updateRecipeField(["mark", "nbMark"], [this.currentRecipe.mark, this.currentRecipe.nbMark]);
     // update user
-    this.user.votedFor.push(this.currentRecipe.recipeID);
+    if(markObject.isUpdate){
+      let objIndex = this.user.votedFor.findIndex((obj => obj.id == this.currentRecipe.recipeID));
+      this.user.votedFor[objIndex].mark = markObject.mark;
+    } else this.user.votedFor.push({"id": this.currentRecipe.recipeID, "mark": markObject.mark});
     this.usersService.updateUser(this.user.login, this.user)
-      .subscribe((data) => { this.user = data },(error) => { this.addNotif(error, "error") });
+      .subscribe((data) => {
+        this.user = data;
+        this.addNotif("Vote validated!", "success");
+      },(error) => { this.addNotif(error, "error") });
   };
+
   updateMeat = (meat) => { this.updateRecipeField(["meatClass"], [meat]) };
   updateNbPerson = (nbPers) => { this.updateRecipeField(["nbPeople"], [nbPers]) };
   updatePreparationTime = (prepTime) => { this.updateRecipeField(["prepPeriod"], [prepTime]) };

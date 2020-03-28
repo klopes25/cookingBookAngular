@@ -28,7 +28,12 @@ let User = new Schema({
     enum: ['aubergine', 'banane', 'biere', 'biscuit', 'brochette', 'burger', 'cafe', 'carotte', 'champagne', 'cherry', 'chocolat', 'citron', 'citrouille', 'cocktail', 'coco', 'croissant', 'donut', 'egg', 'fraise', 'fromage', 'gateau', 'glace', 'kiwi', 'mais', 'meat', 'myrtille', 'nutella', 'orange', 'pasteque', 'pepper', 'poire', 'poireaux', 'poulet', 'ramen', 'riz', 'salade', 'sandwish', 'sucette', 'sushi', 'taco', 'tarte', 'tomato'],
     default: 'egg'
   },
-  votedFor: [{ type: Number, default: [] }],
+  votedFor: [
+    {
+      id:  { type: Number },
+      mark:  { type: Number}
+    }
+  ],
   cart: [
     {
       ingredient: { type: String, required: true },

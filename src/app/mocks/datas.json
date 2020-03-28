@@ -6,7 +6,8 @@
     "role": "admin",
     "email": "a@free.fr",
     "logo": "burger",
-    "votedFor": []
+    "votedFor": [],
+    "cart": []
   },
   "user2": {
     "_id": "2",
@@ -15,6 +16,7 @@
     "role": "user",
     "email": "toto@free.fr",
     "logo": "egg",
-    "votedFor": [1, 2]
+    "votedFor": [{"id": 1, "mark": 4} ,{"id": 2, "mark": 5}],
+    "cart": []
   }
 }

@@ -37,7 +37,7 @@ export class RecipeComponent {
 
   constructor(private recipesService: RecipesService) { }
 
-  addMark = (mark) => { this.recipeMarked.emit(mark) };
+  addMark = (markObject) => { this.recipeMarked.emit(markObject) };
 
   createComment = (comment) => { this.commentCreated.emit(comment) };
 
@@ -56,7 +56,9 @@ export class RecipeComponent {
 
   updateIngredients = (ingredients) => { this.ingredientsUpdated.emit(ingredients) }
 
-  canVote = () => (this.user != null) && !this.user.votedFor.includes(this.currentRecipe.recipeID);
+  canVote = () => {
+    return (this.user != null) && (this.user.votedFor.filter((m) => m.id === this.currentRecipe.recipeID).length === 0);
+  }
 
   editTitle = (newTitle) => { this.titleToBeUpdated.emit(newTitle) };
 

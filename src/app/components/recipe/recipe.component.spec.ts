@@ -75,7 +75,8 @@ describe('RecipeComponent', () => {
       logo: "burger",
       password: "***",
       role: "admin",
-      votedFor: []
+      votedFor: [],
+      cart: []
     };
     component.query = "";
     component.editionMode = false;

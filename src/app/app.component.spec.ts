@@ -67,7 +67,8 @@ describe('AppComponent', () => {
       logo: "burger",
       password: "***",
       role: "admin",
-      votedFor: []
+      votedFor: [],
+      cart: []
     };
 
     fixture.detectChanges();

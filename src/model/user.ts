@@ -5,6 +5,6 @@ export class User {
   role: string;
   email: string;
   logo: string;
-  votedFor: Array<number>;
+  votedFor: Array<any>;
   cart: Array<any>;
 }
