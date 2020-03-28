@@ -14,6 +14,7 @@ export class RecipeComponent {
   @Input() query: string;
   @Input() editionMode: boolean;
   @Input() deltaPerson: number;
+  @Input() units: Array<string>;
   @Output() editionModeActivated = new EventEmitter<any>();
   @Output() titleToBeUpdated = new EventEmitter<string>();
   @Output() recipeMarked = new EventEmitter<any>();

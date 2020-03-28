@@ -20,8 +20,10 @@
         <input class="ingredientInput group" type="text" placeholder="Groupe" [value]="item.group" (change)="maj($event, i, 'group')"/>
         <input class="ingredientInput name" type="text" placeholder="Nom" data-not-empty [value]="item.ingredient" (change)="maj($event, i, 'ingredient')"/> :&nbsp;
         <input class="ingredientInput qte" type="text" placeholder="Quantité" [value]="item.quantity" (change)="maj($event, i, 'quantity')"/>
-        <input class="ingredientInput unit" type="text" placeholder="Unité" [value]="item.unit" (change)="maj($event, i, 'unit')"/>
-        <!-- TODO: mettre en place un système de proposition pour les unités -->
+        <input class="ingredientInput unit" type="text" placeholder="Unité" list="unitList" [value]="item.unit" (change)="maj($event, i, 'unit')"/>
+        <datalist id="unitList">
+          <option *ngFor="let item of units" [value]="item">{{item}}</option>
+        </datalist>
         <i class="icon-trash deleteIngredient" (click)="deleteIngredient(i)"></i>
         <span class="upDown">
           <i class="icon-up-open" (click)="up(i)"></i>
@@ -33,7 +35,10 @@
         <input class="groupInput" type="text" placeholder="Groupe" value="" #newItemGroup (keydown.enter)="newItemName.focus()"/>
         <input class="ingredientInput" type="text" placeholder="Ingrédient" value="" #newItemName (keydown.enter)="newItemQuantity.focus()"/> :&nbsp;
         <input class="quantityInput" type="text" placeholder="Quantité" value="" #newItemQuantity (keydown.enter)="newItemUnit.focus()"/>
-        <input class="unitInput" type="text" placeholder="Unité" value="" #newItemUnit (keydown.enter)="createNewIngredient()"/>
+        <input class="unitInput" type="text" placeholder="Unité" value="" list="unitList2" #newItemUnit (keydown.enter)="createNewIngredient()"/>
+        <datalist id="unitList2">
+          <option *ngFor="let item of units" [value]="item">{{item}}</option>
+        </datalist>
         <i class="icon-list-add" (click)="addIngredient()"></i>
       </li>
       <li class="validation edition"><span (click)="updateIngredients()">Validation</span></li>

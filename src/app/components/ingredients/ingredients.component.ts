@@ -13,6 +13,7 @@ export class IngredientsComponent implements OnChanges {
   @Input() user: User = null;
   @Input() deltaPerson: number;
   @Input() nbPerson: number;
+  @Input() units: Array<string>;
   groups: Array<any> = [];
   itemsTransformed: Array<any> = [];
   itemsToSave: Array<any> = [];
