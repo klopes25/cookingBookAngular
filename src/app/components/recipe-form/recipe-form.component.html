@@ -83,13 +83,10 @@
           <input type="text" autoComplete="off" [(ngModel)]="ingredient.group" placeholder="Groupe" />
           <input type="text" autoComplete="off" [(ngModel)]="ingredient.ingredient" placeholder="Nom" />
           <input type="text" autoComplete="off" [(ngModel)]="ingredient.quantity" placeholder="Quantité" />
-          <input type="text" autoComplete="off" [(ngModel)]="ingredient.unity" placeholder="Unité" />
-          <!-- TODO input autocomplete des unités
-            <select class="unitSelect" [(ngModel)]="ingredient.unity" (ngModelChange)="onChange($event)" >
-            <option value="" disabled selected>Sélectionnez l'unité...</option>
-            <option *ngFor="let unit of units" [value]="unit"> {{unit}} </option>
-          </select>
-        -->
+          <input type="text" autoComplete="off" [(ngModel)]="ingredient.unity" list="unitList" placeholder="Unité" />
+          <datalist id="unitList">
+            <option *ngFor="let item of units" [value]="item">{{item}}</option>
+          </datalist>
         </div>
       </div>
 
