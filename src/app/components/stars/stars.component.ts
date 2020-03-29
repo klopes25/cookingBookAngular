@@ -10,7 +10,7 @@ export class StarsComponent implements OnInit, OnChanges {
   @Input() mark: number;
   @Input() nbMark: number;
   @Input() id: number;
-  @Input() user: User;
+  @Input() user: User | null;
   @Input() canVote: boolean;
   starRank: number = 0;
   markSelected = 0;
@@ -19,9 +19,11 @@ export class StarsComponent implements OnInit, OnChanges {
   constructor(private cdRef:ChangeDetectorRef) {}
 
    ngOnInit(){
-    let findMark = this.user.votedFor.find(v => v.id === this.id);
-    if(findMark !== undefined)
-      this.markSelected = findMark.mark;
+    if(this.user !== null){
+      let findMark = this.user.votedFor.find(v => v.id === this.id);
+      if(findMark !== undefined)
+        this.markSelected = findMark.mark;
+    }
    }
 
   ngOnChanges(changes: SimpleChanges){

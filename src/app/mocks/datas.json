@@ -1,6 +1,6 @@
 {
   "user1":  {
-    "_id": "1",
+    "_id": "@funnybobby",
     "login": "Funnybobby",
     "password": "****",
     "role": "admin",
@@ -10,7 +10,7 @@
     "cart": []
   },
   "user2": {
-    "_id": "2",
+    "_id": "@toto",
     "login": "Toto",
     "password": "enSlip",
     "role": "user",

@@ -32,7 +32,7 @@ describe('CommentsComponent', () => {
         text: "Toto en slip",
         date: new Date("1981-02-19T12:24:11"),
         index: 0,
-        author: dataMock.user1
+        author: dataMock.user1._id
       }
     ]
     fixture.detectChanges();
@@ -74,38 +74,31 @@ describe('CommentsComponent', () => {
       text: "Toto en slip",
       postedAt: new Date("1981-02-19T12:24:11"),
       index: 0,
-      author: dataMock.user1
+      author: dataMock.user1._id
     };
     expect(component.getDate(item)).toBe("19/02/1981 à 12:24:11");
-   })
+  })
 
-   it('should create a new comment', () => {
+  it('should create a new comment', () => {
     spyOn(component.commentCreated, 'emit'); // to check that the output is called
-     component.textContent = "Ah!Ah!Ah! Good joke";
-     fixture.detectChanges();
-     component.createNewComment();
-     fixture.detectChanges();
-     expect(component.items[1]).toEqual({
-      text: "Ah!Ah!Ah! Good joke",
-      author: dataMock.user2
-     })
-     expect(component.commentCreated.emit).toHaveBeenCalledWith([
-      {
-        text: "Toto en slip",
-        date: new Date("1981-02-19T12:24:11"),
-        index: 0,
-        author: dataMock.user1
-      },
-      {
-        text: "Ah!Ah!Ah! Good joke",
-        author: dataMock.user2
-       }
-     ]); // to check that the output is called
-     expect(component.textContent).toBe("");
-     expect(component.emojiOpen).toBeFalse;
-   });
+    component.textContent = "Ah!Ah!Ah! Good joke";
+    fixture.detectChanges();
+    component.createNewComment();
+    fixture.detectChanges();
 
-   it('should add emoji', () => {
+    expect(component.items[1]).toEqual({
+      text: "Ah!Ah!Ah! Good joke",
+      author: dataMock.user2._id
+    })
+
+    expect(component.commentCreated.emit).toHaveBeenCalledWith({ text: 'Ah!Ah!Ah! Good joke', author: '@toto' }); // to check that the output is called
+
+    expect(component.textContent).toBe("");
+    expect(component.emojiOpen).toBeFalse;
+
+  });
+
+  it('should add emoji', () => {
     component.addEmoji({emoji:{ native: "yo" } });
     fixture.detectChanges();
     expect(component.textContent).toBe("toto en moto yo"); // to check that the output is called

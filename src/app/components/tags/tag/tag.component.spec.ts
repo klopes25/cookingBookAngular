@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SanitizeHtmlPipe } from '../../../pipes/safe.pipe';
 
 import { TagComponent } from './tag.component';
 
@@ -8,7 +9,8 @@ describe('TagComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TagComponent ]
+      declarations: [ TagComponent, SanitizeHtmlPipe ],
+      providers: [SanitizeHtmlPipe]
     })
     .compileComponents();
   }));

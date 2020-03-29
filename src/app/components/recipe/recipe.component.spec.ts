@@ -22,7 +22,7 @@ import { SanitizeHtmlPipe } from '../../pipes/safe.pipe';
   selector: 'chief-tip',
   template: '<p>Mock Product Settings Component</p>'
 })
-class MockChiefTipComponent {  
+class MockChiefTipComponent {
   @Input() tip: string;
   @Input() edition: boolean;
   @Input() query: string;
@@ -64,7 +64,6 @@ describe('RecipeComponent', () => {
       steps: [ { text: "Blabla", index: 1 }, { text: "Babebibobu", index: 2 }],
       tags: ["aa", "bb"],
       video: false,
-      help: "help",
       validatedBy: [],
       deletedBy: []
     };

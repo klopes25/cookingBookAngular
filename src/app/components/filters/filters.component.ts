@@ -102,14 +102,15 @@ export class FiltersComponent {
     if(min > max){
       this.filters.hotMin = min;
       this.filters.hotMax = min;
-      this.filters.hot = true;
-      this.hotMinElement.nativeElement.value = `${min}`;
-      this.hotMaxElement.nativeElement.value = `${min}`;
-      this.cdRef.detectChanges();
     } else {
       this.filters.hotMin = min;
       this.filters.hotMax = max;
     }
+    this.filters.hot = true;
+    this.hotMinElement.nativeElement.value = `${min}`;
+    this.hotMaxElement.nativeElement.value = `${min}`;
+    this.cdRef.detectChanges();
+
     this.filterChanged.emit(this.filters);
   }
 
@@ -120,14 +121,14 @@ export class FiltersComponent {
     if(min > max){
       this.filters.starMin = min;
       this.filters.starMax = min;
-      this.filters.star = true;
-      this.starMinElement.nativeElement.value = `${min}`;
-      this.starMaxElement.nativeElement.value = `${min}`;
-      this.cdRef.detectChanges();
     } else {
       this.filters.starMin = min;
       this.filters.starMax = max;
     }
+    this.filters.star = true;
+    this.starMinElement.nativeElement.value = `${min}`;
+    this.starMaxElement.nativeElement.value = `${min}`;
+    this.cdRef.detectChanges();
 
     this.filterChanged.emit(this.filters);
   }

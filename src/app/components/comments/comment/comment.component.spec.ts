@@ -24,7 +24,7 @@ describe('CommentComponent', () => {
     component.text = "Toto en slip";
     component.date = new Date("1981-02-19T12:24:11").toLocaleString('fr-FR');
     component.index = 0;
-    component.author = dataMock.user1;
+    component.author = dataMock.user1._id;
     component.user = dataMock.user1;
 
     fixture.detectChanges();
@@ -35,14 +35,14 @@ describe('CommentComponent', () => {
   });
 
   it('should have the good class for the pencil button', () => {
-   // case user === undefined
-   component.user = undefined;
-   fixture.detectChanges();
-   expect(component.getPencilClass() === 'icon-pencil hidden').toBeTrue();
-   // case where user === author
-   component.user = dataMock.user1;
+    // case user === null
+    component.user = null;
     fixture.detectChanges();
-    expect(component.getPencilClass() === 'icon-pencil').toBeTrue();
+    expect(component.getPencilClass()).toBe('icon-pencil hidden');
+    // case where user === author
+    component.user = dataMock.user1;
+    fixture.detectChanges();
+    expect(component.getPencilClass()).toBe('icon-pencil');
     // case where user != author
     component.user = dataMock.user2;
     fixture.detectChanges();
@@ -50,18 +50,18 @@ describe('CommentComponent', () => {
   });
 
   it('should have the good class for the trash button', () => {
-    // case user === undefined
-    component.user = undefined;
+    // case user === null
+    component.user = null;
     fixture.detectChanges();
     expect(component.getTrashClass() === 'icon-trash hidden').toBeTrue();
     // case where user === author
     component.user = dataMock.user1;
-     fixture.detectChanges();
-     expect(component.getTrashClass() === 'icon-trash').toBeTrue();
-     // case where user === author
-     component.user = dataMock.user2;
-     fixture.detectChanges();
-     expect(component.getTrashClass() === 'icon-trash hidden').toBeTrue();
+    fixture.detectChanges();
+    expect(component.getTrashClass() === 'icon-trash').toBeTrue();
+    // case where user === author
+    component.user = dataMock.user2;
+    fixture.detectChanges();
+    expect(component.getTrashClass() === 'icon-trash hidden').toBeTrue();
    });
 
    it('should toggle correctly the edition mode', () => {
@@ -86,6 +86,6 @@ describe('CommentComponent', () => {
     fixture.detectChanges();
     expect(component.editComment).toBeFalse();
     expect(component.text).toBe("toto en slibar");
-    expect(component.commentToBeUpdated.emit).toHaveBeenCalledWith({text: "toto en slibar", index: 0});
+    expect(component.commentToBeUpdated.emit).toHaveBeenCalledWith({text: "toto en slibar", date: '19/02/1981 à 12:24:11'});
    })
 });

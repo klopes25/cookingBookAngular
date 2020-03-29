@@ -17,6 +17,7 @@ describe('RecipeItemComponent', () => {
     fixture = TestBed.createComponent(RecipeItemComponent);
     component = fixture.componentInstance;
     component.item = [];
+    component.user = null;
     fixture.detectChanges();
   });
 
