@@ -10,7 +10,6 @@ Cypress.Commands.add('checkOnlyValidatedRecipesButtonState', (bool) => {
     .should(`${bool ? '' : 'not.'}have.class`, "activated");
 });
 
-
 // NEW
 Cypress.Commands.add('clickOnOnlyNewRecipesButton', () => {
   cy.get('filters .filters .filtersContainer .icon-gift')
@@ -23,7 +22,6 @@ Cypress.Commands.add('checkOnlyNewRecipesButtonState', (bool) => {
     .should(`${bool ? '' : 'not.'}have.class`, "activated")
 });
 
-
 // DELETED
 Cypress.Commands.add('clickOnOnlyDeletedRecipesButton', () => {
   cy.get('filters .filters .filtersContainer .icon-heart-broken')
@@ -35,7 +33,6 @@ Cypress.Commands.add('checkOnlyDeletedRecipesButtonState', (bool) => {
   cy.get('filters .filters .filtersContainer .icon-heart-broken')
     .should(`${bool ? '' : 'not.'}have.class`, "activated")
 });
-
 
 // HOT
 Cypress.Commands.add('clickOnHotFilterButton', () => {
@@ -70,7 +67,6 @@ Cypress.Commands.add('changeMaxHot', (min) => {
   cy.get('filters .filters .filtersContainer .icon-extinguisher .overPart button')
     .click();
 })
-
 
 // RANK
 Cypress.Commands.add('clickOnRankFilterButton', () => {

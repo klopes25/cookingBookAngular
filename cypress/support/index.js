@@ -15,11 +15,12 @@
 
 // Import commands.js using ES2015 syntax:
 // import './commands'
-import './connect-zone.commands.js'
-import './lateralFilters.commands.js'
+import './category.commands.js';
+import './connect-zone.commands.js';
+import './filters.commands.js';
 import './leftMenu.commands.js';
-import './notifications.commands.js'
-import './pagination.commands.js'
-import './recipes.commands.js'
-import './topBar.commands.js'
-import './userForm.commands.js'
+import './notifications.commands.js';
+import './pagination.commands.js';
+import './recipes.commands.js';
+import './topBar.commands.js';
+import './userForm.commands.js';

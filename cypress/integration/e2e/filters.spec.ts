@@ -18,30 +18,37 @@ describe('Filter recipes', function() {
     cy.topBarFilterClick(0);
     cy.checkTitleItemOfTheCurrentPage('Mini-croissant pizza', 0);
     cy.checkTitleItemOfTheCurrentPage('Chips de banane plantain', 8);
+    cy.topBarFilterIsSelected(0);
     // filter by entree
     cy.topBarFilterClick(1);
     cy.checkTitleItemOfTheCurrentPage('Beignets de maïs', 0);
     cy.checkTitleItemOfTheCurrentPage('Nems au porc', 8);
+    cy.topBarFilterIsSelected(1);
     // filter by plat
     cy.topBarFilterClick(2);
     cy.checkTitleItemOfTheCurrentPage('Riz cantonais', 0);
     cy.checkTitleItemOfTheCurrentPage('Rôti de porc moutarde et miel', 8);
+    cy.topBarFilterIsSelected(2);
     // filter by dessert
     cy.topBarFilterClick(3);
     cy.checkTitleItemOfTheCurrentPage('Charlotte aux fraises', 0);
     cy.checkTitleItemOfTheCurrentPage('Perles coco', 8);
+    cy.topBarFilterIsSelected(3);
     // filter by boisson
     cy.topBarFilterClick(4);
     cy.checkTitleItemOfTheCurrentPage('Sirop de fraise tagada', 0);
     cy.checkTitleItemOfTheCurrentPage('Milkshake menthe & chocolat', 8);
+    cy.topBarFilterIsSelected(4);
     // filter by autres
     cy.topBarFilterClick(5);
     cy.checkTitleItemOfTheCurrentPage('Bagels', 0);
     cy.checkTitleItemOfTheCurrentPage('Muffins anglais', 8);
+    cy.topBarFilterIsSelected(5);
     // filter by tous
     cy.topBarFilterClick(6);
     cy.checkTitleItemOfTheCurrentPage('Mini-croissant pizza', 0);
     cy.checkTitleItemOfTheCurrentPage('Cake jambon fumé et fromage à raclette', 8);
+    cy.topBarFilterIsSelected(6);
   });
 
   it('filter only validated', function() {

@@ -1,3 +1,7 @@
+Cypress.Commands.add('countNotif', (nb) => {
+  cy.get('notification').find('li').should('have.length', nb);
+});
+
 Cypress.Commands.add('haveNotifWithType', (message, type) => {
   // notification exist ?
   cy.get('notification').should('exist');
