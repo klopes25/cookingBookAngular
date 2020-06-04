@@ -1,5 +1,5 @@
-<div *ngIf="isUserConnected(); else formConnection" class="connected">
-  <img [src]="getUserAvatarSrc()" height="70" alt="User icon" />
+<div *ngIf="(user !== null); else formConnection" class="connected">
+  <img [src]='"assets/img/user/user_" + user.logo + ".svg"' height="70" alt="User icon" />
   <div class="userDetails">
     <span>{{user.login}}</span>
     <div class="actions">

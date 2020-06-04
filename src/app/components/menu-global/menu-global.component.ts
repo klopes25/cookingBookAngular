@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { User } from '../../../model/user';
 
 @Component({
@@ -13,38 +13,28 @@ export class MenuGlobalComponent {
   @Output() randomRecipeOpened = new EventEmitter<string>();
   @Output() shoppingListOpened = new EventEmitter<any>();
 
+  isAdmin = false;
+
   constructor() { }
 
-  isAdmin(): boolean {
-    return (this.user !== null) && (this.user.role === "admin");
+  ngOnChanges(changes: SimpleChanges){
+    if(changes && (changes['user'])){
+      this.isAdmin = (changes['user'].currentValue !== null) && (changes['user'].currentValue.role === "admin");
+    }
   }
 
-  openCreateRecipe(){
-    this.createRecipeOpened.emit();
-  }
+  openCreateRecipe = () => { this.createRecipeOpened.emit() };
 
-  randomApero(){
-    this.randomRecipeOpened.emit("aperitif");
-  }
+  randomApero = () => { this.randomRecipeOpened.emit("aperitif") };
 
-  randomEntree(){
-    this.randomRecipeOpened.emit("entree");
-  }
+  randomEntree = () => { this.randomRecipeOpened.emit("entree") };
 
-  randomPlat(){
-    this.randomRecipeOpened.emit("plat");
-  }
+  randomPlat = () => { this.randomRecipeOpened.emit("plat") };
 
-  randomDessert(){
-    this.randomRecipeOpened.emit("dessert");
-  }
+  randomDessert = () => { this.randomRecipeOpened.emit("dessert") };
 
-  randomBoisson(){
-    this.randomRecipeOpened.emit("boisson");
-  }
+  randomBoisson = () => { this.randomRecipeOpened.emit("boisson") };
 
-  showShoppingList(){
-    this.shoppingListOpened.emit();
-  }
+  showShoppingList = () => { this.shoppingListOpened.emit() };
 
 }

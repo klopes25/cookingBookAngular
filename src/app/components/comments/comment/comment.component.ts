@@ -16,12 +16,18 @@ export class CommentComponent implements OnChanges {
   @Output() commentToBeUpdated = new EventEmitter<any>();
   textTransformed: string = "";
   editComment: boolean = false;
+  pencilClass: string = 'icon-pencil hidden';
+  trashClass: string ='icon-trash hidden';
 
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges){
     if(changes && (changes['text'])){
       this.textTransformed = `${this.text}`;
+    }
+    if(changes && (changes['user'])){
+      this.pencilClass = (changes['user'].currentValue === null) ? 'icon-pencil hidden' : ((changes['user'].currentValue['_id'] === this.author) ? 'icon-pencil' : 'icon-pencil hidden');
+      this.trashClass = (changes['user'].currentValue === null) ? 'icon-trash hidden' : ((changes['user'].currentValue['_id'] === this.author) ? 'icon-trash' : 'icon-trash hidden');
     }
   }
 
@@ -32,10 +38,6 @@ export class CommentComponent implements OnChanges {
   };
 
   deleteComment = () => { this.commentToBeDeleted.emit(this.date) };
-
-  getPencilClass = () => (this.user === null) ? 'icon-pencil hidden' : ((this.user['_id'] === this.author) ? 'icon-pencil' : 'icon-pencil hidden');
-
-  getTrashClass = () => (this.user === null) ? 'icon-trash hidden' : ((this.user['_id'] === this.author) ? 'icon-trash' : 'icon-trash hidden');
 
   toggleEdit = () => { this.editComment = !this.editComment };
 

@@ -11,11 +11,5 @@ export class HelpComponent {
 
   constructor() { }
 
-  closeHelp(){
-    this.helperClosed.emit();
-  }
-
-  getHelperSrc(){
-    return "assets/img/Help.png";
-  }
+  closeHelp = () => { this.helperClosed.emit() };
 }

@@ -24,10 +24,6 @@ export class ConnectZoneComponent {
     });
   }
 
-  getUserAvatarSrc = () => `assets/img/user/user_${this.user.logo}.svg`;
-
-  isUserConnected = () => this.user !== null;
-
   openCreateUser = () => { this.createUserOpened.emit() }
 
   showHelper = () => { this.helperOpened.emit() }
@@ -35,5 +31,4 @@ export class ConnectZoneComponent {
   showUserParameter = () => { this.createUserOpened.emit() }
 
   unconnect = () => { this.unconnected.emit() }
-
 }

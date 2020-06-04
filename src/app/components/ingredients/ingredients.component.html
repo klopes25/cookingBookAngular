@@ -4,7 +4,7 @@
   <ul class="ingredientList">
     <!-- not edition mode -->
     <ng-container *ngIf="!edition">
-      <li *ngFor="let item of itemsTransformed">
+      <li *ngFor="let item of itemsTransformed" class="ingredientDisplay">
         <span *ngIf="groups.length < 2">-&nbsp;</span>
         <span *ngIf="groups.length >= 2">
           <i class="icon-tag" [ngClass]="'group'+ groups.indexOf(item.group)"></i>

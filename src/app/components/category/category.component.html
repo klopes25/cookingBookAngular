@@ -1,5 +1,5 @@
 <div class="editionCategory">
-  <img alt="category" [src]="getCategorySrc()" />
+  <img alt="category" [src]='"assets/img/" + category + ".png"' />
   <span [ngClass]="{'edition': edition}">
     <i class="icon-left-open" (click)="before()"></i>
     <div>{{ category }}</div>

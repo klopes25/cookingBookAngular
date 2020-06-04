@@ -16,8 +16,12 @@
 // Import commands.js using ES2015 syntax:
 // import './commands'
 import './category.commands.js';
+import './chiefTip.commands.js';
 import './connect-zone.commands.js';
+import './comments.commands.js';
 import './filters.commands.js';
+import './help.commands.js';
+import './ingredients.commands.js';
 import './leftMenu.commands.js';
 import './notifications.commands.js';
 import './pagination.commands.js';

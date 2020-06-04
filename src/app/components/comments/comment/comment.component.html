@@ -1,8 +1,8 @@
 <div class="commentsContainer">
   <div class="author">
     <span>{{date}}, par {{author}}</span>
-    <i [class]="getPencilClass()" title="Edition" (click)="toggleEdit()"></i>
-    <i [class]="getTrashClass()" title="Effacer" (click)="deleteComment()"></i>
+    <i [class]=pencilClass title="Edition" (click)="toggleEdit()"></i>
+    <i [class]=trashClass title="Effacer" (click)="deleteComment()"></i>
   </div>
   <div *ngIf="editComment; else noedit" class="comment">
     <div class="commentEdition" contenteditable [innerHTML]="textTransformed" (blur)="closeEdition($event.target.innerHTML)">

@@ -46,7 +46,6 @@ export class MeatSelectorComponent implements AfterViewInit, OnChanges {
       default: newMeat = '';
     }
 
-    console.log("meat-selector ", newMeat)
     this.meatChanged.emit(newMeat)
 	};
 
@@ -66,8 +65,6 @@ export class MeatSelectorComponent implements AfterViewInit, OnChanges {
     return result;
 	};
 
- getMeatClass(id){
-  return`${this.edition ? 'visibleImg' : ''} ${this.compatibility(id)}`;
- }
+ getMeatClass = (id) => `${this.edition ? 'visibleImg' : ''} ${this.compatibility(id)}`;
 
 }

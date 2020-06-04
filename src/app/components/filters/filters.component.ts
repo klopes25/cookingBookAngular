@@ -34,68 +34,50 @@ export class FiltersComponent {
 
   constructor(private cdRef:ChangeDetectorRef) { }
 
-  addToCart(){
-    this.addedToCart.emit();
-  }
+  addToCart = () => { this.addedToCart.emit() };
 
-  dontBubble(event){
-    event.stopPropagation();
-  }
+  dontBubble = (event) => { event.stopPropagation() };
 
-  addHoverHot(){
-    this.hotHover = true;
-  }
+  addHoverHot = () => { this.hotHover = true };
 
-  removeHoverHot(){
-    this.hotHover = false;
-  }
+  removeHoverHot = () => { this.hotHover = false };
 
-  addHoverRank(){
-    this.rankHover = true;
-  }
+  addHoverRank = () => { this.rankHover = true };
 
-  removeHoverRank(){
-    this.rankHover = false;
-  }
+  removeHoverRank = () => { this.rankHover = false }
 
-  isRecipeSelected(){
-    return this.currentRecipe !== null;
-  }
+  isRecipeSelected = () => (this.currentRecipe !== null);
 
-  isUserConnected(){
-    return this.user !== null;
-  }
+  isUserConnected = () => (this.user !== null);
 
-  print(){
-    window.print();
-  }
+  print = () => { window.print() };
 
-  toggleHot(){
+  toggleHot = () => {
     this.filters.hot = !this.filters.hot;
     this.filterChanged.emit(this.filters);
   }
 
-  toggleOnlyDislike(){
+  toggleOnlyDislike = () => {
     this.filters.onlyDislike = !this.filters.onlyDislike;
     this.filterChanged.emit(this.filters);
   }
 
-  toggleOnlyNew(){
+  toggleOnlyNew = () => {
     this.filters.onlyNew = !this.filters.onlyNew;
     this.filterChanged.emit(this.filters);
   }
 
-  toggleOnlyValidated(){
+  toggleOnlyValidated = () => {
     this.filters.onlyValidated = !this.filters.onlyValidated;
     this.filterChanged.emit(this.filters);
   }
 
-  toggleStar(){
+  toggleStar = () => {
     this.filters.star = !this.filters.star;
     this.filterChanged.emit(this.filters);
   }
 
-  updateMinMaxHot(){
+  updateMinMaxHot = () => {
     let min = Number(this.hotMinElement.nativeElement.value);
     let max = Number(this.hotMaxElement.nativeElement.value);
 
@@ -114,7 +96,7 @@ export class FiltersComponent {
     this.filterChanged.emit(this.filters);
   }
 
-  updateMinMaxStar(){
+  updateMinMaxStar = () => {
     let min = Number(this.starMinElement.nativeElement.value);
     let max = Number(this.starMaxElement.nativeElement.value);
 
@@ -133,7 +115,7 @@ export class FiltersComponent {
     this.filterChanged.emit(this.filters);
   }
 
-  validate(){
+  validate = () => {
     this.recipeValidated.emit();
   }
 

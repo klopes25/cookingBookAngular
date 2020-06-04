@@ -29,9 +29,4 @@ export class CategoryComponent {
     // update database
     this.categoryUpdated.emit(this.category);
   }
-
-  // Return the relative path of the category image
-  getCategorySrc(){
-    return `assets/img/${this.category}.png`;
-  }
 }

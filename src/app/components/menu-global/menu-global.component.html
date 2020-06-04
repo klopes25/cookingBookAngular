@@ -5,5 +5,5 @@
   <div class="menuLateralItem" (click)="randomDessert()"> Dessert <i class="icon-dice"></i> </div>
   <div class="menuLateralItem" (click)="randomBoisson()"> Boisson <i class="icon-dice"></i> </div>
   <div class="menuLateralItem" [ngClass]="{'inShopping': inShopping, 'disabled': (user === null) }" (click)="showShoppingList()"> <i class="icon-basket"></i> Shopping list </div>
-  <div *ngIf="isAdmin()" class="add" (click)="openCreateRecipe()"></div>
+  <div *ngIf="isAdmin" class="add" (click)="openCreateRecipe()"></div>
 </div>

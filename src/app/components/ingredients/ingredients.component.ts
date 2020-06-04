@@ -58,9 +58,7 @@ export class IngredientsComponent implements OnChanges {
     this.itemsToSave[index][type] = e.target.value;
   }
 
-  updateIngredients(){
-    this.ingredientUpdated.emit(this.itemsToSave);
-  }
+  updateIngredients = () => { this.ingredientUpdated.emit(this.itemsToSave) };
 
   deleteIngredient(i){
     this.itemsToSave.splice(i, 1); // remove the ith element of items
@@ -104,9 +102,7 @@ export class IngredientsComponent implements OnChanges {
     return `${value} ${unit}`;
   }
 
-  toggleLegend(){
-    this.openLegend = !this.openLegend;
-  }
+  toggleLegend = () => { this.openLegend = !this.openLegend };
 
   transformItems(){
     this.itemsTransformed = this.itemsToSave.map((i) => {
