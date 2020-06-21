@@ -8,7 +8,8 @@ let express = require('express'),
 // Connecting with mongo db
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {
-   useNewUrlParser: true
+   useNewUrlParser: true,
+   useUnifiedTopology: true
 }).then(() => {
       console.log('Database sucessfully connected')
    },
@@ -26,7 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
    extended: false
 }));
-app.use(cors()); 
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist/mean-stack-crud-app')));
 app.use('/', express.static(path.join(__dirname, 'dist/mean-stack-crud-app')));
 app.use('/api/recipes', recipeRoute);
@@ -35,7 +36,7 @@ app.use('/api/users', userRoute);
 
 // Create port
 const port = process.env.PORT || 4000;
-const server = app.listen(port, () => {
+const server = app.listen(port, '0.0.0.0', () => {
   console.log('Connected to port ' + port)
 })
 
