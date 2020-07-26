@@ -16,12 +16,12 @@ describe('UsersService', () => {
     });
 
     // Inject the http service and test controller for each test
-    httpClient = TestBed.get(HttpClient);
-    httpTestingController = TestBed.get(HttpTestingController);
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
-    const service: UsersService = TestBed.get(UsersService);
+    const service: UsersService = TestBed.inject(UsersService);
     expect(service).toBeTruthy();
   });
 
