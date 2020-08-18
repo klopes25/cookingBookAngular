@@ -107,7 +107,7 @@ export class RecipeFormComponent implements OnChanges {
       group: "",
       ingredient: "",
       quantity: "",
-      unity: ""
+      unit: ""
     });
   }
 
