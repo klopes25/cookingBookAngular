@@ -7,36 +7,38 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChange
 })
 export class StepsComponent implements OnChanges {
   @Input() items: Array<any>;
-  @Input() edition: boolean = false;
-  @Input() query: string = "";
+  @Input() edition = false;
+  @Input() query = '';
   @Input() recipeID: number;
   @Input() video: boolean;
-  isVideoOpen: boolean = false;
+  isVideoOpen = false;
   itemsToSave: Array<any> = [];
   srcVideo = `../assets/video/${this.recipeID}.mp4`;
   @Output() stepsUpdated = new EventEmitter<any>();
   @ViewChild('newStep', {static: false}) private newStep: ElementRef<HTMLInputElement>;
   @ViewChild('videoPlayer', {static: false}) private videoPlayer: ElementRef<HTMLMediaElement>;
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes && changes['recipeID']) this.srcVideo = `../assets/video/${changes['recipeID'].currentValue}.mp4`;
-    this.itemsToSave = (changes && changes['items']) ? this.items.map((i) => i) : this.itemsToSave;
-    this.query = (changes && changes['query']) ? changes['query'].currentValue : this.query;
+    if (changes && changes.recipeID) {
+      this.srcVideo = `../assets/video/${changes.recipeID.currentValue}.mp4`;
+    }
+    this.itemsToSave = (changes && changes.items) ? this.items.map((i) => i) : this.itemsToSave;
+    this.query = (changes && changes.query) ? changes.query.currentValue : this.query;
 
     this.cdRef.detectChanges();
   }
 
   addStep(){
-    if(this.newStep.nativeElement.value !== ""){
-      let newStep = {
+    if (this.newStep.nativeElement.value !== ''){
+      const newStep = {
         text: this.newStep.nativeElement.value,
         index: this.items.length
-      }
+      };
       this.itemsToSave.push(newStep);
       // clear input
-      this.newStep.nativeElement.value = "";
+      this.newStep.nativeElement.value = '';
     }
    }
 
@@ -54,14 +56,18 @@ export class StepsComponent implements OnChanges {
   }
 
   moveStep(data){ // { index: this.index, value: 1 or -1}
-    if(data.value < 0){ // up
-      if(data.index === 0) return;
+    if (data.value < 0){ // up
+      if (data.index === 0) {
+        return;
+      }
       const switch1 = this.itemsToSave[data.index];
       const switch2 = this.itemsToSave[data.index - 1];
       this.itemsToSave[data.index] = switch2;
       this.itemsToSave[data.index - 1] = switch1;
     } else { // down
-      if(data.index=== (this.itemsToSave.length - 1)) return;
+      if (data.index === (this.itemsToSave.length - 1)) {
+        return;
+      }
       const switch1 = this.itemsToSave[data.index];
       const switch2 = this.itemsToSave[data.index + 1];
       this.itemsToSave[data.index] = switch2;
@@ -72,7 +78,7 @@ export class StepsComponent implements OnChanges {
   openVideo = () => {
     this.isVideoOpen = true;
     this.videoPlayer.nativeElement.play();
-  };
+  }
 
-  updateSteps = () => { this.stepsUpdated.emit(this.itemsToSave) };
+  updateSteps = () => { this.stepsUpdated.emit(this.itemsToSave); };
 }

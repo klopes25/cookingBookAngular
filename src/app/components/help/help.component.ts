@@ -11,5 +11,5 @@ export class HelpComponent {
 
   constructor() { }
 
-  closeHelp = () => { this.helperClosed.emit() };
+  closeHelp = () => { this.helperClosed.emit(); };
 }

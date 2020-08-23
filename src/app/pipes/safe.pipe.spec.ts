@@ -10,11 +10,11 @@ describe('SanitizeHtmlPipe', () => {
   }));
 
   it('check pipe transformation', inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
-    const text = "<mark>toto<mark>";
+    const text = '<mark>toto<mark>';
     const pipe = new SanitizeHtmlPipe(domSanitizer);
     const result = pipe.transform(text);
     expect(result).toBeTruthy();
-    expect(result['changingThisBreaksApplicationSecurity']).toContain("toto");
+    expect(result.changingThisBreaksApplicationSecurity).toContain('toto');
   }));
 
 });

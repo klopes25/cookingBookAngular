@@ -14,17 +14,17 @@
     "deprecation": {
       "severity": "warning"
     },
-    "component-class-suffix": true,
+    "component-class-suffix": false,
     "contextual-lifecycle": true,
-    "directive-class-suffix": true,
+    "directive-class-suffix": false,
     "directive-selector": [
-      true,
+      false,
       "attribute",
       "app",
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "app",
       "kebab-case"
@@ -147,7 +147,13 @@
         "check-type",
         "check-typecast"
       ]
-    }
+    },
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
+    ]
 },
   "rulesDirectory": [
     "codelyzer"

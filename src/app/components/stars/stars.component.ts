@@ -12,27 +12,28 @@ export class StarsComponent implements OnInit, OnChanges {
   @Input() id: number;
   @Input() user: User | null;
   @Input() canVote: boolean;
-  starRank: number = 0;
+  starRank = 0;
   markSelected = 0;
   @Output() recipeMarked = new EventEmitter<any>();
 
-  constructor(private cdRef:ChangeDetectorRef) {}
+  constructor(private cdRef: ChangeDetectorRef) {}
 
    ngOnInit(){
-    if(this.user !== null){
-      let findMark = this.user.votedFor.find(v => v.id === this.id);
-      if(findMark !== undefined)
+    if (this.user !== null){
+      const findMark = this.user.votedFor.find(v => v.id === this.id);
+      if (findMark !== undefined) {
         this.markSelected = findMark.mark;
+      }
     }
    }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes && changes['mark'] && changes['nbMark']){
-      this.starRank = (changes['mark'].currentValue > 0) ? (changes['mark'].currentValue / changes['nbMark'].currentValue) : 0;
+    if (changes && changes.mark && changes.nbMark){
+      this.starRank = (changes.mark.currentValue > 0) ? (changes.mark.currentValue / changes.nbMark.currentValue) : 0;
       this.cdRef.detectChanges();
     }
-    else if(changes && changes['mark']){
-      this.starRank = (changes['mark'].currentValue > 0) ? (changes['mark'].currentValue / this.nbMark) : 0;
+    else if (changes && changes.mark){
+      this.starRank = (changes.mark.currentValue > 0) ? (changes.mark.currentValue / this.nbMark) : 0;
       this.cdRef.detectChanges();
     }
   }

@@ -7,38 +7,38 @@ import { User } from 'src/model/user';
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent {
-  @Input() items: Array<any>
-  @Input() user: User
+  @Input() items: Array<any>;
+  @Input() user: User;
   @Output() commentToBeDeleted = new EventEmitter<number>();
   @Output() commentToBeUpdated = new EventEmitter<any>();
   @Output() commentCreated = new EventEmitter<any>();
   emojiOpen = false;
-  textContent = "";
+  textContent = '';
 
   constructor() { }
 
-  addEmoji = (data) => { this.textContent = `${this.textContent} ${data.emoji.native}` }
+  addEmoji = (data) => { this.textContent = `${this.textContent} ${data.emoji.native}`; };
 
   createNewComment = () => {
     // create the new comment
-    let newComment = {
+    const newComment = {
       text: `${this.textContent}`,
       author: this.user._id
-    }
+    };
     // add it to the comments
     this.items.push(newComment);
     // emit an event to record in database
     this.commentCreated.emit(newComment);
     // reset the textContent value and close the emojis
-    this.textContent = "";
+    this.textContent = '';
     this.emojiOpen = false;
   }
 
-  deleteComment = (commentDate: any) => { this.commentToBeDeleted.emit(commentDate) }
+  deleteComment = (commentDate: any) => { this.commentToBeDeleted.emit(commentDate); };
 
   getDate = (item) => new Date(item.postedAt).toLocaleString('fr-FR');
 
-  toggleEmojiPicker = () => { this.emojiOpen = !this.emojiOpen }
+  toggleEmojiPicker = () => { this.emojiOpen = !this.emojiOpen; };
 
-  updateComment = (data) => { this.commentToBeUpdated.emit(data) }
+  updateComment = (data) => { this.commentToBeUpdated.emit(data); };
 }

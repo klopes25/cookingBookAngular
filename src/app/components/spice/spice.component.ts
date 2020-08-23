@@ -13,7 +13,7 @@ export class SpiceComponent {
   constructor() { }
 
   getSpicyClass(){
-    return `spices level${this.spicy} ${this.edition ? "edition" : ""}`;
+    return `spices level${this.spicy} ${this.edition ? 'edition' : ''}`;
   }
 
   updateSpices(i){

@@ -14,22 +14,22 @@ export class TagsComponent implements OnChanges {
   itemsToSave: Array<any> = [];
   @ViewChild('newTag', {static: false}) private newTag: ElementRef<HTMLInputElement>;
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnChanges(changes: SimpleChanges){
-    this.itemsToSave = (changes && changes['items']) ? this.items.map((i) => i) : this.itemsToSave;
-    this.query = (changes && changes['query']) ? changes['query'].currentValue : this.query;
+    this.itemsToSave = (changes && changes.items) ? this.items.map((i) => i) : this.itemsToSave;
+    this.query = (changes && changes.query) ? changes.query.currentValue : this.query;
     this.transformItems();
 
     this.cdRef.detectChanges();
   }
 
   addTag(){
-    if(this.newTag.nativeElement.value !== ""){
+    if (this.newTag.nativeElement.value !== ''){
       this.itemsToSave.push(this.newTag.nativeElement.value);
       this.transformItems();
       // clear input
-      this.newTag.nativeElement.value = "";
+      this.newTag.nativeElement.value = '';
       this.updateTags();
     }
   }
@@ -42,7 +42,7 @@ export class TagsComponent implements OnChanges {
 
   transformItems(){
     this.itemsTransformed = this.itemsToSave.map((i) => {
-      if(this.query.length > 2) {
+      if (this.query.length > 2) {
         let tagTransformed = `${i}`;
         tagTransformed = i.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>');
         return tagTransformed;
@@ -55,7 +55,9 @@ export class TagsComponent implements OnChanges {
     this.itemsToSave[data.index] = data.text;
     this.transformItems();
     this.updateTags();
-  };
+  }
 
-  updateTags = () => { this.tagsUpdated.emit(this.itemsToSave) };
+  updateTags = () => {
+    this.tagsUpdated.emit(this.itemsToSave);
+  }
 }

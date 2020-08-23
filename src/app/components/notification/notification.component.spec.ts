@@ -16,7 +16,7 @@ describe('NotificationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
-    component.notifs = [{text: "Yo!", state: "info"}];
+    component.notifs = [{text: 'Yo!', state: 'info'}];
     fixture.detectChanges();
   });
 

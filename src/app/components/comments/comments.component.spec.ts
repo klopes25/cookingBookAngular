@@ -17,7 +17,7 @@ describe('CommentsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule ],
-      declarations: [ CommentsComponent, MockComment, MockEmojiPicker ]
+      declarations: [ CommentsComponent, MockCommentComponent, MockEmojiPickerComponent ]
     })
     .compileComponents();
   }));
@@ -25,16 +25,16 @@ describe('CommentsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CommentsComponent);
     component = fixture.componentInstance;
-    component.textContent = "toto en moto";
+    component.textContent = 'toto en moto';
     component.user = dataMock.user2;
     component.items = [
       {
-        text: "Toto en slip",
-        date: new Date("1981-02-19T12:24:11"),
+        text: 'Toto en slip',
+        date: new Date('1981-02-19T12:24:11'),
         index: 0,
         author: dataMock.user1._id
       }
-    ]
+    ];
     fixture.detectChanges();
   });
 
@@ -42,8 +42,8 @@ describe('CommentsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain emoji picker component', ()=> {
-    const mockTaskEl = fixture.debugElement.query(By.directive(MockEmojiPicker));
+  it('should contain emoji picker component', () => {
+    const mockTaskEl = fixture.debugElement.query(By.directive(MockEmojiPickerComponent));
     expect(mockTaskEl).toBeTruthy();
   });
 
@@ -59,50 +59,50 @@ describe('CommentsComponent', () => {
 
   it('should update comment emit the good event', () => {
     spyOn(component.commentToBeUpdated, 'emit'); // to check that the output is called
-    component.updateComment("totolitoto");
-    expect(component.commentToBeUpdated.emit).toHaveBeenCalledWith("totolitoto"); // to check that the output is called
-  })
+    component.updateComment('totolitoto');
+    expect(component.commentToBeUpdated.emit).toHaveBeenCalledWith('totolitoto'); // to check that the output is called
+  });
 
   it('should delete comment emit the good event', () => {
     spyOn(component.commentToBeDeleted, 'emit'); // to check that the output is called
     component.deleteComment(12);
     expect(component.commentToBeDeleted.emit).toHaveBeenCalledWith(12); // to check that the output is called
-  })
+  });
 
   it('should have the good behavior for getDate', () => {
-    let item = {
-      text: "Toto en slip",
-      postedAt: new Date("1981-02-19T12:24:11"),
+    const item = {
+      text: 'Toto en slip',
+      postedAt: new Date('1981-02-19T12:24:11'),
       index: 0,
       author: dataMock.user1._id
     };
-    expect(component.getDate(item)).toBe("19/02/1981 à 12:24:11");
-  })
+    expect(component.getDate(item)).toBe('19/02/1981 à 12:24:11');
+  });
 
   it('should create a new comment', () => {
     spyOn(component.commentCreated, 'emit'); // to check that the output is called
-    component.textContent = "Ah!Ah!Ah! Good joke";
+    component.textContent = 'Ah!Ah!Ah! Good joke';
     fixture.detectChanges();
     component.createNewComment();
     fixture.detectChanges();
 
     expect(component.items[1]).toEqual({
-      text: "Ah!Ah!Ah! Good joke",
+      text: 'Ah!Ah!Ah! Good joke',
       author: dataMock.user2._id
-    })
+    });
 
-    expect(component.commentCreated.emit).toHaveBeenCalledWith({ text: 'Ah!Ah!Ah! Good joke', author: '@toto' }); // to check that the output is called
+    // to check that the output is called
+    expect(component.commentCreated.emit).toHaveBeenCalledWith({ text: 'Ah!Ah!Ah! Good joke', author: '@toto' });
 
-    expect(component.textContent).toBe("");
-    expect(component.emojiOpen).toBeFalse;
-
+    expect(component.textContent).toBe('');
+    expect(component.emojiOpen).toBeFalse();
   });
 
   it('should add emoji', () => {
-    component.addEmoji({emoji:{ native: "yo" } });
+    component.addEmoji({emoji: { native: 'yo' } });
     fixture.detectChanges();
-    expect(component.textContent).toBe("toto en moto yo"); // to check that the output is called
-  })
+    expect(component.textContent).toBe('toto en moto yo'); // to check that the output is called
+  });
 });
 
 ////////////////////////////////// MOCKS //////////////////////////////////
@@ -111,7 +111,7 @@ describe('CommentsComponent', () => {
 @Directive({
   selector: 'emoji-mart'
 })
-class MockEmojiPicker {
+class MockEmojiPickerComponent {
   @Input() exclude: Array<string>;
   @Input() title: string;
   @Input() emojiTooltip: boolean;
@@ -122,7 +122,7 @@ class MockEmojiPicker {
 @Directive({
   selector: 'comment'
 })
-class MockComment {
+class MockCommentComponent {
   @Input() text: string;
   @Input() date: string;
   @Input() index: number;

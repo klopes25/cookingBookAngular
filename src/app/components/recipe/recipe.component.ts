@@ -38,45 +38,45 @@ export class RecipeComponent {
 
   constructor(private recipesService: RecipesService) { }
 
-  addMark = (markObject) => { this.recipeMarked.emit(markObject) };
+  addMark = (markObject) => { this.recipeMarked.emit(markObject); };
 
-  createComment = (comment) => { this.commentCreated.emit(comment) };
+  createComment = (comment) => { this.commentCreated.emit(comment); };
 
-  deleteComment = (commentDate: any) => { this.commentDeleted.emit(commentDate) };
+  deleteComment = (commentDate: any) => { this.commentDeleted.emit(commentDate); };
 
-  updatePreparationTime = (prep) => { this.preparationTimeUpdated.emit(prep) };
-  updateCookingTime = (cookTime) => { this.cookingTimeUpdated.emit(cookTime) };
-  updateRestPeriod = (rest) => { this.restPeriodUpdated.emit(rest) };
-  updateNbPerson = (nbPers) => { this.nbPersonUpdated.emit(nbPers) };
-  updateUnit = (unit) => { this.unitUpdated.emit(unit) };
-  updateDelta = (delta) => { this.deltaUpdated.emit(delta) };
-  updateCategory = (cat) => { this.categoryUpdated.emit(cat) };
-  updateSteps = (steps) => { this.stepsUpdated.emit(steps) };
-  updateChiefTip = (tip) => { this.chiefTipUpdated.emit(tip) };
-  updateTags = (tags) => { this.tagsUpdated.emit(tags) };
+  updatePreparationTime = (prep) => { this.preparationTimeUpdated.emit(prep); };
+  updateCookingTime = (cookTime) => { this.cookingTimeUpdated.emit(cookTime); };
+  updateRestPeriod = (rest) => { this.restPeriodUpdated.emit(rest); };
+  updateNbPerson = (nbPers) => { this.nbPersonUpdated.emit(nbPers); };
+  updateUnit = (unit) => { this.unitUpdated.emit(unit); };
+  updateDelta = (delta) => { this.deltaUpdated.emit(delta); };
+  updateCategory = (cat) => { this.categoryUpdated.emit(cat); };
+  updateSteps = (steps) => { this.stepsUpdated.emit(steps); };
+  updateChiefTip = (tip) => { this.chiefTipUpdated.emit(tip); };
+  updateTags = (tags) => { this.tagsUpdated.emit(tags); };
 
-  updateIngredients = (ingredients) => { this.ingredientsUpdated.emit(ingredients) }
+  updateIngredients = (ingredients) => { this.ingredientsUpdated.emit(ingredients); };
 
-  canVote = () => {
-    return (this.user != null) && (this.user.votedFor.filter((m) => m.id === this.currentRecipe.recipeID).length === 0);
-  }
+  canVote = () => (this.user != null) && (this.user.votedFor.filter((m) => m.id === this.currentRecipe.recipeID).length === 0);
 
-  editTitle = (newTitle) => { this.titleToBeUpdated.emit(newTitle) };
+  editTitle = (newTitle) => { this.titleToBeUpdated.emit(newTitle); };
 
-  getRole = () => (this.user !== null) ? this.user.role : "user";
+  getRole = () => (this.user !== null) ? this.user.role : 'user';
 
   isRecipeValidated(){
-    if(this.user === null) return false;
+    if (this.user === null) {
+      return false;
+    }
     return this.currentRecipe.validatedBy.find((userID) => userID === this.user._id) !== undefined;
   }
 
-  toggleEditionMode = () => { this.editionModeActivated.emit() }
+  toggleEditionMode = () => { this.editionModeActivated.emit(); };
 
-  toggleVideo = () => { this.videoUpdated.emit() }
+  toggleVideo = () => { this.videoUpdated.emit(); };
 
-  updateComment = (data) => { this.commentUpdated.emit(data) }
+  updateComment = (data) => { this.commentUpdated.emit(data); };
 
-  updateMeat = (meat) => { this.meatUpdated.emit(meat) }
+  updateMeat = (meat) => { this.meatUpdated.emit(meat); };
 
-  updateSpice = (spice) => { this.spiceUpdated.emit(spice) }
+  updateSpice = (spice) => { this.spiceUpdated.emit(spice); };
 }

@@ -14,20 +14,20 @@ export class CommentComponent implements OnChanges {
   @Input() user: User | null;
   @Output() commentToBeDeleted = new EventEmitter<any>();
   @Output() commentToBeUpdated = new EventEmitter<any>();
-  textTransformed: string = "";
-  editComment: boolean = false;
-  pencilClass: string = 'icon-pencil hidden';
-  trashClass: string ='icon-trash hidden';
+  textTransformed = '';
+  editComment = false;
+  pencilClass = 'icon-pencil hidden';
+  trashClass = 'icon-trash hidden';
 
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes && (changes['text'])){
+    if (changes && (changes.text)){
       this.textTransformed = `${this.text}`;
     }
-    if(changes && (changes['user'])){
-      this.pencilClass = (changes['user'].currentValue === null) ? 'icon-pencil hidden' : ((changes['user'].currentValue['_id'] === this.author) ? 'icon-pencil' : 'icon-pencil hidden');
-      this.trashClass = (changes['user'].currentValue === null) ? 'icon-trash hidden' : ((changes['user'].currentValue['_id'] === this.author) ? 'icon-trash' : 'icon-trash hidden');
+    if (changes && (changes.user)){
+      this.pencilClass = (changes.user.currentValue === null) ? 'icon-pencil hidden' : ((changes.user.currentValue._id === this.author) ? 'icon-pencil' : 'icon-pencil hidden');
+      this.trashClass = (changes.user.currentValue === null) ? 'icon-trash hidden' : ((changes.user.currentValue._id === this.author) ? 'icon-trash' : 'icon-trash hidden');
     }
   }
 
@@ -35,11 +35,11 @@ export class CommentComponent implements OnChanges {
     this.editComment = false;
     this.text = comment;
     this.commentToBeUpdated.emit({text: this.text, date: this.date});
-  };
+  }
 
-  deleteComment = () => { this.commentToBeDeleted.emit(this.date) };
+  deleteComment = () => { this.commentToBeDeleted.emit(this.date); };
 
-  toggleEdit = () => { this.editComment = !this.editComment };
+  toggleEdit = () => { this.editComment = !this.editComment; };
 
   // TODO : on devrait pouvoir quand on edit un commentaire avoir accès aux emojis
 }

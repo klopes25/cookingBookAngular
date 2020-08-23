@@ -18,12 +18,12 @@ describe('UserFormComponent', () => {
     component = fixture.componentInstance;
     component.open = false;
     component.user = {
-      _id: "12",
-      email: "a@b.fr",
-      login: "funny",
-      logo: "burger",
-      password: "***",
-      role: "admin",
+      _id: '12',
+      email: 'a@b.fr',
+      login: 'funny',
+      logo: 'burger',
+      password: '***',
+      role: 'admin',
       votedFor: [],
       cart: []
     };

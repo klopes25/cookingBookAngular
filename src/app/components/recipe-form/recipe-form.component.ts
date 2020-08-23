@@ -11,11 +11,11 @@ export class RecipeFormComponent implements OnChanges {
   @Input() units: Array<string>;
   @Output() recipeFormClosed = new EventEmitter<any>();
   @Output() recipeAdded = new EventEmitter<any>();
-  hasVideo: boolean = false;
+  hasVideo = false;
   ingredients: Array<any> = [];
   steps: Array<any> = [];
   tags: Array<any> = [];
-  errors: Array<String> = [];
+  errors: Array<string> = [];
   @ViewChild('titleSelected', {static: false}) private titleSelected: ElementRef<HTMLInputElement>;
   @ViewChild('categorySelected', {static: false}) private categorySelected: ElementRef<HTMLSelectElement>;
   @ViewChild('meatSelected', {static: false}) private meatSelected: ElementRef<HTMLSelectElement>;
@@ -78,22 +78,22 @@ export class RecipeFormComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes && changes.open && changes.open.currentValue){
-      //clear the fields
-      this.categorySelected.nativeElement.value = "";
-      this.titleSelected.nativeElement.value = "";
-      this.preparationTime.nativeElement.value = "";
-      this.preparationUnit.nativeElement.value = "";
-      this.cookingTime.nativeElement.value = "";
-      this.cookingUnit.nativeElement.value = "";
-      this.sleepTime.nativeElement.value = "";
-      this.sleepUnit.nativeElement.value = "";
-      this.nbPerson.nativeElement.value = "";
-      this.nbPersonUnit.nativeElement.value = "";
+    if (changes && changes.open && changes.open.currentValue){
+      // clear the fields
+      this.categorySelected.nativeElement.value = '';
+      this.titleSelected.nativeElement.value = '';
+      this.preparationTime.nativeElement.value = '';
+      this.preparationUnit.nativeElement.value = '';
+      this.cookingTime.nativeElement.value = '';
+      this.cookingUnit.nativeElement.value = '';
+      this.sleepTime.nativeElement.value = '';
+      this.sleepUnit.nativeElement.value = '';
+      this.nbPerson.nativeElement.value = '';
+      this.nbPersonUnit.nativeElement.value = '';
       // calories: number; // default 0
-      this.spiceSelected.nativeElement.value = "";
-      this.meatSelected.nativeElement.value = "";
-      this.astuce.nativeElement.value = "Aucune astuce !";
+      this.spiceSelected.nativeElement.value = '';
+      this.meatSelected.nativeElement.value = '';
+      this.astuce.nativeElement.value = 'Aucune astuce !';
       this.ingredients = [];
       this.steps = [];
       this.tags = [];
@@ -104,22 +104,22 @@ export class RecipeFormComponent implements OnChanges {
   addIngredientInput(){
     this.ingredients.push({
       index: this.ingredients.length,
-      group: "",
-      ingredient: "",
-      quantity: "",
-      unit: ""
+      group: '',
+      ingredient: '',
+      quantity: '',
+      unit: ''
     });
   }
 
   addStepInput(){
     this.steps.push({
-      text: "",
+      text: '',
       index: this.steps.length + 1
-    })
+    });
   }
 
   addTagInput(){
-    this.tags.push({ text: "" });
+    this.tags.push({ text: '' });
   }
 
   closeForm(){
@@ -133,33 +133,46 @@ export class RecipeFormComponent implements OnChanges {
   valideRecipe(){
     // Check the content
     this.errors = [];
-    if(this.titleSelected.nativeElement.value === "")
-      this.errors.push("You need to type a title for the recipe !");
-    if(this.categorySelected.nativeElement.value === "")
-      this.errors.push("You need to select a category for the recipe !");
-    if((this.preparationTime.nativeElement.value === "") || (this.preparationUnit.nativeElement.value === ""))
-      this.errors.push("You need to type a preparation time and its unit !");
-    if((this.cookingTime.nativeElement.value === "") || (this.cookingUnit.nativeElement.value === ""))
-      this.errors.push("You need to type a cooking time and its unit !");
-    if((this.sleepTime.nativeElement.value === "") || (this.sleepTime.nativeElement.value === ""))
-      this.errors.push("You need to type a sleep time and its unit !");
-    if((this.nbPerson.nativeElement.value === "") || (this.nbPersonUnit.nativeElement.value === ""))
-      this.errors.push("You need to indicate how many people this fabulous recipe is for...");
-    if(this.spiceSelected.nativeElement.value === "")
-      this.errors.push("You need to indicate the spice level (please)");
-    if(this.spiceSelected.nativeElement.value === "")
-      this.errors.push("You need to indicate the spice level (please)");
-    if(this.ingredients.length === 0)
-      this.errors.push("You need at least one ingredient to make a recipe man!");
-    if(this.steps.length === 0)
-      this.errors.push("You need at least one step to make a recipe man!");
-    if(this.tags.length === 0)
-      this.errors.push("Come on! At least one tag!");
+    if (this.titleSelected.nativeElement.value === '') {
+      this.errors.push('You need to type a title for the recipe !');
+    }
+    if (this.categorySelected.nativeElement.value === '') {
+      this.errors.push('You need to select a category for the recipe !');
+    }
+    if ((this.preparationTime.nativeElement.value === '') || (this.preparationUnit.nativeElement.value === '')){
+      this.errors.push('You need to type a preparation time and its unit !');
+    }
+    if ((this.cookingTime.nativeElement.value === '') || (this.cookingUnit.nativeElement.value === '')) {
+      this.errors.push('You need to type a cooking time and its unit !');
+    }
+    if ((this.sleepTime.nativeElement.value === '') || (this.sleepTime.nativeElement.value === '')){
+      this.errors.push('You need to type a sleep time and its unit !');
+    }
+    if ((this.nbPerson.nativeElement.value === '') || (this.nbPersonUnit.nativeElement.value === '')){
+      this.errors.push('You need to indicate how many people this fabulous recipe is for...');
+    }
+    if (this.spiceSelected.nativeElement.value === ''){
+      this.errors.push('You need to indicate the spice level (please)');
+    }
+    if (this.spiceSelected.nativeElement.value === ''){
+      this.errors.push('You need to indicate the spice level (please)');
+    }
+    if (this.ingredients.length === 0){
+      this.errors.push('You need at least one ingredient to make a recipe man!');
+    }
+    if (this.steps.length === 0){
+      this.errors.push('You need at least one step to make a recipe man!');
+    }
+    if (this.tags.length === 0){
+      this.errors.push('Come on! At least one tag!');
+    }
 
-    if(this.errors.length > 0) return;
+    if (this.errors.length > 0) {
+      return;
+    }
 
     // create a recipe
-    let newRecipe = {
+    const newRecipe = {
       recipeID: this.nextID,
       category: this.categorySelected.nativeElement.value,
       title: this.titleSelected.nativeElement.value,
@@ -171,9 +184,9 @@ export class RecipeFormComponent implements OnChanges {
       // calories: number; // default 0
       spicy: this.spiceSelected.nativeElement.value,
       meatClass: this.meatSelected.nativeElement.value,
-      chiefTrick: (this.astuce.nativeElement.value.length === 0) ? "Aucune astuce !" : this.astuce.nativeElement.value,
+      chiefTrick: (this.astuce.nativeElement.value.length === 0) ? 'Aucune astuce !' : this.astuce.nativeElement.value,
       ingredients: this.ingredients,
-      steps:this.steps,
+      steps: this.steps,
       tags: this.tags.map( tag => tag.text),
       video: this.hasVideo
     };

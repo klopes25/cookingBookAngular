@@ -7,31 +7,31 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class TopBarComponent {
   @Input() category: string;
-  @Input() query: string = "";
+  @Input() query = '';
   @Output() categorySelected = new EventEmitter<any>();
   @Output() searched = new EventEmitter<any>();
 
   items: Array<any> = [{
-    "title": "Apéros",
-    "actionKey": "aperitif"
+    title: 'Apéros',
+    actionKey: 'aperitif'
   }, {
-    "title": "Entrées",
-    "actionKey": "entree"
+    title: 'Entrées',
+    actionKey: 'entree'
   }, {
-    "title": "Plats",
-    "actionKey": "plat"
+    title: 'Plats',
+    actionKey: 'plat'
   }, {
-    "title": "Desserts",
-    "actionKey": "dessert"
+    title: 'Desserts',
+    actionKey: 'dessert'
   }, {
-    "title": "Boissons",
-    "actionKey": "boisson"
+    title: 'Boissons',
+    actionKey: 'boisson'
   }, {
-    "title": "Autres",
-    "actionKey": "autre"
-  },{
-    "title": "Tous",
-    "actionKey": "all"
+    title: 'Autres',
+    actionKey: 'autre'
+  }, {
+    title: 'Tous',
+    actionKey: 'all'
   }];
 
   constructor() { }

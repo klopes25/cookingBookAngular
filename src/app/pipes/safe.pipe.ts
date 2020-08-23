@@ -5,9 +5,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 export class SanitizeHtmlPipe implements PipeTransform  {
 
-  constructor(private _sanitizer:DomSanitizer) { }
+  constructor(private _sanitizer: DomSanitizer) { }
 
-  transform(value:string):SafeHtml {
+  transform(value: string): SafeHtml {
     return this._sanitizer.bypassSecurityTrustHtml(value);
   }
 }

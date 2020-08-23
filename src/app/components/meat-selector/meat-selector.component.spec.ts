@@ -17,14 +17,14 @@ describe('MeatSelectorComponent', () => {
     fixture = TestBed.createComponent(MeatSelectorComponent);
     component = fixture.componentInstance;
     component.edition = false;
-    component.meat = "porc";
+    component.meat = 'porc';
     fixture.detectChanges();
   });
 
   it('should create', () => {
     component.ngAfterViewInit();
     fixture.detectChanges();
-    expect(component.meatSrc).toBe("../../../assets/img/stamp-porc.svg");
+    expect(component.meatSrc).toBe('../../../assets/img/stamp-porc.svg');
     expect(component).toBeTruthy();
   });
 });

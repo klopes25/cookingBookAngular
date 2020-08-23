@@ -34,8 +34,9 @@ describe('RecipeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecipeComponent, TopRecipeComponent, StarsComponent, MeatSelectorComponent, SpiceComponent, PhotoWithDurationComponent, CategoryComponent,
-        IngredientsComponent, StepsComponent, StepComponent, MockChiefTipComponent, TagsComponent, TagComponent, CommentsComponent, CommentComponent, SanitizeHtmlPipe ],
+      declarations: [ RecipeComponent, TopRecipeComponent, StarsComponent, MeatSelectorComponent, SpiceComponent,
+        PhotoWithDurationComponent, CategoryComponent, IngredientsComponent, StepsComponent, StepComponent,
+        MockChiefTipComponent, TagsComponent, TagComponent, CommentsComponent, CommentComponent, SanitizeHtmlPipe ],
       providers: [SanitizeHtmlPipe]
     })
     .compileComponents();
@@ -58,26 +59,26 @@ describe('RecipeComponent', () => {
       calories: 150,
       spicy: 1,
       meatClass: 'canard',
-      chiefTrick: "Aucune astuce !",
+      chiefTrick: 'Aucune astuce !',
       comments: [],
       ingredients: [],
-      steps: [ { text: "Blabla", index: 1 }, { text: "Babebibobu", index: 2 }],
-      tags: ["aa", "bb"],
+      steps: [ { text: 'Blabla', index: 1 }, { text: 'Babebibobu', index: 2 }],
+      tags: ['aa', 'bb'],
       video: false,
       validatedBy: [],
       deletedBy: []
     };
     component.user = {
-      _id: "12",
-      email: "a@b.fr",
-      login: "funny",
-      logo: "burger",
-      password: "***",
-      role: "admin",
+      _id: '12',
+      email: 'a@b.fr',
+      login: 'funny',
+      logo: 'burger',
+      password: '***',
+      role: 'admin',
       votedFor: [],
       cart: []
     };
-    component.query = "";
+    component.query = '';
     component.editionMode = false;
     component.deltaPerson = 0;
     fixture.detectChanges();

@@ -12,19 +12,24 @@ export class TagComponent implements OnChanges {
   @Input() query: string;
   @Output() tagToBeDeleted = new EventEmitter<number>();
   @Output() tagUpdated = new EventEmitter<any>();
-  textTransformed: string = "";
+  textTransformed = '';
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes && (changes['text'] || changes['query'])){
-      this.textTransformed = (this.query.length > 2) ? this.text.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>') : this.text;
+    if (changes && (changes.text || changes.query)){
+      this.textTransformed = (this.query.length > 2) ?
+        this.text.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>') : this.text;
       this.cdRef.detectChanges();
     }
   }
 
-  deleteTag = () => { this.tagToBeDeleted.emit(this.index) };
+  deleteTag = () => {
+    this.tagToBeDeleted.emit(this.index);
+  }
 
-  updateTag = (text) => { this.tagUpdated.emit({text, index: this.index}) };
+  updateTag = (text) => {
+    this.tagUpdated.emit({text, index: this.index});
+  }
 
 }

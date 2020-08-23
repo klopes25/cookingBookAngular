@@ -5,13 +5,13 @@ import { RecipesService } from './service/recipes.service';
 import { UsersService } from './service/users.service';
 import uniq from 'lodash-es/uniq';
 
-const RECIPE_ITEM_WIDTH: number = 176;
-const RECIPE_ITEM_HEIGHT:number = 203;
-let recipesHeightDispo: number = 0;
-let recipesWidthDispo: number = 0;
-let nbMaxRecipesByPage: number = 0;
+const RECIPE_ITEM_WIDTH = 176;
+const RECIPE_ITEM_HEIGHT = 203;
+let recipesHeightDispo = 0;
+let recipesWidthDispo = 0;
+let nbMaxRecipesByPage = 0;
 let recipes: any = [];
-let searchItems = {
+const searchItems = {
   query: [],
   in: [],
   out: [],
@@ -27,45 +27,46 @@ let searchItems = {
 
 export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
+
+  currentCategory = 'all';
+  currentPage = 1;
+  currentRecipe: Recipe | null = null;
+  deltaPerson = 0;
+  editionMode = false;
+  inShopping = false;
+  notifs: Array<any> = [];
+  openHelp = false;
+  openRecipeForm = false;
+  openShoppingList = false;
+  openUserForm = false;
+  query = '';
+  recipesDisplayed: any = [];
+  shoppingItems: Array<any> = [];
+  totalPages = 1;
+  user: User | null = null;
+  start: number;
+  end: number;
+  filters: any = {
+    onlyValidated: false,
+    onlyNew: false,
+    onlyDislike: false,
+    hot: false,
+    hotMin: 0,
+    hotMax: 3,
+    star: false,
+    starMin: 0,
+    starMax: 5
+  };
+  nextID = 0;
+  showSpinnerRecipesZone = true;
+  units: Array<string> = [];
+
   resize(event) {
     recipesWidthDispo = event.target.innerWidth - (266 + ((this.user === null) ? 0 : 40));
     recipesHeightDispo = event.target.innerHeight - 128;
     // Update the totalPages & the slice pipe
     this.updateTotalPages();
   }
-
-  currentCategory: string = "all";
-  currentPage: number = 1;
-  currentRecipe: Recipe | null = null;
-  deltaPerson: number = 0;
-  editionMode: boolean = false;
-  inShopping: boolean = false;
-  notifs: Array<any> = [];
-  openHelp: boolean = false;
-  openRecipeForm: boolean = false;
-  openShoppingList: boolean = false;
-  openUserForm: boolean = false;
-  query: string = "";
-  recipesDisplayed: any = [];
-  shoppingItems: Array<any> = [];
-  totalPages: number = 1;
-  user: User | null = null;
-  start: number;
-  end: number;
-  filters: any = {
-    'onlyValidated': false,
-    'onlyNew': false,
-    'onlyDislike': false,
-    'hot': false,
-    'hotMin': 0,
-    'hotMax': 3,
-    'star': false,
-    'starMin': 0,
-    'starMax': 5
-  };
-  nextID: number = 0;
-  showSpinnerRecipesZone = true;
-  units: Array<string> = [];
 
   constructor(private recipesService: RecipesService, private usersService: UsersService){
     this.recipesService.getAllRecipes().subscribe((data) => {
@@ -78,12 +79,18 @@ export class AppComponent implements OnInit {
       this.updateTotalPages();
       this.showSpinnerRecipesZone = false;
 
-      if(userLogin && userPassword) this.connection({login: atob(userLogin), password: atob(userPassword)});
+      if (userLogin && userPassword){
+        this.connection({login: atob(userLogin), password: atob(userPassword)});
+      }
 
       window.onpopstate = (event) => {
-        if(event.state && event.state.page) this.goTo(~~event.state.page, false);
-
-        else if(event.state && event.state.recipe) this.showRecipe(~~event.state.recipe, false);
+        if (event.state && event.state.page){
+          this.goTo(Math.floor(event.state.page), false);
+        } else {
+          if (event.state && event.state.recipe){
+            this.showRecipe(Math.floor(event.state.recipe), false);
+          }
+        }
       };
 
     });
@@ -97,7 +104,9 @@ export class AppComponent implements OnInit {
   /*********** CART ***********/
 
   addToCart(){
-    if(this.currentRecipe === null) return;
+    if (this.currentRecipe === null){
+      return;
+    }
     // Add each ingredients of the current recipe into the user's cart
     this.user.cart = this.groupIngredients(this.user.cart, this.currentRecipe.ingredients);
     this.shoppingItems = this.user.cart;
@@ -106,9 +115,9 @@ export class AppComponent implements OnInit {
       .subscribe(
         (data) => {
           this.user = data;
-          this.addNotif(`Your cart is updated with success !`, "success");
-        },(error) => {
-          this.addNotif(error, "error");
+          this.addNotif (`Your cart is updated with success !`, 'success');
+        }, (error) => {
+          this.addNotif (error, 'error');
         });
   }
 
@@ -132,21 +141,22 @@ export class AppComponent implements OnInit {
       .subscribe(
         (data) => {
           this.user = data;
-          this.addNotif(`Your cart is cleared with success !`, "success");
-        },(error) => {
-          this.addNotif(error, "error");
+          this.addNotif (`Your cart is cleared with success !`, 'success');
+        }, (error) => {
+          this.addNotif (error, 'error');
         });
   }
 
   groupIngredients = (ingredients, newIngredients) => {
-    for(let i=0; i<newIngredients.length; i++){
-      const position = ingredients.findIndex((ing) => (ing.ingredient === newIngredients[i].ingredient) && (ing.unit === newIngredients[i].unit))
-      if((position > -1) && (ingredients.unit !== "")){
-        ingredients[position].quantity = Number(ingredients[position].quantity) + Number(newIngredients[i].quantity);
+    for (const newIngredient of newIngredients){
+      const position = ingredients.findIndex((ing) => (ing.ingredient === newIngredient.ingredient) &&
+        (ing.unit === newIngredient.unit));
+      if ((position > -1) && (ingredients.unit !== '')){
+        ingredients[position].quantity = Number(ingredients[position].quantity) + Number(newIngredient.quantity);
         ingredients[position].checked = false;
       }
       else {
-        ingredients.push({ ...newIngredients[i], checked: false});
+        ingredients.push({ ...newIngredient, checked: false});
       }
     }
 
@@ -159,10 +169,10 @@ export class AppComponent implements OnInit {
 
   addNotif(text, state){
     this.notifs.push({text, state});
-    let timer = window.setTimeout(() => { this.removeNotif()}, 5000);
+    const timer = window.setTimeout(() => { this.removeNotif (); }, 5000);
   }
 
-  removeNotif = () => { this.notifs.shift() };
+  removeNotif = () => { this.notifs.shift(); };
 
   /*****************************/
 
@@ -172,7 +182,7 @@ export class AppComponent implements OnInit {
   addRecipe(recipe){
     this.recipesService.createRecipe({recipe}).subscribe(
       (res) => {
-        this.addNotif("Recipe created", "success");
+        this.addNotif ('Recipe created', 'success');
         this.closeRecipeForm();
         // add the new recipe into the recipes
         recipes.push(res);
@@ -180,92 +190,104 @@ export class AppComponent implements OnInit {
         this.updateRecipesDisplayed();
         this.nextID += 1;
       },
-      (error) => { this.addNotif("Problem during the recipe creation", "error")});
+      (error) => { this.addNotif ('Problem during the recipe creation', 'error'); });
   }
 
   // REMOVE
   deleteRecipe = (id) => {
-    if(this.user === null){
-      this.addNotif("First you log in and then you can delete ;)", "error");
+    if (this.user === null){
+      this.addNotif ('First you log in and then you can delete ;)', 'error');
       return;
     }
 
     const recipeToDelete = recipes.find((r) => r.recipeID === id);
 
     const needToAdd = !recipeToDelete.deletedBy.includes(this.user._id);
-    if(needToAdd) recipeToDelete.deletedBy.push(this.user._id);
-    else {
+    if (needToAdd){
+      recipeToDelete.deletedBy.push(this.user._id);
+    } else {
       const position = recipeToDelete.deletedBy.findIndex((userID) => userID === this.user._id);
-      if(position > -1) recipeToDelete.deletedBy.splice(position, 1);
+      if (position > -1){
+        recipeToDelete.deletedBy.splice(position, 1);
+      }
     }
-    this.updateRecipeField(["deletedBy"], [this.user._id], needToAdd ? "add" : "remove", id);
-  };
+    this.updateRecipeField(['deletedBy'], [this.user._id], needToAdd ? 'add' : 'remove', id);
+  }
 
   // UPDATE
-  updateRecipeField(fields, values, action: string = "replace", recipeID = -1){
-    if(this.currentRecipe !== null) recipeID = this.currentRecipe.recipeID;
+  updateRecipeField(fields, values, action: string = 'replace', recipeID = -1){
+    if (this.currentRecipe !== null){
+      recipeID = this.currentRecipe.recipeID;
+    }
     const dataToSend = {fields, values, action};
     this.recipesService.updateRecipe(recipeID, dataToSend).subscribe((data) => {
       // recipe is updated, change currentRecipe value if necessary
-      if((this.currentRecipe !== null) && (this.currentRecipe.recipeID === recipeID)){
+      if ((this.currentRecipe !== null) && (this.currentRecipe.recipeID === recipeID)){
         this.currentRecipe = data as Recipe;
       }
       // update recipes
       const position = recipes.findIndex((r) => r.recipeID === recipeID);
-      if(position > -1) recipes.splice(position, 1, data);
+      if (position > -1){
+        recipes.splice(position, 1, data);
+      }
       // update recipes displayed
       this.updateRecipesDisplayed();
     },
-    (err) => { this.addNotif(err, "error") });
+    (err) => { this.addNotif (err, 'error'); });
   }
 
   // simple field
-  updateCategory = (cat) => { this.updateRecipeField(["category"], [cat]) };
-  updateChiefTip = (tip) => { this.updateRecipeField(["chiefTrick"], [tip]) };
-  updateCookingTime = (cookTime) => { this.updateRecipeField(["cookPeriod"], [cookTime]) };
-  updateDelta = (delta) => { this.deltaPerson = delta };
+  updateCategory = (cat) => { this.updateRecipeField(['category'], [cat]); };
+  updateChiefTip = (tip) => { this.updateRecipeField(['chiefTrick'], [tip]); };
+  updateCookingTime = (cookTime) => { this.updateRecipeField(['cookPeriod'], [cookTime]); };
+  updateDelta = (delta) => { this.deltaPerson = delta; };
 
   updateMark = (markObject) => {
     // update recipe
     this.currentRecipe.mark = this.currentRecipe.mark + markObject.mark - (markObject.isUpdate ? markObject.old : 0);
     this.currentRecipe.nbMark = this.currentRecipe.nbMark + (markObject.isUpdate ? 0 : 1);
-    this.updateRecipeField(["mark", "nbMark"], [this.currentRecipe.mark, this.currentRecipe.nbMark]);
+    this.updateRecipeField(['mark', 'nbMark'], [this.currentRecipe.mark, this.currentRecipe.nbMark]);
     // update user
-    if(markObject.isUpdate){
-      let objIndex = this.user.votedFor.findIndex((obj => obj.id == this.currentRecipe.recipeID));
+    if (markObject.isUpdate){
+      const objIndex = this.user.votedFor.findIndex((obj => obj.id === this.currentRecipe.recipeID));
       this.user.votedFor[objIndex].mark = markObject.mark;
-    } else this.user.votedFor.push({"id": this.currentRecipe.recipeID, "mark": markObject.mark});
+    } else{
+      this.user.votedFor.push({id: this.currentRecipe.recipeID, mark: markObject.mark});
+    }
     this.usersService.updateUser(this.user.login, this.user)
       .subscribe((data) => {
         this.user = data;
-        this.addNotif("Vote validated!", "success");
-      },(error) => { this.addNotif(error, "error") });
-  };
+        this.addNotif ('Vote validated!', 'success');
+      }, (error) => { this.addNotif (error, 'error'); });
+  }
 
-  updateMeat = (meat) => { this.updateRecipeField(["meatClass"], [meat]) };
-  updateNbPerson = (nbPers) => { this.updateRecipeField(["nbPeople"], [nbPers]) };
-  updatePreparationTime = (prepTime) => { this.updateRecipeField(["prepPeriod"], [prepTime]) };
-  updateRestPeriod = (restTime) => { this.updateRecipeField(["restPeriod"], [restTime]) };
-  updateSpice = (spice) => { this.updateRecipeField(["spicy"], [spice]) };
-  updateTitle = (newTitle) => { this.updateRecipeField(["title"], [newTitle]) };
-  updateUnit = (unit) => { this.updateRecipeField(["nbPeopleUnit"], [unit]) };
-  updateVideo = () => { this.updateRecipeField(["video"], [!this.currentRecipe.video]) };
+  updateMeat = (meat) => { this.updateRecipeField(['meatClass'], [meat]); };
+  updateNbPerson = (nbPers) => { this.updateRecipeField(['nbPeople'], [nbPers]); };
+  updatePreparationTime = (prepTime) => { this.updateRecipeField(['prepPeriod'], [prepTime]); };
+  updateRestPeriod = (restTime) => { this.updateRecipeField(['restPeriod'], [restTime]); };
+  updateSpice = (spice) => { this.updateRecipeField(['spicy'], [spice]); };
+  updateTitle = (newTitle) => { this.updateRecipeField(['title'], [newTitle]); };
+  updateUnit = (unit) => { this.updateRecipeField(['nbPeopleUnit'], [unit]); };
+  updateVideo = () => { this.updateRecipeField(['video'], [!this.currentRecipe.video]); };
   // simple array field
-  updateIngredients = (ingredients) => { this.updateRecipeField(["ingredients"], [ingredients]) };
-  updateSteps = (steps) => { this.updateRecipeField(["steps"], [steps]) };
-  updateTags = (tags) => { this.updateRecipeField(["tags"], [tags]) };
+  updateIngredients = (ingredients) => { this.updateRecipeField(['ingredients'], [ingredients]); };
+  updateSteps = (steps) => { this.updateRecipeField(['steps'], [steps]); };
+  updateTags = (tags) => { this.updateRecipeField(['tags'], [tags]); };
   // complexe array field
-  addComment = (comment) => { this.updateRecipeField(["comments"], [comment], "add") };
-  removeComment = (dateComment) => { this.updateRecipeField(["comments"], [dateComment], "remove") };
-  updateComment = (comment) => { this.updateRecipeField(["comments"], [comment]) };
+  addComment = (comment) => { this.updateRecipeField(['comments'], [comment], 'add'); };
+  removeComment = (dateComment) => { this.updateRecipeField(['comments'], [dateComment], 'remove'); };
+  updateComment = (comment) => { this.updateRecipeField(['comments'], [comment]); };
   updateValidatedBy = () => {
     const needToAdd = !this.currentRecipe.validatedBy.includes(this.user._id);
-    if(needToAdd) this.currentRecipe.validatedBy.push(this.user._id);
-    else {
+    if (needToAdd){
+      this.currentRecipe.validatedBy.push(this.user._id);
+    } else {
       const position = this.currentRecipe.validatedBy.findIndex((userID) => userID === this.user._id);
-      if(position > -1) this.currentRecipe.validatedBy.splice(position, 1);
+      if (position > -1){
+        this.currentRecipe.validatedBy.splice(position, 1);
+      }
     }
-    this.updateRecipeField(["validatedBy"], [this.user._id], needToAdd ? "add" : "remove");
+    this.updateRecipeField(['validatedBy'], [this.user._id], needToAdd ? 'add' : 'remove');
   }
 
   /*****************************/
@@ -273,8 +295,9 @@ export class AppComponent implements OnInit {
   showRecipe(id, needToHistorize = true){
     this.recipesService.getRecipe(id).subscribe((data) => {
       this.currentRecipe = data;
-      if(needToHistorize)
-        window.history.pushState({"recipe": id}, null, `#recipe=${id}`);
+      if (needToHistorize){
+        window.history.pushState({recipe: id}, null, `#recipe=${id}`);
+      }
     });
   }
 
@@ -286,18 +309,18 @@ export class AppComponent implements OnInit {
     this.currentRecipe = null;
   }
 
-  closeHelper = () => { this.openHelp = false }
+  closeHelper = () => { this.openHelp = false; };
 
   connection(info){
     this.usersService.getUser(info.login, info.password).subscribe((data) => {
       this.user = data;
       // ok we are connected or not ?
-      if(this.user === null){ // not connected
-        this.addNotif("Wrong login and/or password ! Try again ;)", "error");
+      if (this.user === null){ // not connected
+        this.addNotif ('Wrong login and/or password ! Try again ;)', 'error');
       } else { // Great! welcome back
         localStorage.setItem( 'cbl', btoa(this.user.login));
         localStorage.setItem( 'cbp', btoa(this.user.password));
-        this.addNotif(`Welcome ${info.login} !`, "success");
+        this.addNotif (`Welcome ${info.login} !`, 'success');
         recipesWidthDispo = window.innerWidth - 306;
         recipesHeightDispo = window.innerHeight - 128;
         this.updateTotalPages();
@@ -313,8 +336,8 @@ export class AppComponent implements OnInit {
     this.currentPage = page;
     this.currentRecipe = null; // clean curentRecipe for the history
 
-    if(needToHistorize){
-      window.history.pushState({"page": page}, null, `#page=${page}`);
+    if (needToHistorize){
+      window.history.pushState({page}, null, `#page=${page}`);
     }
   }
 
@@ -323,33 +346,33 @@ export class AppComponent implements OnInit {
     this.openRecipeForm = false;
     this.openShoppingList = false;
   }
-  closeUserForm = () => { this.openUserForm = false }
+  closeUserForm = () => { this.openUserForm = false; };
 
-  openHelper = () => { this.openHelp = true }
+  openHelper = () => { this.openHelp = true; };
 
   openCreateRecipe = () => {
     this.openUserForm = false;
     this.openRecipeForm = true;
     this.openShoppingList = false;
   }
-  closeRecipeForm = () => { this.openRecipeForm = false };
+  closeRecipeForm = () => { this.openRecipeForm = false; };
 
   openTheShoppingList = () => {
     this.openUserForm = false;
     this.openRecipeForm = false;
     this.openShoppingList = true;
    }
-   closeShoppingList = () => { this.openShoppingList = false };
+   closeShoppingList = () => { this.openShoppingList = false; };
 
   randomRecipe = (category) => {
     const recipesFiltered = recipes.filter( (r) => r.category === category);
-    let id = recipesFiltered[Math.round(Math.random() * recipesFiltered.length) - 1].recipeID;
-    this.showRecipe(id)
+    const id = recipesFiltered[Math.round(Math.random() * recipesFiltered.length) - 1].recipeID;
+    this.showRecipe(id);
   }
 
   search(data){
     searchItems.query = data.query.filter((q) => (q.length > 2));
-    this.query = data.query.join(" ");
+    this.query = data.query.join(' ');
     searchItems.in = data.ingredientsIn.filter((i) => (i.length > 2));
     searchItems.out = data.ingredientsOut.filter((o) => (o.length > 2));
     searchItems.calories = (data.caloryMax.length > 0) ? Number(data.caloryMax) : 0;
@@ -358,8 +381,8 @@ export class AppComponent implements OnInit {
     this.updateRecipesDisplayed();
   }
 
-  setUnits(recipes){
-    this.units = uniq(recipes.map((r) => r.ingredients).flat().map((i) => i.unit )).sort();
+  setUnits(recipeList){
+    this.units = uniq(recipeList.map((r) => r.ingredients).flat().map((i) => i.unit )).sort();
   }
 
   toggleEditionMode(){
@@ -372,109 +395,111 @@ export class AppComponent implements OnInit {
   }
 
   updateOrCreateUser(data){
-    let newUser = {
+    const newUser = {
       login: data.login,
       password: data.password,
       email: data.email,
       logo: data.avatar
     };
 
-    if(newUser.login.length == 0){
-      this.addNotif("Il te faut peut-être un login, tu crois pas ?!", "error");
+    if (newUser.login.length === 0){
+      this.addNotif ('Il te faut peut-être un login, tu crois pas ?!', 'error');
       return;
     }
 
-    if(newUser.password.length == 0){
-      this.addNotif("Il te faut peut-être un password, tu crois pas ?!", "error");
+    if (newUser.password.length === 0){
+      this.addNotif ('Il te faut peut-être un password, tu crois pas ?!', 'error');
       return;
     }
 
-    if(newUser.login.email == 0){
-      this.addNotif("T'as pas un email mec ?!", "error");
+    if (newUser.login.email === 0){
+      this.addNotif ('T\'as pas un email mec ?!', 'error');
       return;
     }
 
     // creation
-    if(this.user === null){
+    if (this.user === null){
       this.usersService.createUser(newUser).subscribe(
         (res) => {
-          this.addNotif(`Dear ${data.login}, your account has been created! Welcome among us :)`, "success");
+          this.addNotif (`Dear ${data.login}, your account has been created! Welcome among us :)`, 'success');
           this.openUserForm = false; // close the user form
           this.connection({login: data.login, password: data.password}); // connect
         }, (error) => {
-          this.addNotif(error, "error");
+          this.addNotif (error, 'error');
         });
     } else { // update
       this.usersService.updateUser(this.user.login, newUser).subscribe(
         (res) => {
           this.user = res;
-          this.addNotif(`Profil updated !`, "success");
+          this.addNotif (`Profil updated !`, 'success');
           this.openUserForm = false; // close the user form
         }, (error) => {
-          this.addNotif(error, "error");
+          this.addNotif (error, 'error');
         });
     }
   }
 
   updateRecipesDisplayed(){
     // Filter by category
-    this.recipesDisplayed = (this.currentCategory === "all") ? recipes : recipes.filter( (r) => r.category === this.currentCategory);
+    this.recipesDisplayed = (this.currentCategory === 'all') ? recipes : recipes.filter( (r) => r.category === this.currentCategory);
     // Filter by filters
-    if(this.filters.onlyValidated){
+    if (this.filters.onlyValidated){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => r.validatedBy.includes(this.user._id));
     }
-    if(this.filters.onlyNew){
+    if (this.filters.onlyNew){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => !(r.validatedBy.includes(this.user._id)));
     }
-    if(this.filters.onlyDislike) {
+    if (this.filters.onlyDislike) {
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => r.deletedBy.includes(this.user._id));
-    } else if(this.user !== null){
+    } else if (this.user !== null){
         this.recipesDisplayed = this.recipesDisplayed.filter((r) => !r.deletedBy.includes(this.user._id));
     }
-    if(this.filters.hot){
+    if (this.filters.hot){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => ((r.spicy >= this.filters.hotMin) && (r.spicy <= this.filters.hotMax)));
     }
-    if(this.filters.star){
+    if (this.filters.star){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => {
-        let mark = r.mark / r.nbMark;
+        const mark = r.mark / r.nbMark;
         return ((mark >= this.filters.starMin) && (mark <= this.filters.starMax));
       });
     }
     // Filter by duree max (in minutes)
-    if(searchItems.dureeMax > 0){
+    if (searchItems.dureeMax > 0){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => {
-        let dureeTotalRecipe = this.getTimeInMinutes(r.prepPeriod) + this.getTimeInMinutes(r.cookPeriod) + this.getTimeInMinutes(r.restPeriod);
+        const dureeTotalRecipe = this.getTimeInMinutes(r.prepPeriod) + this.getTimeInMinutes(r.cookPeriod) +
+        this.getTimeInMinutes(r.restPeriod);
         return (dureeTotalRecipe <= searchItems.dureeMax);
       });
     }
     // Filter by ingredients out
-    if(searchItems.out.length > 0){
+    if (searchItems.out.length > 0){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => {
         let haveOut = false;
-        let ingredients = r.ingredients.map((i) => i.ingredient.toLowerCase());
+        const ingredients = r.ingredients.map((i) => i.ingredient.toLowerCase());
         haveOut = searchItems.out.filter(x => ingredients.includes(x.toLowerCase())).length > 0;
         return !haveOut;
-      })
+      });
     }
     // Filter by ingredients in
-    if(searchItems.in.length > 0){
+    if (searchItems.in.length > 0){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => {
         let haveIn = false;
-        let ingredients = r.ingredients.map((i) => i.ingredient.toLowerCase());
+        const ingredients = r.ingredients.map((i) => i.ingredient.toLowerCase());
         haveIn = searchItems.in.filter(x => ingredients.includes(x.toLowerCase())).length > 0;
         return haveIn;
-      })
+      });
     }
     // Filter by calories
-    if(searchItems.calories > 0){
+    if (searchItems.calories > 0){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => r.caloryMax < searchItems.calories);
     }
     // Filter by query
-    if(searchItems.query.length > 0){
+    if (searchItems.query.length > 0){
       this.recipesDisplayed = this.recipesDisplayed.filter((r) => {
         return this.testQueriesOnItems(r.tags, searchItems.query) || this.testQueriesOnItems([r.title], searchItems.query) ||
-          this.testQueriesOnItems([r.chiefTrick], searchItems.query) || this.testQueriesOnItems(r.ingredients.map((ing) => ing.ingredient), searchItems.query) ||
-          this.testQueriesOnItems(r.steps.map((step) => step.text), searchItems.query)
+          this.testQueriesOnItems([r.chiefTrick], searchItems.query) ||
+          this.testQueriesOnItems(r.ingredients.map((ing) => ing.ingredient), searchItems.query) ||
+          this.testQueriesOnItems(r.steps.map((step) => step.text), searchItems.query);
       });
     }
 
@@ -485,30 +510,31 @@ export class AppComponent implements OnInit {
     this.totalPages = Math.ceil(this.recipesDisplayed.length / nbMaxRecipesByPage);
   }
 
-  getTimeInMinutes(time : string){
-    if(time.includes("min")){
-      return Number(time.split("min")[0].trim());
-    } else if(time.includes("h")){
-      let timeArray = time.split("h");
+  getTimeInMinutes(time: string){
+    if (time.includes('min')){
+      return Number(time.split('min')[0].trim());
+    } else if (time.includes('h')){
+      const timeArray = time.split('h');
       return ((Number(timeArray[0].trim()) * 60) + Number(timeArray[1].trim()));
     } else {
-      return Number(time.split("j")[0].trim()) * 24 * 60;
+      return Number(time.split('j')[0].trim()) * 24 * 60;
     }
   }
 
   testQueriesOnItems(items, queryElements){
     let nbToCheck = queryElements.length;
-    for(let j=0; j <= queryElements.length; j++){
-      if(items.filter(i => i.toLowerCase().includes(queryElements[j])).length > 0)
+    for (let j = 0; j <= queryElements.length; j++){
+      if (items.filter(i => i.toLowerCase().includes(queryElements[j])).length > 0){
         nbToCheck--;
+      }
     }
     return (nbToCheck === 0);
   }
 
   updateTotalPages(){
     // calculate total pages
-    let nbRecipeByWidth = Math.trunc(recipesWidthDispo / RECIPE_ITEM_WIDTH);
-    let nbRecipeByHeight = Math.trunc(recipesHeightDispo / RECIPE_ITEM_HEIGHT);
+    const nbRecipeByWidth = Math.trunc(recipesWidthDispo / RECIPE_ITEM_WIDTH);
+    const nbRecipeByHeight = Math.trunc(recipesHeightDispo / RECIPE_ITEM_HEIGHT);
     nbMaxRecipesByPage = nbRecipeByWidth * nbRecipeByHeight;
     this.totalPages = Math.ceil(this.recipesDisplayed.length / nbMaxRecipesByPage);
     // update filter slice for recipes

@@ -18,8 +18,8 @@ describe('TopRecipeComponent', () => {
     fixture = TestBed.createComponent(TopRecipeComponent);
     component = fixture.componentInstance;
     component.edition = false;
-    component.query = "";
-    component.role = "user";
+    component.query = '';
+    component.role = 'user';
     component.isvalidated = false;
 
     fixture.detectChanges();

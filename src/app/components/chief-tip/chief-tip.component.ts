@@ -6,25 +6,29 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChange
   styleUrls: ['./chief-tip.component.scss']
 })
 export class ChiefTipComponent implements OnChanges, OnInit {
-  @Input() edition: boolean = false;
-  @Input() query: string = "";
-  @Input() tip: string = "";
+  @Input() edition = false;
+  @Input() query = '';
+  @Input() tip = '';
   @Output() chiefTipUpdated = new EventEmitter<string>();
   @ViewChild('chiefTipInput', {static: false}) private chiefTipInput: ElementRef<HTMLInputElement>;
-  tipDisplayed: string = "";
-  tipEdited: string = "";
+  tipDisplayed = '';
+  tipEdited = '';
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(){
     this.chiefTipInput.nativeElement.value = `${this.tip}`;
   }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes && (changes['tip'] || changes['query'])){
+    if (changes && (changes.tip || changes.query)){
       this.tipDisplayed = `${this.tip}`;
-      if(this.chiefTipInput) this.chiefTipInput.nativeElement.value = `${this.tip}`;
-      if(this.query.length > 2) this.tipDisplayed = this.tipDisplayed.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>');
+      if (this.chiefTipInput){
+        this.chiefTipInput.nativeElement.value = `${this.tip}`;
+      }
+      if (this.query.length > 2){
+        this.tipDisplayed = this.tipDisplayed.replace(new RegExp(`(${this.query})`, 'gi'), '<mark>$1</mark>');
+      }
       this.cdRef.detectChanges();
     }
   }

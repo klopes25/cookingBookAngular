@@ -10,13 +10,15 @@ export class PaginationComponent implements OnChanges{
   @Input() totalPages: number;
   @Output() goToPage = new EventEmitter<number>();
   @ViewChild('firstPageElement', {static: false}) private firstPageElement: ElementRef<HTMLInputElement>;
-  edition:boolean = false;
-  newCurrentPage: number = 0;
+  edition = false;
+  newCurrentPage = 0;
 
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(changes['currentPage']) this.newCurrentPage = changes['currentPage'].currentValue;
+    if (changes.currentPage){
+      this.newCurrentPage = changes.currentPage.currentValue;
+    }
   }
 
   goFirstPage = () => this.goToPage.emit(1);
@@ -25,18 +27,26 @@ export class PaginationComponent implements OnChanges{
 
   goTo = () => {
     this.toggleGoto();
-    if(this.newCurrentPage < 1) this.newCurrentPage = 1;
-    if(this.newCurrentPage > this.totalPages) this.newCurrentPage = this.totalPages;
+    if (this.newCurrentPage < 1){
+      this.newCurrentPage = 1;
+    }
+    if (this.newCurrentPage > this.totalPages){
+      this.newCurrentPage = this.totalPages;
+    }
     this.goToPage.emit(this.newCurrentPage);
   }
 
   nextPage = () => {
-    if(this.currentPage === this.totalPages) return;
+    if (this.currentPage === this.totalPages){
+      return;
+    }
     this.goToPage.emit(this.currentPage + 1);
   }
 
   previousPage = () => {
-    if(this.currentPage === 1) return;
+    if (this.currentPage === 1){
+      return;
+    }
     this.goToPage.emit(this.currentPage - 1);
   }
 
@@ -46,5 +56,5 @@ export class PaginationComponent implements OnChanges{
       this.firstPageElement.nativeElement.select();
       this.firstPageElement.nativeElement.focus();
     }, 0);
-  };
+  }
 }

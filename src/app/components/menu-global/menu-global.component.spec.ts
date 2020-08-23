@@ -17,12 +17,12 @@ describe('MenuGlobalComponent', () => {
     fixture = TestBed.createComponent(MenuGlobalComponent);
     component = fixture.componentInstance;
     component.user = {
-      _id: "12",
-      email: "a@b.fr",
-      login: "funny",
-      logo: "burger",
-      password: "***",
-      role: "admin",
+      _id: '12',
+      email: 'a@b.fr',
+      login: 'funny',
+      logo: 'burger',
+      password: '***',
+      role: 'admin',
       votedFor: [],
       cart: []
     };

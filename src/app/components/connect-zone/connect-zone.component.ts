@@ -24,11 +24,11 @@ export class ConnectZoneComponent {
     });
   }
 
-  openCreateUser = () => { this.createUserOpened.emit() }
+  openCreateUser = () => { this.createUserOpened.emit(); };
 
-  showHelper = () => { this.helperOpened.emit() }
+  showHelper = () => { this.helperOpened.emit(); };
 
-  showUserParameter = () => { this.createUserOpened.emit() }
+  showUserParameter = () => { this.createUserOpened.emit(); };
 
-  unconnect = () => { this.unconnected.emit() }
+  unconnect = () => { this.unconnected.emit(); };
 }

@@ -15,7 +15,8 @@ export class Recipe {
   nbMark: number; // default 0
   calories: number; // default 0
   spicy: number; // default 0 (between 0 and 3)
-  meatClass: string; // default '', enum of ['', 'boeuf', 'boeufporc', 'canard', 'crustace', 'moutonpoulet', 'poisson', 'porc', 'porccrustace', 'porcpoisson', 'poulet', 'pouletcrustace', 'pouletporc', 'vegetable']
+  meatClass: string; // default '', enum of ['', 'boeuf', 'boeufporc', 'canard', 'crustace', 'moutonpoulet', 'poisson', 'porc',
+  // 'porccrustace', 'porcpoisson', 'poulet', 'pouletcrustace', 'pouletporc', 'vegetable']
   chiefTrick: string; // default "Aucune astuce !"
   comments: Array<Comment>;
   ingredients: Array<Ingredient>;

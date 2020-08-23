@@ -11,12 +11,12 @@ export class RecipeItemComponent implements OnChanges {
   @Input() user: User;
   @Output() recipeToBeDeleted = new EventEmitter<any>();
   @Output() recipeToBeShowed = new EventEmitter<any>();
-  tape: string = "";
+  tape = '';
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes && changes['item']){
+    if (changes && changes.item){
       this.tape = this.getTape();
       this.cdRef.detectChanges();
     }
@@ -31,11 +31,13 @@ export class RecipeItemComponent implements OnChanges {
   }
 
   getTape(){
-    return (Math.round(Math.random() * 2) > 1) ? "tape2" : "tape";
+    return (Math.round(Math.random() * 2) > 1) ? 'tape2' : 'tape';
   }
 
   isValidated(){
-    if(this.user === null) return false;
+    if (this.user === null) {
+      return false;
+    }
     return this.item.validatedBy.find((userID) => userID === this.user._id) !== undefined;
   }
 

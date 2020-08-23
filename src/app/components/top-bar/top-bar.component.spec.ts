@@ -17,8 +17,8 @@ describe('TopBarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TopBarComponent);
     component = fixture.componentInstance;
-    component.category = "plat";
-    component.query = "";
+    component.category = 'plat';
+    component.query = '';
     fixture.detectChanges();
   });
 

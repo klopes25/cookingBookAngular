@@ -21,36 +21,36 @@ export class FiltersComponent {
   rankHover = false;
 
   filters: any = {
-    'onlyValidated': false,
-    'onlyNew': false,
-    'onlyDislike': false,
-    'hot': false,
-    'hotMin': 0,
-    'hotMax': 3,
-    'star': false,
-    'starMin': 0,
-    'starMax': 5
+    onlyValidated: false,
+    onlyNew: false,
+    onlyDislike: false,
+    hot: false,
+    hotMin: 0,
+    hotMax: 3,
+    star: false,
+    starMin: 0,
+    starMax: 5
   };
 
-  constructor(private cdRef:ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
-  addToCart = () => { this.addedToCart.emit() };
+  addToCart = () => { this.addedToCart.emit(); };
 
-  dontBubble = (event) => { event.stopPropagation() };
+  dontBubble = (event) => { event.stopPropagation(); };
 
-  addHoverHot = () => { this.hotHover = true };
+  addHoverHot = () => { this.hotHover = true; };
 
-  removeHoverHot = () => { this.hotHover = false };
+  removeHoverHot = () => { this.hotHover = false; };
 
-  addHoverRank = () => { this.rankHover = true };
+  addHoverRank = () => { this.rankHover = true; };
 
-  removeHoverRank = () => { this.rankHover = false }
+  removeHoverRank = () => { this.rankHover = false; };
 
   isRecipeSelected = () => (this.currentRecipe !== null);
 
   isUserConnected = () => (this.user !== null);
 
-  print = () => { window.print() };
+  print = () => { window.print(); };
 
   toggleHot = () => {
     this.filters.hot = !this.filters.hot;
@@ -78,10 +78,10 @@ export class FiltersComponent {
   }
 
   updateMinMaxHot = () => {
-    let min = Number(this.hotMinElement.nativeElement.value);
-    let max = Number(this.hotMaxElement.nativeElement.value);
+    const min = Number(this.hotMinElement.nativeElement.value);
+    const max = Number(this.hotMaxElement.nativeElement.value);
 
-    if(min > max){
+    if (min > max){
       this.filters.hotMin = min;
       this.filters.hotMax = min;
     } else {
@@ -97,10 +97,10 @@ export class FiltersComponent {
   }
 
   updateMinMaxStar = () => {
-    let min = Number(this.starMinElement.nativeElement.value);
-    let max = Number(this.starMaxElement.nativeElement.value);
+    const min = Number(this.starMinElement.nativeElement.value);
+    const max = Number(this.starMaxElement.nativeElement.value);
 
-    if(min > max){
+    if (min > max){
       this.filters.starMin = min;
       this.filters.starMax = min;
     } else {

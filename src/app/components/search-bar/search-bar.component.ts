@@ -14,23 +14,23 @@ export class SearchBarComponent {
   @ViewChild('caloryMaxElement', {static: false}) private caloryMaxElement: ElementRef<HTMLInputElement>;
   @ViewChild('dureeMaxElement', {static: false}) private dureeMaxElement: ElementRef<HTMLInputElement>;
 
-  showDetails: boolean = false;
+  showDetails = false;
 
   constructor() { }
 
   raz(){
-    this.ingredientsInElement.nativeElement.value = "";
-    this.ingredientsOutElement.nativeElement.value = "";
-    this.caloryMaxElement.nativeElement.value = "";
-    this.dureeMaxElement.nativeElement.value = "";
+    this.ingredientsInElement.nativeElement.value = '';
+    this.ingredientsOutElement.nativeElement.value = '';
+    this.caloryMaxElement.nativeElement.value = '';
+    this.dureeMaxElement.nativeElement.value = '';
     this.searchRecipes();
   }
 
   searchRecipes(){
     this.searched.emit({
-      query: this.queryElement.nativeElement.value.split(" "),
-      ingredientsIn: this.ingredientsInElement.nativeElement.value.split(";"),
-      ingredientsOut: this.ingredientsOutElement.nativeElement.value.split(";"),
+      query: this.queryElement.nativeElement.value.split(' '),
+      ingredientsIn: this.ingredientsInElement.nativeElement.value.split(';'),
+      ingredientsOut: this.ingredientsOutElement.nativeElement.value.split(';'),
       caloryMax: this.caloryMaxElement.nativeElement.value,
       dureeMax: this.dureeMaxElement.nativeElement.value
     });

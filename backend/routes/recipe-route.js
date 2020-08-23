@@ -31,7 +31,7 @@ recipeRoute.route('/:id').put(async (req, res, next) => {
   let recipe = await Recipe.findOne({ recipeID: req.params.id })
   .exec();
 
-  if(action === "add"){
+  if (action === "add"){
     for(let i=0; i < fields.length; i++){
       recipe[fields[i]].push(values[i]);
     }
@@ -118,7 +118,7 @@ recipeRoute.route('/').post(async (req, res, next) => {
   recipe.ingredients = req.body.recipe.ingredients;
   recipe.steps = req.body.recipe.steps;
   recipe.tags = req.body.recipe.tags;
-  
+
   // save
   await recipe.save();
   // send the new value

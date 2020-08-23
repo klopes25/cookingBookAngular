@@ -36,9 +36,10 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent, RecipeComponent, TopRecipeComponent, StarsComponent, MeatSelectorComponent, SpiceComponent, PhotoWithDurationComponent, CategoryComponent,
-          IngredientsComponent, StepsComponent, StepComponent, MockChiefTipComponent, TagsComponent, TagComponent, CommentsComponent, CommentComponent, SanitizeHtmlPipe ],
-        providers: [SanitizeHtmlPipe]
+        AppComponent, RecipeComponent, TopRecipeComponent, StarsComponent, MeatSelectorComponent, SpiceComponent,
+        PhotoWithDurationComponent, CategoryComponent, IngredientsComponent, StepsComponent, StepComponent,
+        MockChiefTipComponent, TagsComponent, TagComponent, CommentsComponent, CommentComponent, SanitizeHtmlPipe ],
+      providers: [SanitizeHtmlPipe]
     }).compileComponents();
   }));
 
@@ -46,7 +47,7 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
 
-    component.currentCategory = "all";
+    component.currentCategory = 'all';
     component.currentPage = 1;
     component.currentRecipe = null;
     component.deltaPerson = 0;
@@ -57,16 +58,16 @@ describe('AppComponent', () => {
     component.openRecipeForm = false;
     component.openShoppingList = false;
     component.openUserForm = false;
-    component.query = "";
+    component.query = '';
     component.shoppingItems = [];
     component.totalPages = 1;
     component.user = {
-      _id: "12",
-      email: "a@b.fr",
-      login: "funny",
-      logo: "burger",
-      password: "***",
-      role: "admin",
+      _id: '12',
+      email: 'a@b.fr',
+      login: 'funny',
+      logo: 'burger',
+      password: '***',
+      role: 'admin',
       votedFor: [],
       cart: []
     };

@@ -29,44 +29,44 @@ describe('ChiefTipComponent', () => {
   });
 
   it('should have the good tip dislayed', () => {
-    component.tip = "toto en slip";
+    component.tip = 'toto en slip';
     fixture.detectChanges();
     expect(fixture.debugElement.nativeElement.querySelector('div > div > div').innerText).toBe('toto en slip');
-  })
+  });
 
   it('should highlight the part of the tip that corresponds to the query', () => {
-    component.tip = "toto en slip";
-    component.query = "to"
+    component.tip = 'toto en slip';
+    component.query = 'to';
     fixture.detectChanges();
-    let markElement = fixture.debugElement.nativeElement.querySelector("mark");
+    let markElement = fixture.debugElement.nativeElement.querySelector('mark');
     expect(markElement).toBeFalsy();
-    component.query = "tot";
+    component.query = 'tot';
     fixture.detectChanges();
-    markElement = fixture.debugElement.nativeElement.querySelector("mark");
+    markElement = fixture.debugElement.nativeElement.querySelector('mark');
     expect(markElement).toBeTruthy();
-    expect(markElement.innerHTML).toContain("tot");
-  })
+    expect(markElement.innerHTML).toContain('tot');
+  });
 
   it('should replace the span by an input when edition mode activated', () => {
-    component.tip = "toto en slip";
+    component.tip = 'toto en slip';
     component.edition = true;
-    let chiefTipElement = fixture.debugElement.query(By.directive(ChiefTipComponent)).componentInstance; // get the child component
+    const chiefTipElement = fixture.debugElement.query(By.directive(ChiefTipComponent)).componentInstance; // get the child component
     spyOn(chiefTipElement.chiefTipUpdated, 'emit'); // to check that the output is called
     fixture.detectChanges();
-    const inputElement = fixture.debugElement.nativeElement.querySelector("input");
+    const inputElement = fixture.debugElement.nativeElement.querySelector('input');
     expect(inputElement).toBeTruthy();
-    expect(inputElement.value).toBe("toto en slip");
+    expect(inputElement.value).toBe('toto en slip');
     chiefTipElement.updateTip();
-    expect(chiefTipElement.chiefTipUpdated.emit).toHaveBeenCalledWith("toto en slip"); // to check that the output is called
+    expect(chiefTipElement.chiefTipUpdated.emit).toHaveBeenCalledWith('toto en slip'); // to check that the output is called
   });
 });
 
 // Why ??? Because the chief-tip component use ngOnChange ... we need to wrap chief-tip in another component to update the params
 @Component({
-  template: `<chief-tip [tip]="tip" [edition]="edition" [query]="query"></chief-tip>`
+  template: `<chief-tip [tip]='tip' [edition]='edition' [query]='query'></chief-tip>`
 })
 class TestHostComponent {
-  tip: string = "";
-  edition: boolean = false;
-  query: string = "";
+  tip = '';
+  edition = false;
+  query = '';
 }

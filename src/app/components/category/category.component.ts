@@ -8,8 +8,8 @@ const categories = ['aperitif', 'entree', 'plat', 'dessert', 'boisson', 'autre']
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent {
-  @Input() category: string = "plat";
-  @Input() edition: boolean = false;
+  @Input() category = 'plat';
+  @Input() edition = false;
   @Output() categoryUpdated = new EventEmitter<string>();
 
   // Display the next category
