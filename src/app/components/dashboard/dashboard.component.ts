@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.labels = Object.keys(this.categoriesCounter);
-    this.values = Object.entries(this.categoriesCounter).map(v => Number(v));
+    this.values = Object.values(this.categoriesCounter);
   }
 
 }
