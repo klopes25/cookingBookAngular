@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UsersService } from '../../service/users.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { UsersService } from '../../service/users.service';
   templateUrl: './useraser.component.html',
   styleUrls: ['./useraser.component.scss']
 })
-export class UseraserComponent implements OnInit {
+export class UseraserComponent {
 
   constructor(private usersService: UsersService) { }
 

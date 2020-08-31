@@ -8,6 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PodiumComponent implements OnInit {
 
   @Input() title = "Top Tags";
+  @Input() first = "";
+  @Input() second = "";
+  @Input() third = "";
 
   constructor() { }
 

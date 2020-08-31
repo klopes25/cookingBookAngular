@@ -13,10 +13,7 @@ export class DashboardComponent implements OnInit {
   // Histo
   @Input() categoriesCounter: any;
   // Podium
-  @Input() firstTag = "Toto";
-  @Input() secondTag = "Titi";
-  @Input() ThirdTag = "Tata";
-  // 
+  @Input() topTags = [];
 
   labels = [];
   values = [];

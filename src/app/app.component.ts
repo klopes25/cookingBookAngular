@@ -64,6 +64,7 @@ export class AppComponent implements OnInit {
   mode = 'list'; // 'list' or 'one' or 'admin'
   allUsers = [];
   categoriesCounter = {};
+  topTags = [];
   nbRecipes = 0;
 
   resize(event) {
@@ -348,10 +349,32 @@ export class AppComponent implements OnInit {
           this.usersService.getUsers().subscribe((data) => {
             this.allUsers = data.map((d) => omit(d, ['password', 'role', 'email', 'logo', 'votedFor', 'cart']));
             this.categoriesCounter = {};
+            this.topTags = [];
+            let allTags = {};
             recipes.forEach(recipe => {
+              // update categoriesCounter
               if(this.categoriesCounter[recipe.category] === undefined) this.categoriesCounter[recipe.category] = 0;
               this.categoriesCounter[recipe.category] += 1;
+              // update topTags
+              recipe.tags.forEach(tag => {
+                if(allTags[tag] === undefined){
+                  allTags[tag] = 0;
+                }
+                allTags[tag] += 1;
+              });
             });
+
+            // Handle top tags
+            for (let t in allTags) {
+              this.topTags.push([t, allTags[t]]);
+            }
+
+            this.topTags.sort(function(a, b) {
+                return b[1] - a[1];
+            });
+
+            this.topTags.length = 3;
+            this.topTags = this.topTags.map(tt => `${tt[0]} (${tt[1]})`)
           });
         }
       }
