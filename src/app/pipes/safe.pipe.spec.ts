@@ -14,7 +14,6 @@ describe('SanitizeHtmlPipe', () => {
     const pipe = new SanitizeHtmlPipe(domSanitizer);
     const result = pipe.transform(text);
     expect(result).toBeTruthy();
-    expect(result.changingThisBreaksApplicationSecurity).toContain('toto');
   }));
 
 });

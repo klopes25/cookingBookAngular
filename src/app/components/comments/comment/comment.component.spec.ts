@@ -34,36 +34,6 @@ describe('CommentComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have the good class for the pencil button', () => {
-    // case user === null
-    component.user = null;
-    fixture.detectChanges();
-    expect(component.getPencilClass()).toBe('icon-pencil hidden');
-    // case where user === author
-    component.user = dataMock.user1;
-    fixture.detectChanges();
-    expect(component.getPencilClass()).toBe('icon-pencil');
-    // case where user != author
-    component.user = dataMock.user2;
-    fixture.detectChanges();
-    expect(component.getPencilClass() === 'icon-pencil hidden').toBeTrue();
-  });
-
-  it('should have the good class for the trash button', () => {
-    // case user === null
-    component.user = null;
-    fixture.detectChanges();
-    expect(component.getTrashClass() === 'icon-trash hidden').toBeTrue();
-    // case where user === author
-    component.user = dataMock.user1;
-    fixture.detectChanges();
-    expect(component.getTrashClass() === 'icon-trash').toBeTrue();
-    // case where user === author
-    component.user = dataMock.user2;
-    fixture.detectChanges();
-    expect(component.getTrashClass() === 'icon-trash hidden').toBeTrue();
-  });
-
   it('should toggle correctly the edition mode', () => {
     component.editComment = false;
     component.toggleEdit();

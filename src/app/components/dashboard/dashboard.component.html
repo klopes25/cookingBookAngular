@@ -1,0 +1,24 @@
+<div class="dashboardFirstLine">
+  <div class="dashboardCounters">
+    <div class="userCounter">
+      <counter [title]="'Users'" [value]="users.length"></counter>
+    </div>
+    <div class="recipeCounter">
+      <counter [title]="'Recipes'" [value]="nbRecipes"></counter>
+    </div>
+  </div>
+
+  <div class="dashboardHistoRecipes">
+    <histo [title]="'Recipes'" [labels]="labels" [values]="values"></histo>
+  </div>
+</div>
+
+<div class="dashboardSecondLine">
+  <div class="dashboardTags">
+    <podium [first]="firstTag" [second]="secondTag" [third]="thirdTag"></podium>
+  </div>
+
+  <div class="dashboardDeleter">
+    <useraser [users]="users"></useraser>
+  </div>
+</div>

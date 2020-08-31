@@ -1,0 +1,50 @@
+:host{
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  font-family: Kavivanar;
+  background-color: #ce3f24;
+  color: white;
+  border-radius: 5px;
+}
+
+.title{
+  font-size: 27px;
+  padding-top: 10px;
+  font-weight: bolder;
+  align-self: flex-start;
+  padding-left: 10px;
+}
+
+.userDelete{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: end;
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  padding: 10px;
+  overflow-y: scroll;
+
+  .userLine{
+    width: 100%;
+
+    .userName{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 5px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #902410;
+        cursor: pointer;
+      }
+    }
+  }
+}

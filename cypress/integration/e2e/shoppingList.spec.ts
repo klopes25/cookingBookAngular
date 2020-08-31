@@ -4,8 +4,8 @@ describe('Shopping list', function() {
     // open the web site
     cy.visit('/');
     // connect
-    cy.signIn('testvalidated', "test");
-    cy.isLogged('testvalidated', 'egg');
+    cy.signIn('testlogin', "testpassword");
+    cy.isLogged('testlogin', 'citrouille');
     // check we are page 1
     cy.checkCurrentPage(1);
     // check the recipes displayed
@@ -17,7 +17,7 @@ describe('Shopping list', function() {
     // open the third recipe
     cy.clickOnRecipeItem(2);
     // add ingredients to cart
-
+    
     // open the fifth recipe
 
     // double recipe ingredient and add it to cart

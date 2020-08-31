@@ -53,8 +53,9 @@ userRoute.route('/:login').put(async (req, res, next) => {
 })
 
 // Delete User
-userRoute.route('/:login').delete((req, res, next) => {
-    User.findOneAndRemove({ login: req.params.login }, (error, data) => {
+userRoute.route('/:id').delete((req, res, next) => {
+    console.log("Try do delete it ! ", req.params.id)
+    User.findOneAndRemove({ _id: req.params.id }, (error, data) => {
         if (error) return next(error);
         else res.status(200).json({ msg: data });
     })

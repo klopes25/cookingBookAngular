@@ -10,9 +10,13 @@ Cypress.Commands.add('checkNoRecipesDisplayed', () => {
 })
 
 Cypress.Commands.add('clickOnRecipeItem', (index) => {
-  cy.get('recipes .recipes recipe-item')
+  cy.get('recipes .recipes recipe-item .thumbnail')
     .eq(index)
-    .click()
+    .trigger('mouseover');
+
+  cy.get('recipes .recipes recipe-item .showRecipe')
+    .eq(index)
+    .click();
 })
 
 

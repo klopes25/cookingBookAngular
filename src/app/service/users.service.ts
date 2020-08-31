@@ -42,6 +42,24 @@ export class UsersService {
     );
   }
 
+  getUsers(): Observable<any> {
+    const url = this.baseUri;
+    return this.http.get(url, {headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || null;
+      }),
+      catchError(this.errorMgmt)
+    );
+  }
+
+  // delete user
+  deletetUser(id): Observable<any> {
+    const url = `${this.baseUri}/${id}`;
+    return this.http.delete(url, { headers: this.headers }).pipe(
+      catchError(this.errorMgmt)
+    );
+  }
+
   // Error handling
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';

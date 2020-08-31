@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from 'src/model/user';
 
 @Component({
   selector: 'top-bar',
@@ -8,8 +9,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class TopBarComponent {
   @Input() category: string;
   @Input() query = '';
+  @Input() user: User;
   @Output() categorySelected = new EventEmitter<any>();
   @Output() searched = new EventEmitter<any>();
+  @Output() modeAdminActivated = new EventEmitter();
 
   items: Array<any> = [{
     title: 'Apéros',
@@ -35,6 +38,10 @@ export class TopBarComponent {
   }];
 
   constructor() { }
+
+  admin(){
+    this.modeAdminActivated.emit();
+  }
 
   search(data){
     this.searched.emit(data);

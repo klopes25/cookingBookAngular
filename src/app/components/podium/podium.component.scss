@@ -1,0 +1,81 @@
+:host{
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  font-family: Kavivanar;
+  background-color: #303030;
+  color: white;
+  border-radius: 5px;
+}
+
+.podiumTitle{
+  font-size: 27px;
+  padding-top: 10px;
+  font-weight: bolder;
+  align-self: flex-start;
+  padding-left: 10px;
+}
+
+.podium{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 10px;
+  position: relative;
+
+  .first, .second, .third {
+    width: 33%;
+    height: 75%;
+    background-color: #6b6b6b;
+    border: 1px solid #303030;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+
+    .tag{
+      height: 24px;
+      line-height: 24px;
+      border-radius: 4px;
+      color: #303030;
+      font-size: 12px;
+      font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+      padding: 1px 10px;
+      margin-right: 8px;
+      cursor: default;
+      font-weight: bold;
+      position: absolute;
+    }
+  }
+
+  .first{
+    .tag{
+      background: #f58220;
+      bottom: calc(75% + 25px);
+    }
+  }
+
+  .second{
+    height: 50%;
+    .tag{
+      background: #3d8eb9;
+      bottom: calc(50% + 25px);
+    }
+  }
+
+  .third{
+    height: 25%;
+    .tag{
+      background: #97c224;
+      bottom: calc(25% + 25px);
+    }
+  }
+}

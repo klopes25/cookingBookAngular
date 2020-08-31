@@ -4,6 +4,7 @@ import { User } from '../model/user';
 import { RecipesService } from './service/recipes.service';
 import { UsersService } from './service/users.service';
 import uniq from 'lodash-es/uniq';
+import omit from 'lodash/omit';
 
 const RECIPE_ITEM_WIDTH = 176;
 const RECIPE_ITEM_HEIGHT = 203;
@@ -60,6 +61,10 @@ export class AppComponent implements OnInit {
   nextID = 0;
   showSpinnerRecipesZone = true;
   units: Array<string> = [];
+  mode = 'list'; // 'list' or 'one' or 'admin'
+  allUsers = [];
+  categoriesCounter = {};
+  nbRecipes = 0;
 
   resize(event) {
     recipesWidthDispo = event.target.innerWidth - (266 + ((this.user === null) ? 0 : 40));
@@ -76,6 +81,7 @@ export class AppComponent implements OnInit {
       this.setUnits(recipes);
       this.nextID = recipes[recipes.length - 1].recipeID + 1;
       this.recipesDisplayed = recipes;
+      this.nbRecipes = recipes.length;
       this.updateTotalPages();
       this.showSpinnerRecipesZone = false;
 
@@ -100,6 +106,14 @@ export class AppComponent implements OnInit {
     recipesWidthDispo = window.innerWidth - (266 + ((this.user === null) ? 0 : 40));
     recipesHeightDispo = window.innerHeight - 128;
   }
+
+  /************ ADMIN **********/
+
+  modeAdmin(){
+    this.mode = this.mode === 'admin' ? 'list' : 'admin';
+  }
+
+  /****************************/
 
   /*********** CART ***********/
 
@@ -224,6 +238,7 @@ export class AppComponent implements OnInit {
       // recipe is updated, change currentRecipe value if necessary
       if ((this.currentRecipe !== null) && (this.currentRecipe.recipeID === recipeID)){
         this.currentRecipe = data as Recipe;
+        this.mode = 'one';
       }
       // update recipes
       const position = recipes.findIndex((r) => r.recipeID === recipeID);
@@ -295,6 +310,7 @@ export class AppComponent implements OnInit {
   showRecipe(id, needToHistorize = true){
     this.recipesService.getRecipe(id).subscribe((data) => {
       this.currentRecipe = data;
+      this.mode = 'one';
       if (needToHistorize){
         window.history.pushState({recipe: id}, null, `#recipe=${id}`);
       }
@@ -307,6 +323,7 @@ export class AppComponent implements OnInit {
     this.updateRecipesDisplayed();
     // remove currentRecipe
     this.currentRecipe = null;
+    this.mode = 'list';
   }
 
   closeHelper = () => { this.openHelp = false; };
@@ -326,6 +343,17 @@ export class AppComponent implements OnInit {
         this.updateTotalPages();
         this.updateRecipesDisplayed();
         this.shoppingItems = this.user.cart;
+
+        if(this.user.role === 'admin'){
+          this.usersService.getUsers().subscribe((data) => {
+            this.allUsers = data.map((d) => omit(d, ['password', 'role', 'email', 'logo', 'votedFor', 'cart']));
+            this.categoriesCounter = {};
+            recipes.forEach(recipe => {
+              if(this.categoriesCounter[recipe.category] === undefined) this.categoriesCounter[recipe.category] = 0;
+              this.categoriesCounter[recipe.category] += 1;
+            });
+          });
+        }
       }
     });
   }
@@ -335,6 +363,7 @@ export class AppComponent implements OnInit {
     this.end = nbMaxRecipesByPage * page;
     this.currentPage = page;
     this.currentRecipe = null; // clean curentRecipe for the history
+    this.mode = 'list';
 
     if (needToHistorize){
       window.history.pushState({page}, null, `#page=${page}`);

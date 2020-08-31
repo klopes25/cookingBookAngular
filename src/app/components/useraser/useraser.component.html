@@ -1,0 +1,10 @@
+<div class="title"><i class="icon-trash"></i>User eraser</div>
+
+<div class="userDelete">
+  <div class="userLine" *ngFor="let user of users">
+    <div class="userName" (click)="delete(user._id)">
+      <span>{{user.login}}</span>
+      <i class="icon-cancel"></i>
+    </div>
+  </div>
+</div>

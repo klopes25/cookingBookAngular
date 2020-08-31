@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgModule } from '@angular/core';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { ChartsModule } from 'ng2-charts';
 // SERVICES
 import { RecipesService } from './service/recipes.service';
 import { UsersService } from './service/users.service';
@@ -15,8 +16,11 @@ import { ChiefTipComponent } from './components/chief-tip/chief-tip.component';
 import { ConnectZoneComponent } from './components/connect-zone/connect-zone.component';
 import { CommentComponent } from './components/comments/comment/comment.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { CounterComponent } from './components/counter/counter.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { HelpComponent } from './components/help/help.component';
+import { HistoComponent } from './components/histo/histo.component';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
 import { MeatSelectorComponent } from './components/meat-selector/meat-selector.component';
 import { MenuGlobalComponent } from './components/menu-global/menu-global.component';
@@ -41,6 +45,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 // PIPES
 import { SanitizeHtmlPipe } from './pipes/safe.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { PodiumComponent } from './components/podium/podium.component';
+import { UseraserComponent } from './components/useraser/useraser.component';
 
 @NgModule({
   declarations: [
@@ -74,14 +80,20 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     StepComponent,
     TagComponent,
     CommentComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    DashboardComponent,
+    CounterComponent,
+    HistoComponent,
+    PodiumComponent,
+    UseraserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     LazyLoadImageModule,
-    PickerModule
+    PickerModule,
+    ChartsModule
   ],
   providers: [RecipesService, UsersService],
   bootstrap: [AppComponent]

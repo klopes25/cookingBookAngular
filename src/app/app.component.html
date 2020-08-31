@@ -17,7 +17,7 @@
   ></menu-global>
 </div>
 
-<div class="menus center">
+<div class="menus center" *ngIf="mode !== 'admin'">
   <filters
     [user]="user"
     [currentRecipe]="currentRecipe"
@@ -31,11 +31,13 @@
   <top-bar
     [category]="currentCategory"
     [query]="query"
+    [user]="user"
+    (modeAdminActivated)="modeAdmin()"
     (categorySelected)="changeCurrentCategory($event)"
     (searched)="search($event)"
   ></top-bar>
 
-  <div *ngIf="currentRecipe === null; else recipeOne" class="recipesZone">
+  <div *ngIf="mode === 'list'; else recipeOneOrAdmin" class="recipesZone">
     <spinner *ngIf="showSpinnerRecipesZone"></spinner>
     <recipes
       [items]="recipesDisplayed | slice : start : end"
@@ -50,8 +52,8 @@
     ></pagination>
   </div>
 
-  <ng-template #recipeOne>
-    <div class="recipe">
+  <ng-template #recipeOneOrAdmin>
+    <div class="recipe" *ngIf="mode === 'one'; else adminPage">
       <recipe
         [currentRecipe]="currentRecipe"
         [query]="query"
@@ -83,12 +85,16 @@
     </div>
   </ng-template>
 
+  <ng-template #adminPage>
+    <dashboard [users]="allUsers" [nbRecipes]="nbRecipes" [categoriesCounter]="categoriesCounter"></dashboard>
+  </ng-template>
+
 	<div class="foot"><span>&copy; The Funnybobby company 2019</span></div>
 </div>
 
 <notification
   [notifs]="notifs"
-  (notifRemoved)="removeNotif ()"
+  (notifRemoved)="removeNotif()"
 ></notification>
 <help
   [open]="openHelp"

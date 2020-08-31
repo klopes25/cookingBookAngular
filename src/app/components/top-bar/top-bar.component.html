@@ -8,9 +8,11 @@
     {{ item.title }}
     </span>
   </span>
-  
+
   <search-bar
     [query]="query"
     (searched)="search($event)"
   ></search-bar>
+
+  <i *ngIf="user !== null && user.role === 'admin'" class="icon-cog" (click)="admin()"></i>
 </div>

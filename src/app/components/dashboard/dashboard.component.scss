@@ -1,0 +1,71 @@
+:host{
+  display: contents;
+  background: #202020;
+  flex: 1;
+  margin: 8px 0 8px 0;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: calc(100% - 72px);
+}
+
+.dashboardFirstLine {
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding: 20px;
+
+  .dashboardCounters{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .userCounter{
+      width: 100%;
+      flex: 1;
+    }
+
+    .recipeCounter{
+      width: 100%;
+      flex: 1;
+    }
+  }
+
+  .dashboardHistoRecipes{
+    width: calc(100% - 250px);
+    height: 100%;
+  }
+}
+
+.dashboardSecondLine {
+  height: calc(100% - 20px);
+  max-height: 30%;
+  width: calc(100% - 40px);
+  padding: 0px 20px 20px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .dashboardTags{
+    width: calc(100% - 250px);
+    height: 100%;
+  }
+
+  .dashboardDeleter{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

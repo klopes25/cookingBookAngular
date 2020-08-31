@@ -91,11 +91,11 @@ describe('connect-zone component', function() {
 
   it('App unconnection', function(){
     // sign in
-    cy.signIn('funnybobby', "190281");
+    cy.signIn('testlogin', "testpassword");
     // check that the login/password section disappear
     cy.get('connect-zone .unconnected').should('not.exist');
-    // check that funnybobby is connected now !
-    cy.isLogged('funnybobby', 'egg');
+    // check that testlogin is connected now !
+    cy.isLogged('testlogin', 'citrouille');
     // click on the unconnection link
     cy.get('connect-zone .userDetails .actions span')
     .eq(2)

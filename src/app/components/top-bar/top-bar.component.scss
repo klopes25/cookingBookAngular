@@ -29,6 +29,17 @@
       color: #202020;
     }
   }
+
+  .icon-cog{
+    margin-right: -14px;
+    padding: 0 5px;
+
+    &:hover {
+      cursor: pointer;
+      background: #009ee0;
+      border-radius: 0 4px 4px 0px;
+    }
+  }
 }
 
 @media print {

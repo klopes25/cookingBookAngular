@@ -50,20 +50,6 @@ describe('ConnectZoneComponent', () => {
     expect(inputPassword).toBeFalsy();
   });
 
-  it('should display whether a user is null or not', () => {
-    expect(component.isUserConnected()).toBe(true);
-    component.user = null;
-    fixture.detectChanges();
-    expect(component.isUserConnected()).toBe(false);
-  });
-
-  it('should give the good avatar path', () => {
-    expect(component.getUserAvatarSrc()).toBe('assets/img/user/user_burger.svg');
-    component.user.logo = 'apple';
-    fixture.detectChanges();
-    expect(component.getUserAvatarSrc()).toBe('assets/img/user/user_apple.svg');
-  });
-
   it('should open the user form', () => {
     spyOn(component.createUserOpened, 'emit'); // to check that the output is called
     component.openCreateUser();

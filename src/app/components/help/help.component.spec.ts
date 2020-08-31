@@ -31,8 +31,4 @@ describe('HelpComponent', () => {
     component.closeHelp();
     expect(component.helperClosed.emit).toHaveBeenCalled(); // to check that the output is called
   });
-
-  it('should get the good src for the helper', () => {
-    expect(component.getHelperSrc()).toBe('assets/img/Help.png');
-  });
 });

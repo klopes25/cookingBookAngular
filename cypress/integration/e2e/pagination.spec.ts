@@ -39,20 +39,20 @@ describe('Pagination', function() {
     // click on last button and check current page is now equal to the max page
     cy.lastPageButtonClick();
     cy.wait(500);
-    cy.checkCurrentPage(123);
+    cy.checkCurrentPage(130);
     // check the first item
-    cy.checkTitleItemOfTheCurrentPage('Tarte chocolat au lait caramel beurre salé', 0);
+    cy.checkTitleItemOfTheCurrentPage('Momofuku Bo Ssäm', 0);
     // click on next button and check current page is now 123
     cy.nextPageButtonClick();
     cy.wait(500);
-    cy.checkCurrentPage(123);
-    cy.checkTitleItemOfTheCurrentPage('Tarte chocolat au lait caramel beurre salé', 0);
+    cy.checkCurrentPage(130);
+    cy.checkTitleItemOfTheCurrentPage('Momofuku Bo Ssäm', 0);
     // click on previous and check current page is max page - 1
     cy.previousPageButtonClick();
     cy.wait(500);
-    cy.checkCurrentPage(122);
+    cy.checkCurrentPage(129);
     // check the first item
-    cy.checkTitleItemOfTheCurrentPage('Ramen sautées aux crevettes', 0);
+    cy.checkTitleItemOfTheCurrentPage('Nems au crabe', 0);
   });
 
   it('pagination goTo', function() {
@@ -65,12 +65,12 @@ describe('Pagination', function() {
     cy.checkTitleItemOfTheCurrentPage('Mini-croissant pizza', 0);
     // go to a page superior as max page
     cy.goTo("5000");
-    cy.checkCurrentPage(123);
-    cy.checkTitleItemOfTheCurrentPage('Tarte chocolat au lait caramel beurre salé', 0);
+    cy.checkCurrentPage(130);
+    cy.checkTitleItemOfTheCurrentPage('Momofuku Bo Ssäm', 0);
     // go to a page between 1 and max page
     cy.goTo("7");
     cy.checkCurrentPage(7);
-    cy.checkTitleItemOfTheCurrentPage('Moelleux courgette-apéricube', 0);
+    cy.checkTitleItemOfTheCurrentPage('Cake au thon', 0);
   });
 
 })
